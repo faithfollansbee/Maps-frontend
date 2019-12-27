@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Route } from 'react-router-dom'
-
+import { Switch, Route } from 'react-router-dom'
+// import { Map, GoogleApiWrapper } from 'google-maps-react'
+// import { Search } from './Search'
+// import Landing from './Landing'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import Header from '../Header/Header'
@@ -8,6 +10,11 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import MapContainer from './Container'
+import Places from './Places'
+import Place from './Place'
+import AddPlace from './AddPlace'
+// import Map from './Map'
 
 class App extends Component {
   constructor () {
@@ -32,6 +39,8 @@ class App extends Component {
 
     return (
       <Fragment>
+        <Switch>
+        </Switch>
         <Header user={user} />
         {alerts.map((alert, index) => (
           <AutoDismissAlert
@@ -41,19 +50,31 @@ class App extends Component {
             message={alert.message}
           />
         ))}
+        <MapContainer />
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
           <Route path='/sign-in' render={() => (
-            <SignIn alert={this.alert} setUser={this.setUser} />
-          )} />
+            <SignIn alert={this.alert} setUser={this.setUser}/>
+          )}
+          />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+
+          <AuthenticatedRoute user={user} exact path='/places/'
+            render={() => (<Places user={user}/>)}
+          />
+          <AuthenticatedRoute user={user} exact path='/places/:id'
+            render={() => (<Place user={user}/>)}/>
+
+          <AuthenticatedRoute user={user} path="/createplace"
+            render={() => (
+              <AddPlace user={user} alert={this.alert}/>)}/>
         </main>
       </Fragment>
     )
