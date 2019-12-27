@@ -9,7 +9,8 @@ class AddPlace extends Component {
     place: {
       name: '',
       type: '',
-      coords: ''
+      latitude: '',
+      longitude: ''
     },
     submitted: false
   }
@@ -43,12 +44,16 @@ class AddPlace extends Component {
 
   render () {
     console.log(this.state)
+    console.log('hello from add place')
     return (
-      <PlaceForm
-        place={this.state.place}
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <div className="row">
+        <h3>add</h3>
+        <PlaceForm
+          place={this.state.place}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
     )
   }
 }

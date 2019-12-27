@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 // import { Map, GoogleApiWrapper } from 'google-maps-react'
 // import { Search } from './Search'
 // import Landing from './Landing'
+import 'typeface-roboto'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import Header from '../Header/Header'
@@ -14,6 +15,7 @@ import MapContainer from './Container'
 import Places from './Places'
 import Place from './Place'
 import AddPlace from './AddPlace'
+
 // import Map from './Map'
 
 class App extends Component {
@@ -39,8 +41,6 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Switch>
-        </Switch>
         <Header user={user} />
         {alerts.map((alert, index) => (
           <AutoDismissAlert
@@ -50,8 +50,9 @@ class App extends Component {
             message={alert.message}
           />
         ))}
-        <MapContainer />
         <main className="container">
+          <AuthenticatedRoute user={user} path='/map' render={() => (
+            <MapContainer user={user} />)} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -72,7 +73,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/places/:id'
             render={() => (<Place user={user}/>)}/>
 
-          <AuthenticatedRoute user={user} path="/createplace"
+          <AuthenticatedRoute user={user} path='/createplace'
             render={() => (
               <AddPlace user={user} alert={this.alert}/>)}/>
         </main>

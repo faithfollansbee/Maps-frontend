@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+import axios from 'axios'
+import apiUrl from '../../apiConfig'
 // import GoogleMapReact from 'google-map-react'
 const style = {
   width: '100%',
@@ -7,18 +9,32 @@ const style = {
 }
 export class MapContainer extends Component {
   state = {
-    places: [{
-      latitude: 42.3601,
-      longitude: -71.0589,
-      iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-      content: '<h1>Lynn MA</h1>'
-    },
-    {
-      latitude: 42.8015,
-      longitude: -70.9898,
-      content: '<h1>Boston MA</h1>'
+    places: []
+    // places: [{
+    //   latitude: 42.3601,
+    //   longitude: -71.0589,
+    //   iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    //   content: '<h1>Lynn MA</h1>'
+    // },
+    // {
+    //   latitude: 42.8015,
+    //   longitude: -70.9898,
+    //   content: '<h1>Boston MA</h1>'
+    // }
+    // ]
+  }
+  async componentDidMount () {
+    try {
+      const response = await axios({
+        url: `${apiUrl}/places`,
+        method: 'GET',
+        headers: {
+          Authorization: `Token token=${this.props.user.token}`
+        }
+      })
+      this.setState({ places: response.data.places, isLoading: false })
+    } catch (error) {
     }
-    ]
   }
 
     onMarkerClick = (props, marker, e) =>

@@ -16,14 +16,25 @@ const PlaceForm = ({ place, handleChange, handleSubmit }) => (
       />
     </Form.Group>
 
-    <Form.Group controlId="coords">
-      <Form.Label>coordinates</Form.Label>
+    <Form.Group controlId="latitude">
+      <Form.Label>latitude</Form.Label>
       <Form.Control
         type="text"
-        placeholder="Enter the coords"
-        value={place.coords}
+        placeholder="Enter the latitude"
+        value={place.latitude}
         onChange={handleChange}
-        name="coords"
+        name="latitude"
+        required
+      />
+    </Form.Group>
+    <Form.Group controlId="longitude">
+      <Form.Label>longitude</Form.Label>
+      <Form.Control
+        type="text"
+        placeholder="Enter the longitude"
+        value={place.longitude}
+        onChange={handleChange}
+        name="longitude"
         required
       />
     </Form.Group>
