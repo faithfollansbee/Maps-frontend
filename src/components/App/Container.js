@@ -2,11 +2,21 @@ import React, { Component } from 'react'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+// import LocationSearchInput from './SearchClass'
 // import GoogleMapReact from 'google-map-react'
 const style = {
-  width: '100%',
-  height: '100%'
+  width: '90%',
+  height: '50%',
+  margin: 10,
+  padding: 10,
+  flexDirection: 'column',
+  position: 'absolute',
+  backgroundColor: '#31464f'
 }
+//
+// const otherStyle = {
+//   display: 'flex'
+// }
 export class MapContainer extends Component {
   state = {
     places: []
@@ -63,12 +73,12 @@ export class MapContainer extends Component {
 
     return (
       <Map
+        style={style}
         google={window.google}
         zoom={14}
-        style={style}
         initialCenter={{
-          lat: 40.854885,
-          lng: -88.081807
+          lat: 42.3601,
+          lng: -71.0589
         }}
       >
         {this.displayMarkers()}

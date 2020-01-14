@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 const PlaceForm = ({ place, handleChange, handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
     <Form.Group controlId="name">
-      <Form.Label>place Name</Form.Label>
+      <Form.Label>Name</Form.Label>
       <Form.Control
         type="text"
         placeholder="Enter a name"
@@ -39,7 +39,7 @@ const PlaceForm = ({ place, handleChange, handleSubmit }) => (
       />
     </Form.Group>
 
-    <Form.Group controlId="type">
+    <Form.Group controlId="type" className="field" id="type">
       <Form.Label>place type</Form.Label>
       <Form.Control
         type="text"

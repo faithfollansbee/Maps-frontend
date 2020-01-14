@@ -1,1 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
+
+main {
+  width: 100%;
+}
+
+body {
+  background-color: #7ca2a1;
+  color: white
+}
+nav {
+  background-color: #31464f;
+  navbar-text {
+    color: white
+  }
+}

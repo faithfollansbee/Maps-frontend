@@ -3,6 +3,14 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import PlaceForm from './PlaceForm'
 import { withRouter } from 'react-router-dom'
+import Search from './Search'
+
+const style = {
+  width: '90%',
+  margin: 10,
+  padding: 15,
+  justifyContent: 'space-between'
+}
 
 class AddPlace extends Component {
   state = {
@@ -43,16 +51,17 @@ class AddPlace extends Component {
   }
 
   render () {
-    console.log(this.state)
-    console.log('hello from add place')
     return (
-      <div className="row">
-        <h3>add</h3>
-        <PlaceForm
-          place={this.state.place}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+      <div style={style}>
+        <h3>search and add a place</h3>
+        <div className="row" style={style}>
+          <PlaceForm
+            place={this.state.place}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
+          <Search user={this.user}/>
+        </div>
       </div>
     )
   }
