@@ -6,11 +6,34 @@ main {
 
 body {
   background-color: #7ca2a1;
-  color: white
+  font-family: 'Work Sans', sans-serif;
 }
 nav {
   background-color: #31464f;
   navbar-text {
     color: white
   }
+  font-family: 'Work Sans', sans-serif;
 }
+
+.container {
+  margin-top: 50;
+}
+//
+// .placeContainer {
+//   outline: black,
+//   color: green,
+//   justify-content: center;
+//   margin-top: 50;
+//   padding: 10;
+// }
+//
+// .infoContainer {
+//   justify-content: center;
+//   margin: 15;
+//   padding: 10;
+//   outline: black,
+//   color: green,
+//   margin: 15;
+//   padding: 10;
+// }

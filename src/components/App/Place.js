@@ -1,8 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import { withRouter, Redirect, Link } from 'react-router-dom'
-
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
+
+const style = {
+  justifyContent: 'center',
+  margin: 20,
+  padding: 10
+}
 
 class Place extends Component {
     state = {
@@ -55,24 +62,26 @@ class Place extends Component {
       }
 
       return (
-        <div>
+        <div style={style}>
           { place && (
             <Fragment>
-              <div className="container">
-                <div className="row">
-                  <div className="col s12 m8">
-                    <div className="info-container">
-                      <p> {place.name} </p>
-                      <p> {place.type} </p>
-                      <p> {place.coords} </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <Link to="/places">Back to all</Link>
-                <button onClick={this.deleteplace}>Delete this place</button>
-              </div>
+              <CardDeck>
+                <Card>
+                  <Card.Body>
+                    <Card.Title>{place.name}</Card.Title>
+                    <Card.Subtitle>{place.type}</Card.Subtitle>
+                    <Card.Text>
+                      {place.coords}
+                      {place.latitude}
+                      {place.longitude}
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link to="/places">Back to all</Link>
+                    <button onClick={this.deleteplace}>Delete this place</button>
+                  </Card.Footer>
+                </Card>
+              </CardDeck>
             </Fragment>
           )}
         </div>

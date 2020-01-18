@@ -5,8 +5,8 @@ import apiUrl from '../../apiConfig'
 // import LocationSearchInput from './SearchClass'
 // import GoogleMapReact from 'google-map-react'
 const style = {
-  width: '90%',
-  height: '50%',
+  width: '80%',
+  height: '70%',
   margin: 10,
   padding: 10,
   flexDirection: 'column',
@@ -55,11 +55,37 @@ export class MapContainer extends Component {
 
   displayMarkers = () => {
     return this.state.places.map((place, index) => {
-      return <Marker key={index} id={index} position={{
-        lat: place.latitude,
-        lng: place.longitude
-      }}
-      onClick={() => console.log('You clicked me!')} />
+      if (place.type === 'food') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        onClick={() => console.log('You clicked me!')} />
+      } else if (place.type === 'entertainment') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        onClick={() => console.log('You clicked me!')} />
+      } else if (place.type === 'historic') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        onClick={() => console.log('You clicked me!')} />
+      } else if (place.type === 'outdoors') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        onClick={() => console.log('You clicked me!')} />
+      } else {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }}
+        onClick={() => console.log('You clicked me!')} />
+      }
     })
   }
   render () {
@@ -75,7 +101,7 @@ export class MapContainer extends Component {
       <Map
         style={style}
         google={window.google}
-        zoom={14}
+        zoom={12}
         initialCenter={{
           lat: 42.3601,
           lng: -71.0589
@@ -92,15 +118,6 @@ export class MapContainer extends Component {
           name={'Dolores park'}
           position={{ lat: 37.759703, lng: -122.428093 }} />
         <Marker />
-        <Marker
-          google={window.google}
-          name={'Your position'}
-          position={{ lat: 37.762391, lng: -122.439192 }}
-          icon={{
-            url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-            // anchor: new google.maps.Point(32, 32),
-            // scaledSize: new google.maps.Size(64, 64)
-          }} />
       </Map>
     )
   }

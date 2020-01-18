@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 // import FormControl from 'react-bootstrap/FormControl'
 // import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
-
+const style = {
+  margin: 20
+}
 class Places extends Component {
   constructor (props) {
     super(props)
@@ -63,7 +65,7 @@ class Places extends Component {
     }
     console.log(this.state)
     return (
-      <ListGroup>
+      <ListGroup style={style}>
         {this.state.places.length
           ? placesJsx
           : <ListGroup.Item>No places found</ListGroup.Item>

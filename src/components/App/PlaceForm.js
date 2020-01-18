@@ -2,14 +2,14 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const PlaceForm = ({ place, handleChange, handleSubmit }) => (
+const PlaceForm = ({ latitude, longitude, type, name, handleChange, handleSubmit }) => (
   <Form onSubmit={handleSubmit}>
     <Form.Group controlId="name">
       <Form.Label>Name</Form.Label>
       <Form.Control
         type="text"
         placeholder="Enter a name"
-        value={place.name}
+        value={name}
         onChange={handleChange}
         name="name"
         required
@@ -21,7 +21,7 @@ const PlaceForm = ({ place, handleChange, handleSubmit }) => (
       <Form.Control
         type="text"
         placeholder="Enter the latitude"
-        value={place.latitude}
+        value={latitude}
         onChange={handleChange}
         name="latitude"
         required
@@ -32,7 +32,7 @@ const PlaceForm = ({ place, handleChange, handleSubmit }) => (
       <Form.Control
         type="text"
         placeholder="Enter the longitude"
-        value={place.longitude}
+        value={longitude}
         onChange={handleChange}
         name="longitude"
         required
@@ -44,7 +44,7 @@ const PlaceForm = ({ place, handleChange, handleSubmit }) => (
       <Form.Control
         type="text"
         placeholder="Enter the type of place"
-        value={place.type}
+        value={type}
         onChange={handleChange}
         name="type"
         required

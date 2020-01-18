@@ -3,24 +3,35 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import PlaceForm from './PlaceForm'
 import { withRouter } from 'react-router-dom'
-import Search from './Search'
+// import Search from './Search'
+// import BestSearch from './bestsearch'
 
 const style = {
   width: '90%',
   margin: 10,
   padding: 15,
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  alignItems: 'baseline',
+  position: 'fixed'
 }
 
 class AddPlace extends Component {
-  state = {
-    place: {
-      name: '',
-      type: '',
-      latitude: '',
-      longitude: ''
-    },
-    submitted: false
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: props.user,
+      latitude: props.latitude,
+      longitude: props.longitude,
+      name: props.name,
+      type: props.type,
+      place: {
+        name: props.name,
+        latitude: props.latitude,
+        longitude: props.longitude,
+        type: props.type
+      }
+    }
+    console.log(this.props.user)
   }
 
   handleChange = event => {
@@ -31,7 +42,25 @@ class AddPlace extends Component {
       }
     })
   }
-
+  // const handleClick = () => {
+  //     event.preventDefault()
+  //     axios({
+  //       method: 'POST',
+  //       url: `${apiUrl}/movies`,
+  //       headers: {
+  //         Authorization: `Token token=${props.user.token}`
+  //       },
+  //       data: {
+  //         movie: {
+  //           title: props.title,
+  //           description: props.description,
+  //           released: props.released,
+  //           image: props.image
+  //         }
+  //       }
+  //     })
+  //   //  <Redirect to="/movies"/>
+  //   }
   handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -41,7 +70,12 @@ class AddPlace extends Component {
         'Authorization': `Token token=${this.props.user.token}`
       },
       data: {
-        place: this.state.place
+        place: {
+          name: this.props.name,
+          latitude: this.props.latitude,
+          longitude: this.props.longitude,
+          type: this.props.type
+        }
       }
     })
       .then(response => {
@@ -51,16 +85,20 @@ class AddPlace extends Component {
   }
 
   render () {
+    console.log(this.state.place)
     return (
       <div style={style}>
         <h3>search and add a place</h3>
         <div className="row" style={style}>
           <PlaceForm
-            place={this.state.place}
+            latitude={this.props.latitude}
+            longitude={this.props.longitude}
+            name={this.props.name}
+            type={this.props.type}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
+            user={this.user}
           />
-          <Search user={this.user}/>
         </div>
       </div>
     )

@@ -14,9 +14,9 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import MapContainer from './Container'
 import Places from './Places'
 import Place from './Place'
-import AddPlace from './AddPlace'
+// import AddPlace from './AddPlace'
 import Search from './Search'
-// import LocationSearchInput from './SearchClass'
+import BestSearch from './bestsearch'
 // import Map from './Map'
 // import { google } from 'google-maps'
 
@@ -84,7 +84,7 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} path='/createplace'
             render={() => (
-              <AddPlace user={user}/>
+              <BestSearch user={user}/>
             )}
           />
         </main>

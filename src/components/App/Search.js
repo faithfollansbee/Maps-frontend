@@ -6,8 +6,10 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 
 const style = {
   padding: 10,
-  margin: 10
+  margin: 10,
+  overflow: 'scroll'
 }
+
 export default function Search () {
   const [address, setAddress] = React.useState('')
   const [coordinates, setCoordinates] = React.useState({
@@ -40,7 +42,8 @@ export default function Search () {
 
               {suggestions.map(suggestion => {
                 const style = {
-                  backgroundColor: suggestion.active ? '#41b6e6' : '#fff'
+                  backgroundColor: suggestion.active ? '#41b6e6' : '#fff',
+                  overflow: 'auto'
                 }
 
                 return (
