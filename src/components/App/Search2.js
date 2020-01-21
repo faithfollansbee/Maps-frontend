@@ -1,7 +1,14 @@
 import React from 'react'
 import AddPlace from './AddPlace'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
+const style = {
+  zIndex: 2,
+  position: 'absolute'
+}
+const style2 = {
+  zIndex: 1,
+  position: 'absolute'
+}
 class LocationSearchInput extends React.Component {
   state = {
     name: '',
@@ -39,47 +46,50 @@ class LocationSearchInput extends React.Component {
 
   render () {
     return (
-      <div>
-        <PlacesAutocomplete
-          value={this.state.address}
-          onChange={this.handleChange}
-          onSelect={this.handleSelect}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <div>
-              <input
-                {...getInputProps({
-                  placeholder: 'Search Places ...',
-                  className: 'location-search-input'
-                })}
-              />
-              <div className="autocomplete-dropdown-container">
-                {loading && <div>Loading...</div>}
-                {suggestions.map(suggestion => {
-                  const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item'
-                  // inline style for demonstration purpose
-                  const style = suggestion.active
-                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                    : { backgroundColor: '#ffffff', cursor: 'pointer' }
-                  return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style
-                      })}
-                      key={suggestion.id}
-                    >
-                      <span>{suggestion.description} {suggestion.location}</span>
-                    </div>
-                  )
-                })}
+      <div className="Search2-layout">
+        <div className="row">
+          <PlacesAutocomplete
+            style={style}
+            value={this.state.address}
+            onChange={this.handleChange}
+            onSelect={this.handleSelect}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: 'Search Places ...',
+                    className: 'location-search-input'
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item'
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer' }
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style
+                        })}
+                        key={suggestion.id}
+                      >
+                        <span>{suggestion.description} {suggestion.location}</span>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          )}
-        </PlacesAutocomplete>
-        <AddPlace user={this.state.user} type={this.state.type} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
+            )}
+          </PlacesAutocomplete>
+          <AddPlace style={style2} user={this.state.user} type={this.state.type} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
+        </div>
       </div>
     )
   }

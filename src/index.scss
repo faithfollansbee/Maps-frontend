@@ -15,7 +15,30 @@ nav {
   }
   font-family: 'Work Sans', sans-serif;
 }
+.row {
+}
 
+.cardLink {
+  padding: 15;
+}
+
+.cardButton {
+  padding: 15;
+}
+
+.cardFooter {
+  // display: flex;
+  // justify-content: space-around;
+}
+
+.Search2-layout {
+  flex-direction: row;
+  justify-content: space-between;
+}
+.autocomplete-dropdown-container {
+   z-index: 1000;
+   position: absolute;
+}
 .container {
   margin-top: 50px;
 }

@@ -7,9 +7,8 @@ import { withRouter } from 'react-router-dom'
 // import BestSearch from './bestsearch'
 
 const style = {
-  width: '90%',
-  margin: 10,
-  padding: 15,
+  width: '50%',
+  paddingLeft: 20,
   justifyContent: 'space-between',
   alignItems: 'baseline',
   position: 'fixed'
@@ -87,7 +86,7 @@ class AddPlace extends Component {
   render () {
     console.log(this.state.place)
     return (
-      <div style={style}>
+      <div className="Search2-layout">
         <div className="row" style={style}>
           <PlaceForm
             latitude={this.props.latitude}

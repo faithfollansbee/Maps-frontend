@@ -6,9 +6,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
 
 const style = {
-  justifyContent: 'center',
-  margin: 20,
-  padding: 10
+
 }
 
 class Place extends Component {
@@ -77,8 +75,10 @@ class Place extends Component {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <Link to="/places">Back to all</Link>
-                    <button onClick={this.deleteplace}>Delete this place</button>
+                    <div className="cardFooter">
+                      <Link to="/places" className="cardLink">Back to all</Link>
+                      <button onClick={this.deleteplace} className="cardButton">Delete this place</button>
+                    </div>
                   </Card.Footer>
                 </Card>
               </CardDeck>

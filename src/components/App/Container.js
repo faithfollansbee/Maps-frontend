@@ -9,7 +9,6 @@ const style = {
   height: '70%',
   margin: 15,
   padding: 15,
-  flexDirection: 'column',
   position: 'absolute',
   backgroundColor: '#31464f'
 }
