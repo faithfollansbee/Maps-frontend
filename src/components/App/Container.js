@@ -7,8 +7,8 @@ import apiUrl from '../../apiConfig'
 const style = {
   width: '80%',
   height: '70%',
-  margin: 10,
-  padding: 10,
+  margin: 15,
+  padding: 15,
   flexDirection: 'column',
   position: 'absolute',
   backgroundColor: '#31464f'

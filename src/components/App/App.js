@@ -15,8 +15,8 @@ import MapContainer from './Container'
 import Places from './Places'
 import Place from './Place'
 // import AddPlace from './AddPlace'
-import Search from './Search'
-import BestSearch from './bestsearch'
+import Search2 from './Search2'
+// import BestSearch from './bestsearch'
 // import Map from './Map'
 // import { google } from 'google-maps'
 
@@ -58,8 +58,7 @@ class App extends Component {
         <main className="container">
           <AuthenticatedRoute user={user} path='/map' render={() => (
             <div>
-              <Search user={user} />
-              <MapContainer user={user} />
+              <MapContainer user={user}/>
             </div>
           )} />
           <Route path='/sign-up' render={() => (
@@ -84,7 +83,7 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} path='/createplace'
             render={() => (
-              <BestSearch user={user}/>
+              <Search2 user={user}/>
             )}
           />
         </main>

@@ -88,7 +88,6 @@ class AddPlace extends Component {
     console.log(this.state.place)
     return (
       <div style={style}>
-        <h3>search and add a place</h3>
         <div className="row" style={style}>
           <PlaceForm
             latitude={this.props.latitude}

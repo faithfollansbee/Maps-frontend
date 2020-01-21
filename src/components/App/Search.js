@@ -3,13 +3,11 @@ import React from 'react'
 // import axios from 'axios'
 // import apiUrl from '../../apiConfig'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
 const style = {
   padding: 10,
   margin: 10,
   overflow: 'scroll'
 }
-
 export default function Search () {
   const [address, setAddress] = React.useState('')
   const [coordinates, setCoordinates] = React.useState({
@@ -49,6 +47,7 @@ export default function Search () {
                 return (
                   <div {...getSuggestionItemProps(suggestion, { style })} key={suggestion.id}>
                     {suggestion.description}
+                    {suggestion.location}
                   </div>
                 )
               })}

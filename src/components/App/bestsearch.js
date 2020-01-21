@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
+// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+
 // If you want to use the provided css
 import 'react-google-places-autocomplete/dist/assets/index.css'
 import AddPlace from './AddPlace'
@@ -61,6 +63,11 @@ class BestSearch extends Component {
     return (
       <div>
         <GooglePlacesAutocomplete
+          autocompletionRequest={{
+            componentRestrictions: {
+              country: ['us', 'ca']
+            }
+          }}
           onSelect={this.handleSelect}
           renderInput={(props) => (
             <div className="custom-wrapper">
