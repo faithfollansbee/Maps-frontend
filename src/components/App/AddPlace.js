@@ -98,110 +98,114 @@ class AddPlace extends Component {
     return (
       <div className="Search2-layout">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              value={this.props.name}
-              onChange={this.handleChange}
-              name="name"
-              required
-            />
-          </Form.Group>
+          <div className="col">
+            <Form.Group controlId="name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={this.props.name}
+                onChange={this.handleChange}
+                name="name"
+                required
+              />
+            </Form.Group>
 
-          <Form.Group controlId="latitude">
-            <Form.Label>latitude</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              value={this.props.latitude}
-              onChange={this.handleChange}
-              name="latitude"
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="longitude">
-            <Form.Label>longitude</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              value={this.props.longitude}
-              onChange={this.handleChange}
-              name="longitude"
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <ul>
-              <li>
-                <label>
-                  <input
-                    name="type"
-                    type="radio"
-                    value="restaurant"
-                    ref={this.input}
-                    checked={this.state.type === 'restaurant'}
-                    onChange={this.handleOptionChange}
-                  /> Restaurant</label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    name="type"
-                    type="radio"
-                    value="entertainment"
-                    checked={this.state.type === 'entertainment'}
-                    ref={this.input}
-                    onChange={this.handleOptionChange}
-                  /> Entertainment</label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    name="type"
-                    type="radio"
-                    value="landmark"
-                    ref={this.input}
-                    onChange={this.handleOptionChange}
-                    checked={this.state.type === 'landmark'}
-                  /> Landmark</label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    name="type"
-                    type="radio"
-                    value="bar"
-                    ref={this.input}
-                    checked={this.state.type === 'bar'}
-                    onChange={this.handleOptionChange}
-                  /> Bar</label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    name="type"
-                    type="radio"
-                    value="outdoors"
-                    ref={this.input}
-                    checked={this.state.type === 'outdoors'}
-                    onChange={this.handleOptionChange}
-                  /> Outdoors</label>
-              </li>
-              <li>
-                <label>
-                  <input
-                    name="type"
-                    type="radio"
-                    value="museum"
-                    ref={this.input}
-                    checked={this.state.type === 'museum'}
-                    onChange={this.handleOptionChange}
-                  /> Museum</label>
-              </li>
-            </ul>
-          </Form.Group>
+            <Form.Group controlId="latitude">
+              <Form.Label>latitude</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={this.props.latitude}
+                onChange={this.handleChange}
+                name="latitude"
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="longitude">
+              <Form.Label>longitude</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                value={this.props.longitude}
+                onChange={this.handleChange}
+                name="longitude"
+                required
+              />
+            </Form.Group>
+          </div>
+          <div className="col">
+            <Form.Group controlId="formBasicCheckbox">
+              <ul>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="restaurant"
+                      ref={this.input}
+                      checked={this.state.type === 'restaurant'}
+                      onChange={this.handleOptionChange}
+                    /> Restaurant</label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="entertainment"
+                      checked={this.state.type === 'entertainment'}
+                      ref={this.input}
+                      onChange={this.handleOptionChange}
+                    /> Entertainment</label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="landmark"
+                      ref={this.input}
+                      onChange={this.handleOptionChange}
+                      checked={this.state.type === 'landmark'}
+                    /> Landmark</label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="bar"
+                      ref={this.input}
+                      checked={this.state.type === 'bar'}
+                      onChange={this.handleOptionChange}
+                    /> Bar</label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="outdoors"
+                      ref={this.input}
+                      checked={this.state.type === 'outdoors'}
+                      onChange={this.handleOptionChange}
+                    /> Outdoors</label>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="museum"
+                      ref={this.input}
+                      checked={this.state.type === 'museum'}
+                      onChange={this.handleOptionChange}
+                    /> Museum</label>
+                </li>
+              </ul>
+            </Form.Group>
+          </div>
           <Button variant="dark" type="submit">
             Submit
           </Button>

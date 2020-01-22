@@ -14,15 +14,15 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import MapContainer from './Container'
 import Places from './Places'
 import Place from './Place'
-// import AddPlace from './AddPlace'
 import Search2 from './Search2'
-// import BestSearch from './bestsearch'
-// import Map from './Map'
-// import { google } from 'google-maps'
+import Background from './Background'
+import { createGlobalStyle } from 'styled-components'
 
-// const theStyle = {
-//   display: 'flex'
-// }
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #f8f5f2;
+  }
+`
 class App extends Component {
   constructor () {
     super()
@@ -46,6 +46,7 @@ class App extends Component {
 
     return (
       <Fragment>
+        <GlobalStyle />
         <Header user={user} />
         {alerts.map((alert, index) => (
           <AutoDismissAlert
@@ -55,6 +56,7 @@ class App extends Component {
             message={alert.message}
           />
         ))}
+        <Background user={user}/>
         <main className="container">
           <AuthenticatedRoute user={user} path='/map' render={() => (
             <div>
@@ -62,7 +64,7 @@ class App extends Component {
             </div>
           )} />
           <Route path='/sign-up' render={() => (
-            <SignUp alert={this.alert} setUser={this.setUser} />
+            <SignUp alert={this.alert} setUser={this.setUser}/>
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser}/>
