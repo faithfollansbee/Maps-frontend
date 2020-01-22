@@ -17,23 +17,18 @@ nav {
 }
 .row {
 }
-
-.cardLink {
-  padding: 15;
+.cardLink, .cardButton {
+  justify-content: space-around;
 }
-
-.cardButton {
-  padding: 15;
-}
-
 .cardFooter {
-  // display: flex;
-  // justify-content: space-around;
+  justify-content: space-around;
 }
 
+.row {
+  justify-content: space-around;
+}
 .Search2-layout {
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .autocomplete-dropdown-container {
    z-index: 1000;

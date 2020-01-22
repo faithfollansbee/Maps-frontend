@@ -4,11 +4,14 @@ import AddPlace from './AddPlace'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 const style = {
   zIndex: 2,
-  position: 'absolute'
+  position: 'absolute',
+  padding: 15
 }
 const style2 = {
   zIndex: 1,
-  position: 'absolute'
+  position: 'absolute',
+  margin: 15,
+  padding: 15
 }
 class LocationSearchInput extends React.Component {
   state = {
@@ -49,6 +52,9 @@ class LocationSearchInput extends React.Component {
     return (
       <div className="Search2-layout">
         <div className="row">
+          <p>Search and select your desired place, then specify its category</p>
+        </div>
+        <div className="row">
           <PlacesAutocomplete
             style={style}
             value={this.state.address}
@@ -59,7 +65,7 @@ class LocationSearchInput extends React.Component {
               <div>
                 <input
                   {...getInputProps({
-                    placeholder: 'Search Places ...',
+                    placeholder: 'Search for a place ...',
                     className: 'location-search-input'
                   })}
                 />

@@ -102,7 +102,7 @@ class AddPlace extends Component {
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter a name"
+              placeholder=""
               value={this.props.name}
               onChange={this.handleChange}
               name="name"
@@ -114,7 +114,7 @@ class AddPlace extends Component {
             <Form.Label>latitude</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter the latitude"
+              placeholder=""
               value={this.props.latitude}
               onChange={this.handleChange}
               name="latitude"
@@ -125,7 +125,7 @@ class AddPlace extends Component {
             <Form.Label>longitude</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter the longitude"
+              placeholder=""
               value={this.props.longitude}
               onChange={this.handleChange}
               name="longitude"

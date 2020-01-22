@@ -69,14 +69,13 @@ class Place extends Component {
                     <Card.Title>{place.name}</Card.Title>
                     <Card.Subtitle>{place.type}</Card.Subtitle>
                     <Card.Text>
-                      {place.coords}
-                      {place.latitude}
-                      {place.longitude}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>
-                    <div className="cardFooter">
+                    <div className="cardLink">
                       <Link to="/places" className="cardLink">Back to all</Link>
+                    </div>
+                    <div className="cardButton">
                       <button onClick={this.deleteplace} className="cardButton">Delete this place</button>
                     </div>
                   </Card.Footer>
