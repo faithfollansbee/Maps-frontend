@@ -54,29 +54,41 @@ export class MapContainer extends Component {
 
   displayMarkers = () => {
     return this.state.places.map((place, index) => {
-      if (place.type === 'food') {
+      if (place.type === 'restaurant') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
-        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        }} icon={{ url: 'https://img.icons8.com/color/48/000000/pizza.png' }}
         onClick={() => console.log('You clicked me!')} />
       } else if (place.type === 'entertainment') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
-        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        }} icon={{ url: 'https://img.icons8.com/offices/30/000000/ferris-wheel.png' }}
         onClick={() => console.log('You clicked me!')} />
-      } else if (place.type === 'historic') {
+      } else if (place.type === 'landmark') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
-        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        }} icon={{ url: 'https://img.icons8.com/offices/30/000000/monument.png' }}
         onClick={() => console.log('You clicked me!')} />
       } else if (place.type === 'outdoors') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
-        }} icon={{ url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png' }}
+        }} icon={{ url: 'https://img.icons8.com/cotton/48/000000/mountain.png' }}
+        onClick={() => console.log('You clicked me!')} />
+      } else if (place.type === 'bar') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://img.icons8.com/plasticine/50/000000/wine-glass.png' }}
+        onClick={() => console.log('You clicked me!')} />
+      } else if (place.type === 'museum') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://img.icons8.com/material-sharp/24/000000/museum.png' }}
         onClick={() => console.log('You clicked me!')} />
       } else {
         return <Marker key={index} id={index} position={{

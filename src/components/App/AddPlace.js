@@ -143,7 +143,7 @@ class AddPlace extends Component {
                     ref={this.input}
                     checked={this.state.type === 'restaurant'}
                     onChange={this.handleOptionChange}
-                  />Restaurant</label>
+                  /> Restaurant</label>
               </li>
               <li>
                 <label>
@@ -154,7 +154,7 @@ class AddPlace extends Component {
                     checked={this.state.type === 'entertainment'}
                     ref={this.input}
                     onChange={this.handleOptionChange}
-                  />Entertainment</label>
+                  /> Entertainment</label>
               </li>
               <li>
                 <label>
@@ -165,7 +165,40 @@ class AddPlace extends Component {
                     ref={this.input}
                     onChange={this.handleOptionChange}
                     checked={this.state.type === 'landmark'}
-                  />Landmark</label>
+                  /> Landmark</label>
+              </li>
+              <li>
+                <label>
+                  <input
+                    name="type"
+                    type="radio"
+                    value="bar"
+                    ref={this.input}
+                    checked={this.state.type === 'bar'}
+                    onChange={this.handleOptionChange}
+                  /> Bar</label>
+              </li>
+              <li>
+                <label>
+                  <input
+                    name="type"
+                    type="radio"
+                    value="outdoors"
+                    ref={this.input}
+                    checked={this.state.type === 'outdoors'}
+                    onChange={this.handleOptionChange}
+                  /> Outdoors</label>
+              </li>
+              <li>
+                <label>
+                  <input
+                    name="type"
+                    type="radio"
+                    value="museum"
+                    ref={this.input}
+                    checked={this.state.type === 'museum'}
+                    onChange={this.handleOptionChange}
+                  /> Museum</label>
               </li>
             </ul>
           </Form.Group>
