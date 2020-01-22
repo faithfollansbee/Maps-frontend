@@ -5,8 +5,8 @@ import apiUrl from '../../apiConfig'
 // import LocationSearchInput from './SearchClass'
 // import GoogleMapReact from 'google-map-react'
 const style = {
-  width: '80%',
-  height: '70%',
+  width: '90%',
+  height: '80%',
   margin: 15,
   padding: 15,
   position: 'absolute',
@@ -76,7 +76,7 @@ export class MapContainer extends Component {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
-        }} icon={{ url: 'https://img.icons8.com/cotton/48/000000/mountain.png' }}
+        }} icon={{ url: 'https://img.icons8.com/ios-filled/25/000000/deciduous-tree.png' }}
         onClick={() => console.log('You clicked me!')} />
       } else if (place.type === 'bar') {
         return <Marker key={index} id={index} position={{
