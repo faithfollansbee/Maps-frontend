@@ -5,8 +5,8 @@ import apiUrl from '../../apiConfig'
 // import LocationSearchInput from './SearchClass'
 // import GoogleMapReact from 'google-map-react'
 const style = {
-  width: '90%',
-  height: '80%',
+  width: '80%',
+  height: '70%',
   margin: 15,
   padding: 15,
   position: 'absolute',
