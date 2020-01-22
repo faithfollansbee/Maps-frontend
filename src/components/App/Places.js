@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 // import FormControl from 'react-bootstrap/FormControl'
 // import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
+
 const style = {
-  margin: 20
+  margin: 50
 }
 class Places extends Component {
   constructor (props) {

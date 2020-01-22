@@ -6,7 +6,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
 
 const style = {
-
+  margin: 50
 }
 
 class Place extends Component {

@@ -1,5 +1,6 @@
 import React from 'react'
 import AddPlace from './AddPlace'
+// import TypeForm from './TypeForm'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 const style = {
   zIndex: 2,
@@ -24,13 +25,13 @@ class LocationSearchInput extends React.Component {
     this.setState({ address })
   };
 
-  handleSelect = address => {
-    // console.log(location.description)
+  handleSelect = (address, description) => {
+    // console.log(description)
     // console.log(location.types[0])
     // console.log(location.structured_formatting.main_text)
     this.setState({ address })
     this.setState({ name: address })
-    this.setState({ type: address })
+    // this.setState({ type: address })
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(LatLng => {
@@ -88,7 +89,7 @@ class LocationSearchInput extends React.Component {
               </div>
             )}
           </PlacesAutocomplete>
-          <AddPlace style={style2} user={this.state.user} type={this.state.type} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
+          <AddPlace style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
         </div>
       </div>
     )
