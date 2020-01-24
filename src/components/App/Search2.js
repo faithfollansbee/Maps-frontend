@@ -5,7 +5,8 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 const style = {
   zIndex: 2,
   position: 'absolute',
-  padding: 15
+  padding: 15,
+  width: '50px'
 }
 const style2 = {
   zIndex: 1,
@@ -95,6 +96,8 @@ class LocationSearchInput extends React.Component {
               </div>
             )}
           </PlacesAutocomplete>
+        </div>
+        <div className="row">
           <AddPlace style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
         </div>
       </div>

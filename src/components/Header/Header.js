@@ -1,7 +1,19 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-
+// import PlaceBookLogo from './PlaceBookLogo.png'
+const logoStyle = {
+  height: '80px',
+  width: '110px',
+  padding: '0px',
+  marign: '0px',
+  color: 'white'
+}
+const NavBarStyle = {
+  margin: '0px',
+  padding: '0px',
+  position: 'relative'
+}
 const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
@@ -25,10 +37,12 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar variant="dark" expand="md">
+  <Navbar variant="dark" expand="md" style={NavBarStyle}>
     <Navbar.Brand href="#">
-      PLACEBOOK
     </Navbar.Brand>
+    <div className="logoContainer" style={logoStyle}>
+      <img src={require('./PlaceBookLogo.png')} style={logoStyle} alt="PlaceBook-logo"/>
+    </div>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
@@ -41,3 +55,7 @@ const Header = ({ user }) => (
 )
 
 export default Header
+
+// <Navbar.Brand href="#">
+//   PLACEBOOK
+// </Navbar.Brand>

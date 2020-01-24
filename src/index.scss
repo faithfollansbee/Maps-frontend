@@ -8,13 +8,26 @@ body {
   background-color: #7ca2a1;
   font-family: 'Work Sans', sans-serif;
 }
+.navbar {
+  padding: 0px;
+  position: relative;
+}
+.logoContainer {
+  position: relative;
+  margin: 0px;
+}
+.Search2-layout {
+  width: 80%;
+}
 nav {
   background-color: #31464f;
   navbar-text {
     color: white
   }
   font-family: 'Work Sans', sans-serif;
+  position: relative;
 }
+
 .row {
 }
 .cardLink, .cardButton {

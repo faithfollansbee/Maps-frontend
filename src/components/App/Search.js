@@ -6,7 +6,8 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 const style = {
   padding: 10,
   margin: 10,
-  overflow: 'scroll'
+  overflow: 'scroll',
+  width: '80%'
 }
 export default function Search () {
   const [address, setAddress] = React.useState('')

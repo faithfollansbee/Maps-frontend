@@ -8,30 +8,23 @@ const imgStyle = {
   // marginTop: '-50px',
   // marginLeft: '-100px',
   transform: 'translate(-50%, -50%)',
-  // width: '70%',
-  // height: '60%',
-  // margin: 15,
-  // padding: 15,
-  // position: 'absolute',
-  // width: '70%',
-  // height: '50%',
-  // zIndex: 0,
-  // // margin: 15,
-  // // padding: 15,
-  // marginTop: '10%',
-  // marginLeft: '20%',
-  // marginRight: '20%',
-  // alignItems: 'center',
-  // justifyContent: 'center',
-  // position: 'relative',
-  backgroundImage: './ExMap.jpg'
+  backgroundImage: './ExMap.jpg',
+  marginTop: '10px;'
   // backgroundUrl: 'https://i.imgur.com/5B4lvRe.jpg'
+}
+const imgContainer = {
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)'
 }
 
 class Landing extends Component {
   render () {
     return (
-      <img className="bg" style={imgStyle}src={ExMap} alt="baking" />
+      <div style={imgContainer}>
+        <img className="bg" style={imgStyle}src={ExMap} alt="baking" />
+      </div>
     )
   }
 }

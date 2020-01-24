@@ -99,42 +99,6 @@ class AddPlace extends Component {
       <div className="Search2-layout">
         <Form onSubmit={this.handleSubmit}>
           <div className="col">
-            <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                value={this.props.name}
-                onChange={this.handleChange}
-                name="name"
-                required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="latitude">
-              <Form.Label>latitude</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                value={this.props.latitude}
-                onChange={this.handleChange}
-                name="latitude"
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="longitude">
-              <Form.Label>longitude</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder=""
-                value={this.props.longitude}
-                onChange={this.handleChange}
-                name="longitude"
-                required
-              />
-            </Form.Group>
-          </div>
-          <div className="col">
             <Form.Group controlId="formBasicCheckbox">
               <ul>
                 <li>
@@ -204,6 +168,44 @@ class AddPlace extends Component {
                     /> Museum</label>
                 </li>
               </ul>
+            </Form.Group>
+          </div>
+          <div className="col">
+            <Form.Group controlId="name">
+              <Form.Label></Form.Label>
+              <Form.Control
+                plaintext readOnly
+                type="text"
+                placeholder=""
+                value={this.props.name}
+                onChange={this.handleChange}
+                name="name"
+                required
+              />
+            </Form.Group>
+
+            <Form.Group controlId="latitude">
+              <Form.Label></Form.Label>
+              <Form.Control
+                plaintext readOnly
+                type="text"
+                placeholder=""
+                value={this.props.latitude}
+                onChange={this.handleChange}
+                name="latitude"
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="longitude">
+              <Form.Label></Form.Label>
+              <Form.Control
+                plaintext readOnly
+                placeholder=""
+                value={this.props.longitude}
+                onChange={this.handleChange}
+                name="longitude"
+                required
+              />
             </Form.Group>
           </div>
           <Button variant="dark" type="submit">
