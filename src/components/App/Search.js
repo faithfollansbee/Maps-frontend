@@ -1,7 +1,4 @@
 import React from 'react'
-// import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 const style = {
   padding: 10,

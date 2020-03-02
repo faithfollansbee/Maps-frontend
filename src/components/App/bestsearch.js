@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
-// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
-// If you want to use the provided css
 import 'react-google-places-autocomplete/dist/assets/index.css'
 import AddPlace from './AddPlace'
-// import AddPlace2 from './AddPlace2'
 class BestSearch extends Component {
   state = {
     name: '',
@@ -14,24 +11,9 @@ class BestSearch extends Component {
     longitude: '',
     address: '',
     user: this.props.user
-    // place: {
-    //   name: '',
-    //   type: '',
-    //   latitude: '',
-    //   longitude: ''
-    // }
+
   }
 
-  // handleSelect = description => {
-  //   this.setState({ address: description })
-  //   geocodeByAddress('address')
-  //     .then(results => getLatLng(results[0]))
-  //     .then(({ lat, lng }) =>
-  //       console.log('Successfully got latitude and longitude', { lat, lng })
-  //     )
-  //
-  //   console.log()
-  // }
   handleSelect = (location) => {
     console.log(location.types[0])
     console.log(location.description)
@@ -39,9 +21,6 @@ class BestSearch extends Component {
     this.setState({ location })
     this.setState({ name: location.structured_formatting.main_text })
     this.setState({ type: location.types[0] })
-    // this.setState({
-    //   name: location
-    // })
     geocodeByAddress(
       'location'
     )

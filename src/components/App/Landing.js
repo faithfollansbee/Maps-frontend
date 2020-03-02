@@ -5,12 +5,9 @@ const imgStyle = {
   position: 'fixed',
   top: '50%',
   left: '50%',
-  // marginTop: '-50px',
-  // marginLeft: '-100px',
   transform: 'translate(-50%, -50%)',
   backgroundImage: './ExMap.jpg',
   marginTop: '10px;'
-  // backgroundUrl: 'https://i.imgur.com/5B4lvRe.jpg'
 }
 const imgContainer = {
   position: 'fixed',

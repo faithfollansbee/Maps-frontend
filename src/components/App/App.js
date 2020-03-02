@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
-// import { Map, GoogleApiWrapper } from 'google-maps-react'
-// import { Search } from './Search'
-// import Landing from './Landing'
 import 'typeface-roboto'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'

@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { Link } from 'react-router-dom'
-// import FormControl from 'react-bootstrap/FormControl'
-// import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 const style = {

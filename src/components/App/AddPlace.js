@@ -3,19 +3,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-
-// import PlaceForm from './PlaceForm'
 import { withRouter } from 'react-router-dom'
-// import TypeForm from './TypeForm'
-// import BestSearch from './bestsearch'
-
-// const style = {
-//   width: '50%',
-//   // paddingLeft: ,
-//   justifyContent: 'space-between',
-//   alignItems: 'baseline',
-//   position: 'fixed'
-// }
 
 class AddPlace extends Component {
   constructor (props) {
@@ -24,9 +12,6 @@ class AddPlace extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
       user: props.user,
-      // latitude: props.latitude,
-      // longitude: props.longitude,
-      // name: props.name,
       place: {
         name: props.name,
         latitude: props.latitude,
@@ -46,25 +31,6 @@ class AddPlace extends Component {
     })
     console.log(this.state)
   }
-  // const handleClick = () => {
-  //     event.preventDefault()
-  //     axios({
-  //       method: 'POST',
-  //       url: `${apiUrl}/movies`,
-  //       headers: {
-  //         Authorization: `Token token=${props.user.token}`
-  //       },
-  //       data: {
-  //         movie: {
-  //           title: props.title,
-  //           description: props.description,
-  //           released: props.released,
-  //           image: props.image
-  //         }
-  //       }
-  //     })
-  //   //  <Redirect to="/movies"/>
-  //   }
   handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -216,15 +182,5 @@ class AddPlace extends Component {
     )
   }
 }
-// <div className="row" style={style}>
-//   <TypeForm
-//     latitude={this.props.latitude}
-//     longitude={this.props.longitude}
-//     name={this.props.name}
-//     type={this.props.type}
-//     handleChange={this.handleChange}
-//     handleSubmit={this.handleSubmit}
-//     user={this.props.user}
-//   />
-// </div>
+
 export default withRouter(AddPlace)

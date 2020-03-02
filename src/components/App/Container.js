@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import LocationSearchInput from './SearchClass'
-// import GoogleMapReact from 'google-map-react'
+
 const style = {
   width: '80%',
   height: '70%',
@@ -12,25 +11,10 @@ const style = {
   position: 'absolute',
   backgroundColor: '#31464f'
 }
-//
-// const otherStyle = {
-//   display: 'flex'
-// }
+
 export class MapContainer extends Component {
   state = {
     places: []
-    // places: [{
-    //   latitude: 42.3601,
-    //   longitude: -71.0589,
-    //   iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-    //   content: '<h1>Lynn MA</h1>'
-    // },
-    // {
-    //   latitude: 42.8015,
-    //   longitude: -70.9898,
-    //   content: '<h1>Boston MA</h1>'
-    // }
-    // ]
   }
   async componentDidMount () {
     try {
@@ -103,10 +87,6 @@ export class MapContainer extends Component {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
-    // const style = {
-    //   width: '100vw',
-    //   height: '100vh'
-    // }
 
     return (
       <Map
@@ -137,9 +117,3 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyBOXkzxWxurGgpeo_KsLSs4LczoSS0InN8'
 })(MapContainer)
-
-// <InfoWindow onClose={this.onInfoWindowClose}>
-//   <div>
-//     <h1>{this.state.selectedPlace.name}</h1>
-//   </div>
-// </InfoWindow>
