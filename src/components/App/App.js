@@ -17,7 +17,8 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: #f8f5f2;
+    // background: #f8f5f2;
+    // background-image: url('./backgroundimage.svg')
   }
 `
 class App extends Component {
@@ -54,7 +55,7 @@ class App extends Component {
           />
         ))}
         <Background user={user}/>
-        <main className="container">
+        <main className="container" style={{ backgroundImage: 'url(require("./backgroundimage"))' }}>
           <AuthenticatedRoute user={user} path='/map' render={() => (
             <div>
               <MapContainer user={user}/>
