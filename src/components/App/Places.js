@@ -7,6 +7,13 @@ import ListGroup from 'react-bootstrap/ListGroup'
 const style = {
   margin: 50
 }
+const headingStyle = {
+  color: 'black',
+  fontSize: '40px',
+  margin: 'auto',
+  textAlign: 'center'
+}
+
 class Places extends Component {
   constructor (props) {
     super(props)
@@ -64,12 +71,15 @@ class Places extends Component {
     }
     console.log(this.state)
     return (
-      <ListGroup style={style}>
-        {this.state.places.length
-          ? placesJsx
-          : <ListGroup.Item>No places found</ListGroup.Item>
-        }
-      </ListGroup>
+      <div className="places-list">
+        <h1 style={headingStyle}>My Saved Places</h1>
+        <ListGroup style={style}>
+          {this.state.places.length
+            ? placesJsx
+            : <ListGroup.Item>No places found</ListGroup.Item>
+          }
+        </ListGroup>
+      </div>
     )
   }
 }

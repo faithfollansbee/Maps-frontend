@@ -5,6 +5,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { withRouter } from 'react-router-dom'
 
+// import Card from '@material-ui/core/Card'
+// import CardContent from '@material-ui/core/CardContent'
+
 class AddPlace extends Component {
   constructor (props) {
     super(props)
@@ -62,7 +65,8 @@ class AddPlace extends Component {
   render () {
     console.log(this.state.place)
     return (
-      <div className="Search2-layout">
+
+      <div className="Search2-layout" margin="auto">
         <Form onSubmit={this.handleSubmit}>
           <div className="col">
             <Form.Group controlId="formBasicCheckbox">

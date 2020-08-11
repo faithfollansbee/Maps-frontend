@@ -1,5 +1,9 @@
 import React from 'react'
 import AddPlace from './AddPlace'
+
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 const style = {
   zIndex: 2,
@@ -47,54 +51,58 @@ class LocationSearchInput extends React.Component {
   render () {
     return (
       <div className="Search2-layout">
-        <div className="row">
-          <p>Search and select your desired place, then specify its category</p>
-        </div>
-        <div className="row">
-          <PlacesAutocomplete
-            style={style}
-            value={this.state.address}
-            onChange={this.handleChange}
-            onSelect={this.handleSelect}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-              <div>
-                <input
-                  {...getInputProps({
-                    placeholder: 'Search for a place ...',
-                    className: 'location-search-input'
-                  })}
-                />
-                <div className="autocomplete-dropdown-container">
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map(suggestion => {
-                    const className = suggestion.active
-                      ? 'suggestion-item--active'
-                      : 'suggestion-item'
-                    // inline style for demonstration purpose
-                    const style = suggestion.active
-                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                      : { backgroundColor: '#ffffff', cursor: 'pointer' }
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style
-                        })}
-                        key={suggestion.id}
-                      >
-                        <span>{suggestion.description} {suggestion.location}</span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
-        </div>
-        <div className="row">
-          <AddPlace style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
-        </div>
+        <Card variant="outlined dark">
+          <CardContent>
+            <div className="row">
+              <p>Search and select your desired place, then specify its category</p>
+            </div>
+            <div className="row">
+              <PlacesAutocomplete
+                style={style}
+                value={this.state.address}
+                onChange={this.handleChange}
+                onSelect={this.handleSelect}
+              >
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                  <div>
+                    <input
+                      {...getInputProps({
+                        placeholder: 'Search for a place ...',
+                        className: 'location-search-input'
+                      })}
+                    />
+                    <div className="autocomplete-dropdown-container">
+                      {loading && <div>Loading...</div>}
+                      {suggestions.map(suggestion => {
+                        const className = suggestion.active
+                          ? 'suggestion-item--active'
+                          : 'suggestion-item'
+                        // inline style for demonstration purpose
+                        const style = suggestion.active
+                          ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                          : { backgroundColor: '#ffffff', cursor: 'pointer' }
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                              style
+                            })}
+                            key={suggestion.id}
+                          >
+                            <span>{suggestion.description} {suggestion.location}</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete>
+            </div>
+            <div className="row">
+              <AddPlace style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
+            </div>
+          </CardContent>
+        </Card>
       </div>
     )
   }

@@ -4,12 +4,29 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const style = {
-  width: '80%',
-  height: '70%',
-  margin: 15,
-  padding: 15,
-  position: 'absolute',
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  width: '800px',
+  height: '550px',
+  transform: 'translate(-50%, -50%)',
+  marginTop: '10px;',
+  // width: '100px',
+  // height: '100px',
+  // margin: '0 auto',
+  // float: 'left',
+  // position: 'fixed',
+  // margin: 15,
+  // padding: 15,
   backgroundColor: '#31464f'
+  // top: '30%',
+  // left: '30%',
+}
+const divstyle = {
+  position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)'
 }
 
 export class MapContainer extends Component {
@@ -89,27 +106,29 @@ export class MapContainer extends Component {
     }
 
     return (
-      <Map
-        style={style}
-        google={window.google}
-        zoom={12}
-        initialCenter={{
-          lat: 42.3601,
-          lng: -71.0589
-        }}
-      >
-        {this.displayMarkers()}
-        <Marker onClick={this.onMarkerClick}
-          name={'Current location'} />
-        <Marker
-          title={'The marker`s title will appear as a tooltip.'}
-          name={'SOMA'}
-          position={{ lat: 37.778519, lng: -122.405640 }} />
-        <Marker
-          name={'Dolores park'}
-          position={{ lat: 37.759703, lng: -122.428093 }} />
-        <Marker />
-      </Map>
+      <div style={divstyle}>
+        <Map
+          style={style}
+          google={window.google}
+          zoom={12}
+          initialCenter={{
+            lat: 42.3601,
+            lng: -71.0589
+          }}
+        >
+          {this.displayMarkers()}
+          <Marker onClick={this.onMarkerClick}
+            name={'Current location'} />
+          <Marker
+            title={'The marker`s title will appear as a tooltip.'}
+            name={'SOMA'}
+            position={{ lat: 37.778519, lng: -122.405640 }} />
+          <Marker
+            name={'Dolores park'}
+            position={{ lat: 37.759703, lng: -122.428093 }} />
+          <Marker />
+        </Map>
+      </div>
     )
   }
 }

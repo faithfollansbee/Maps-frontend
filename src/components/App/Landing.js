@@ -20,7 +20,7 @@ class Landing extends Component {
   render () {
     return (
       <div style={imgContainer}>
-        <img className="bg" style={imgStyle}src={ExMap} alt="baking" />
+        <img className="bg" style={imgStyle}src={ExMap} alt="map" />
       </div>
     )
   }

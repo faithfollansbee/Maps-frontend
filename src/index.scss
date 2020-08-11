@@ -17,10 +17,10 @@ main {
   margin: 0px;
 }
 .Search2-layout {
-  width: 80%;
+  width: 100%;
 }
 nav {
-  background-color: #264653;
+  background-color: #1e3742;
   navbar-text {
     color: white
   }
@@ -49,25 +49,9 @@ nav {
 }
 .container {
   margin-top: 50px;
+  // position: relative;
 }
-//
-// .placeContainer {
-//   outline: black,
-//   color: green,
-//   justify-content: center;
-//   margin-top: 50;
-//   padding: 10;
-// }
-//
-// .infoContainer {
-//   justify-content: center;
-//   margin: 15;
-//   padding: 10;
-//   outline: black,
-//   color: green,
-//   margin: 15;
-//   padding: 10;
-// }
+
 body {
   // background-color: #7ca2a1;
   background-color: #264653;
