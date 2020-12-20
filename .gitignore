@@ -22,7 +22,6 @@ yarn-error.log*
 
 .env
 
-package-lock.json
 service-worker.js
 LICENSE
 favicon.ico
