@@ -9,11 +9,13 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import MapContainer from './Container'
-import Places from './Places'
+// import Places from './Places'
 import Place from './Place'
-import Search2 from './Search2'
+// import Search2 from './Search2'
 import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
+import AccordionPlaces from './AccordionPlaces'
+import BestSearch from './bestsearch'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -59,7 +61,7 @@ class App extends Component {
         <main className="container" style={{ backgroundImage: 'url(require("./backgroundimage"))' }}>
 
           <AuthenticatedRoute user={user} exact path='/places/'
-            render={() => (<Places user={user}/>)}
+            render={() => (<AccordionPlaces user={user}/>)}
           />
 
           <AuthenticatedRoute user={user} path='/map' render={() => (
@@ -85,7 +87,7 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} path='/createplace'
             render={() => (
-              <Search2 user={user}/>
+              <BestSearch user={user}/>
             )}
           />
         </main>
@@ -93,5 +95,6 @@ class App extends Component {
     )
   }
 }
+// <Search2 user={user}/>
 
 export default App

@@ -24,7 +24,7 @@ class AddPlace extends Component {
         type: ''
       }
     }
-    console.log(this.props.user)
+    // console.log(this.props.user)
   }
 
   handleChange = event => {
@@ -65,7 +65,7 @@ class AddPlace extends Component {
   }
 
   render () {
-    console.log(this.state.place)
+    // console.log(this.state.place)
     return (
 
       <div className="Search2-layout" margin="auto">
@@ -147,44 +147,6 @@ class AddPlace extends Component {
               </ul>
             </Form.Group>
           </div>
-          <div className="col">
-            <Form.Group controlId="name">
-              <Form.Label></Form.Label>
-              <Form.Control
-                plaintext readOnly
-                type="text"
-                placeholder=""
-                value={this.props.name}
-                onChange={this.handleChange}
-                name="name"
-                required
-              />
-            </Form.Group>
-
-            <Form.Group controlId="latitude">
-              <Form.Label></Form.Label>
-              <Form.Control
-                plaintext readOnly
-                type="text"
-                placeholder=""
-                value={this.props.latitude}
-                onChange={this.handleChange}
-                name="latitude"
-                required
-              />
-            </Form.Group>
-            <Form.Group controlId="longitude">
-              <Form.Label></Form.Label>
-              <Form.Control
-                plaintext readOnly
-                placeholder=""
-                value={this.props.longitude}
-                onChange={this.handleChange}
-                name="longitude"
-                required
-              />
-            </Form.Group>
-          </div>
           <Button variant="dark" type="submit">
             Submit
           </Button>
@@ -195,3 +157,40 @@ class AddPlace extends Component {
 }
 
 export default withRouter(AddPlace)
+// <div className="col">
+//   <Form.Group controlId="name">
+//     <Form.Label></Form.Label>
+//     <Form.Control
+//       plaintext readOnly
+//       type="text"
+//       placeholder=""
+//       value={this.props.name}
+//       onChange={this.handleChange}
+//       name="name"
+//       required
+//     />
+//   </Form.Group>
+// </div>
+// <Form.Group controlId="latitude">
+//   <Form.Label></Form.Label>
+//   <Form.Control
+//     plaintext readOnly
+//     type="text"
+//     placeholder=""
+//     value={this.props.latitude}
+//     onChange={this.handleChange}
+//     name="latitude"
+//     required
+//   />
+// </Form.Group>
+// <Form.Group controlId="longitude">
+//   <Form.Label></Form.Label>
+//   <Form.Control
+//     plaintext readOnly
+//     placeholder=""
+//     value={this.props.longitude}
+//     onChange={this.handleChange}
+//     name="longitude"
+//     required
+//   />
+// </Form.Group>

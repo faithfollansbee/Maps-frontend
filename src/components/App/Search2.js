@@ -24,18 +24,29 @@ class LocationSearchInput extends React.Component {
     latitude: '',
     longitude: '',
     address: '',
+    placeId: '',
+    suggestion: {},
+    placeObj: {},
     user: this.props.user,
     theData: {}
   }
 
-  handleChange = address => {
+  handleChange = (address) => {
     this.setState({ address })
   };
 
-  handleSelect = (address, description) => {
+  handleSelect = (address, placeId, suggestion) => {
+    console.log(address)
+    console.log(suggestion)
+    console.log(placeId)
+    // this.setState({ suggestion })
+    this.setState({ placeId })
     this.setState({ address })
     this.setState({ name: address })
+    // geocodeByPlaceId(placeId)
+    //   .then(results => console.log(results))
     geocodeByAddress(address)
+      // .then(results => console.log(results[0].address_components))
       .then(results => getLatLng(results[0]))
       .then(LatLng => {
         this.setState({
@@ -43,15 +54,17 @@ class LocationSearchInput extends React.Component {
           longitude: LatLng.lng
         })
         console.log(this.state.latitude) // returns the correct value
+        console.log(this.state.theData)
       })
-      .then(latLng => console.log('Success', latLng))
+      .then(latLng => console.log('Success', this.latitude))
       .catch(error => console.error('Error', error))
   }
 
   render () {
+    console.log(this.state)
     return (
       <div className="Search2-layout">
-        <Card variant="outlined dark">
+        <Card>
           <CardContent>
             <div className="row">
               <p>Search and select your desired place, then specify its category</p>
@@ -81,6 +94,7 @@ class LocationSearchInput extends React.Component {
                         const style = suggestion.active
                           ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                           : { backgroundColor: '#ffffff', cursor: 'pointer' }
+                        console.log(suggestion)
                         return (
                           <div
                             {...getSuggestionItemProps(suggestion, {
@@ -89,7 +103,7 @@ class LocationSearchInput extends React.Component {
                             })}
                             key={suggestion.id}
                           >
-                            <span>{suggestion.description} {suggestion.location}</span>
+                            <span>{suggestion.description} {suggestion.location} {suggestion.formattedSuggestion.mainText}</span>
                           </div>
                         )
                       })}

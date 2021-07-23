@@ -7,7 +7,7 @@ const imgStyle = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   backgroundImage: './ExMap.jpg',
-  marginTop: '10px;'
+  marginTop: '10px'
 }
 const imgContainer = {
   position: 'fixed',

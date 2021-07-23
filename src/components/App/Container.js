@@ -47,6 +47,7 @@ class MapContainer extends Component {
       })
 
   displayMarkers = () => {
+    console.log(this.state.places)
     return this.state.places.map((place, index) => {
       if (place.type === 'restaurant') {
         return <Marker key={index} id={index} position={{
