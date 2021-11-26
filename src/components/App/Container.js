@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+// import SimpleSearch from './SimpleSearch'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const style = {
   position: 'fixed',
-  border: '4px solid red',
-  // top: '50%',
-  // left: '50%',
+  border: '4px solid black',
   width: '800px',
   height: '550px',
   transform: 'translate(-50%, -50%)' // this is needed for some reason
   // backgroundColor: '#31464f'
-  // top: '30%',
-  // left: '30%',
 }
 const divstyle = { // this whole thing is keeping the map centered
   position: 'fixed',
@@ -25,7 +22,9 @@ const divstyle = { // this whole thing is keeping the map centered
 
 class MapContainer extends Component {
   state = {
-    places: []
+    places: [],
+    mapCenter: this.props.mapCenter,
+    defaultCoords: { lat: 42.8125913, lng: -70.87727509999999 }
   }
   async componentDidMount () {
     try {
@@ -37,14 +36,23 @@ class MapContainer extends Component {
         }
       })
       this.setState({ places: response.data.places, isLoading: false })
+      console.log(this.props.mapCenter)
+      console.log(this.state.defaultCoords)
+      console.log(this.defaultCoords)
     } catch (error) {
     }
   }
-    onMarkerClick = (props, marker, e) =>
-      this.setState({
-        selectedPlace: props,
-        activeMarker: marker
-      })
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker
+    })
+
+  setMapCenter = (e) => {
+    this.setState({
+      mapCenter: ''
+    })
+  }
 
   displayMarkers = () => {
     console.log(this.state.places)
@@ -61,7 +69,7 @@ class MapContainer extends Component {
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/ferris-wheel.png' }}
         onClick={() => console.log('You clicked me!')} />
-      } else if (place.type === 'landmark') {
+      } else if (place.type === 'historical landmark') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
@@ -85,6 +93,18 @@ class MapContainer extends Component {
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/material-sharp/24/000000/museum.png' }}
         onClick={() => console.log('You clicked me!')} />
+      } else if (place.type === 'home') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://img.icons8.com/color/48/000000/home.png' }}
+        onClick={() => console.log('You clicked me!')} />
+      } else if (place.type === 'university') {
+        return <Marker key={index} id={index} position={{
+          lat: place.latitude,
+          lng: place.longitude
+        }} icon={{ url: 'https://img.icons8.com/color/48/000000/student-center.png' }}
+        onClick={() => console.log('You clicked me!')} />
       } else {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
@@ -94,6 +114,7 @@ class MapContainer extends Component {
       }
     })
   }
+  // <img src="https://img.icons8.com/color/48/000000/student-center.png"/>
   render () {
     if (!this.props.loaded) {
       return <div>Loading...</div>
@@ -103,12 +124,20 @@ class MapContainer extends Component {
         <Map
           style={style}
           google={window.google}
-          zoom={12}
+          // zoom={13}
+          zoom={13}
           apiKey={this.props.apiKey}
+          // initialCenter={this.state.mapCenter}
+          // initialCenter={this.state.mapCenter}
+          // defaultCenter={this.state.defaultCoords}
+          // initialCenter={ this.props.mapCenter ? this.props.mapCenter : this.props.defaultCoords }
           initialCenter={{
-            lat: 42.3601,
-            lng: -71.0589
+            lat: 42.8125913,
+            lng: -70.87727509999999
           }}
+          // center={this.props.mapCenter}
+          // boston MA coords: 42.3601, -71.0589
+          // newburport MA coords: 42.8125913, -70.87727509999999
         >
           {this.displayMarkers()}
           <Marker onClick={this.onMarkerClick}

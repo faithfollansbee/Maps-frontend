@@ -16,6 +16,7 @@ import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
 import AccordionPlaces from './AccordionPlaces'
 import BestSearch from './bestsearch'
+import SimpleSearch from './SimpleSearch'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -30,7 +31,8 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      mapCenter: []
     }
   }
 
@@ -41,6 +43,14 @@ class App extends Component {
 
   alert = ({ heading, message, variant }) => {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
+  }
+  setMapCenter = (LatLng) => {
+    this.setState({ mapCenter: LatLng })
+    console.log('set map center callback')
+    // console.log(this.latitude)
+    console.log(this.LatLng)
+    console.log(this.state.mapCenter)
+    console.log(this.state.mapCenter.lng)
   }
 
   render () {
@@ -65,7 +75,9 @@ class App extends Component {
           />
 
           <AuthenticatedRoute user={user} path='/map' render={() => (
-            <MapContainer user={user} apiKey={this.apiKey}/>
+            <div>
+              <MapContainer user={user} mapCenter={this.state.mapCenter} apiKey={this.apiKey}/>
+            </div>
           )} />
 
           <Route path='/sign-up' render={() => (
@@ -88,6 +100,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/createplace'
             render={() => (
               <BestSearch user={user}/>
+            )}
+          />
+          <AuthenticatedRoute user={user} path='/simplesearch'
+            render={() => (
+              <SimpleSearch setMapCenter={this.setMapCenter}/>
             )}
           />
         </main>

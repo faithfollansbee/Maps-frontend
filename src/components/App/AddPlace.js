@@ -101,11 +101,11 @@ class AddPlace extends Component {
                     <input
                       name="type"
                       type="radio"
-                      value="landmark"
+                      value="historical landmark"
                       ref={this.input}
                       onChange={this.handleOptionChange}
-                      checked={this.state.type === 'landmark'}
-                    /> Landmark</label>
+                      checked={this.state.type === 'historical landmark'}
+                    /> Historical landmark</label>
                   <img src='https://img.icons8.com/offices/30/000000/monument.png'/>
                 </li>
                 <li>
@@ -143,6 +143,30 @@ class AddPlace extends Component {
                       onChange={this.handleOptionChange}
                     /> Museum </label>
                   <img src='https://img.icons8.com/material-sharp/24/000000/museum.png'/>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="home"
+                      ref={this.input}
+                      checked={this.state.type === 'home'}
+                      onChange={this.handleOptionChange}
+                    /> Home </label>
+                  <img src='https://img.icons8.com/color/48/000000/home.png'/>
+                </li>
+                <li>
+                  <label>
+                    <input
+                      name="type"
+                      type="radio"
+                      value="university"
+                      ref={this.input}
+                      checked={this.state.type === 'university'}
+                      onChange={this.handleOptionChange}
+                    /> University </label>
+                  <img src="https://img.icons8.com/color/48/000000/student-center.png"/>
                 </li>
               </ul>
             </Form.Group>

@@ -21,6 +21,7 @@ const authenticatedOptions = (
     <Nav.Link href="#createplace">Add place</Nav.Link>
     <Nav.Link href="#places"> Places </Nav.Link>
     <Nav.Link href="#map"> Map </Nav.Link>
+    <Nav.Link href="#simplesearch"> SimpleSearch </Nav.Link>
   </Fragment>
 )
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import ExMap from './ExMap.jpg'
+// import ExMap from './ExMap.jpg'
+import ExMap from '../Images/ExMap.jpg'
 
 const imgStyle = {
   position: 'fixed',

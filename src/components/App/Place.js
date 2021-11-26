@@ -4,6 +4,7 @@ import { withRouter, Redirect, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
+import Button from 'react-bootstrap/Button'
 
 const style = {
   margin: 50
@@ -76,7 +77,9 @@ class Place extends Component {
                       <Link to="/places" className="cardLink">Back to all</Link>
                     </div>
                     <div className="cardButton">
-                      <button onClick={this.deleteplace} className="cardButton">Delete this place</button>
+                      <Button onClick={this.deleteplace} className="cardButton" variant="dark" type="submit">
+                        Delete this place
+                      </Button>
                     </div>
                   </Card.Footer>
                 </Card>

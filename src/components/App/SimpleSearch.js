@@ -3,7 +3,6 @@ import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-goo
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import 'react-google-places-autocomplete/dist/assets/index.css'
-import AddPlace from './AddPlace'
 
 const style = {
   zIndex: 2,
@@ -11,20 +10,21 @@ const style = {
   padding: 15,
   width: '50px'
 }
-const style2 = {
-  zIndex: 1,
-  position: 'absolute',
-  margin: 15,
-  padding: 15
-}
-class BestSearch extends React.Component {
+// const style2 = {
+//   zIndex: 1,
+//   position: 'absolute',
+//   margin: 15,
+//   padding: 15
+// }
+class SimpleSearch extends React.Component {
   state = {
     name: '',
     type: '',
     latitude: '',
     longitude: '',
     address: '',
-    user: this.props.user
+    user: this.props.user,
+    LatLng: ''
   }
 
   handleSelect = (location) => {
@@ -48,8 +48,13 @@ class BestSearch extends React.Component {
           latitude: LatLng.lat,
           longitude: LatLng.lng
         })
+        this.setState({ LatLng: LatLng })
         console.log(this.state.latitude) // returns the correct value
         console.log(this.state.longitude)
+        // console.log(location)
+        console.log(LatLng)
+        // this.props.setMapCenter(this.state.latitude, this.state.longitude)
+        this.props.setMapCenter(this.state.LatLng)
       })
       // .then(({ lat, lng }) =>
       //   console.log('Successfully got latitude and longitude', { lat, lng })
@@ -70,6 +75,7 @@ class BestSearch extends React.Component {
     //   .then(({ lat, lng }) =>
     //     console.log('Successfully got latitude and longitude', { lat, lng })
     //   )
+    // this.props.setMapCenter(this.state.latitude)
     return (
       <p>{this.state.latitude}</p>
     )
@@ -113,11 +119,11 @@ class BestSearch extends React.Component {
                 </div>
               )}
             />
-            <AddPlace style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
           </CardContent>
         </Card>
+        <button onClick={() => this.props.setMapCenter(this.state.LatLng)}>set map center</button>
       </div>
     )
   }
 }
-export default BestSearch
+export default SimpleSearch

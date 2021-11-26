@@ -28,30 +28,26 @@ nav {
   font-family: 'Work Sans', sans-serif;
 }
 
-.row {
-}
-.cardLink, .cardButton {
-  justify-content: space-around;
-}
-.cardFooter {
-  justify-content: space-around;
-}
+// .cardLink, .cardButton {
+//   justify-content: space-around;
+// }
+// .cardFooter {
+//   justify-content: space-around;
+// }
 
-.row {
-  justify-content: space-around;
-}
-.Search2-layout {
-  justify-content: space-around;
-}
+// .row {
+//   justify-content: space-around;
+// }
+// .Search2-layout {
+//   justify-content: space-around;
+// }
 .autocomplete-dropdown-container {
    z-index: 1000;
    position: absolute;
 }
 .container {
-  // margin-top: 50px;
   margin-top: 50px;
-  // position: absolute;
-  // margin: 0 auto;
+  margin-bottom: 50px;
 }
 
 body {
