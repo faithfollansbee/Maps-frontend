@@ -1,23 +1,37 @@
 import React, { Component } from 'react'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
 // import SimpleSearch from './SimpleSearch'
+// import InfoBox from './InfoBox'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const style = {
-  position: 'fixed',
+  // position: 'fixed',
+  position: 'relative',
   border: '4px solid black',
-  width: '800px',
+  width: '100%',
+  // width: '100vw',
+  // width: '800px',
   height: '550px',
-  transform: 'translate(-50%, -50%)' // this is needed for some reason
-  // backgroundColor: '#31464f'
+  marginTop: '10px'
+
+  // this is needed for some reason
+  // transform: 'translate(-50%, -50%)'
 }
 const divstyle = { // this whole thing is keeping the map centered
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)'
+  marginTop: '10px',
+  backgroundColor: 'red'
+  // width: '90vw'
+  // position: 'fixed'
+  // top: '50%',
+  // left: '50%'
+  // transform: 'translate(-50%, -50%)'
+}
+const containerStyle = {
+  position: 'relative',
+  width: '100%',
+  height: '100%'
 }
 
 class MapContainer extends Component {
@@ -143,8 +157,10 @@ class MapContainer extends Component {
         <div>
           { this.props.mapCenter && (
             <div style={divstyle}>
+              <div>hello</div>
               <Map
                 style={style}
+                containerStyle={containerStyle}
                 google={window.google}
                 zoom={13}
                 apiKey={this.props.apiKey}
@@ -160,8 +176,11 @@ class MapContainer extends Component {
                 <Marker
                   name={'Current location'} />
               </Map>
+
             </div>
+
           )}
+
         </div>
       )
     }
@@ -169,27 +188,31 @@ class MapContainer extends Component {
     //   this.map.initialCenter = { lat: 42.3601, lng: -71.0589 }
     // }
     return (
-      <div style={divstyle}>
-        <Map
-          style={style}
-          google={window.google}
-          // zoom={13}
-          zoom={13}
-          apiKey={this.props.apiKey}
-          // initialCenter={this.state.mapCenter}
-          // initialCenter={this.props.mapCenter}
-          // initialCenter={{ lat: 42.3601, lng: -71.0589 }}
-          // initialCenter={ this.props.mapCenter ? this.props.mapCenter : this.state.defaultCoords }
-          initialCenter={this.props.mapCenter}
-          // initialCenter={this.state.coords}
-          // center={this.props.mapCenter}
-          // boston MA coords: 42.3601, -71.0589
-          // newburport MA coords: 42.8125913, -70.87727509999999
-        >
-          {this.displayMarkers()}
-          <Marker
-            name={'Current location'} />
-        </Map>
+      <div>
+        <div style={divstyle}>
+          <Map
+            style={style}
+            google={window.google}
+            // zoom={13}
+            zoom={13}
+            apiKey={this.props.apiKey}
+            // initialCenter={this.state.mapCenter}
+            // initialCenter={this.props.mapCenter}
+            // initialCenter={{ lat: 42.3601, lng: -71.0589 }}
+            // initialCenter={ this.props.mapCenter ? this.props.mapCenter : this.state.defaultCoords }
+            initialCenter={this.props.mapCenter}
+            // initialCenter={this.state.coords}
+            // center={this.props.mapCenter}
+            // boston MA coords: 42.3601, -71.0589
+            // newburport MA coords: 42.8125913, -70.87727509999999
+          >
+            {this.displayMarkers()}
+            <Marker
+              name={'Current location'} />
+          </Map>
+
+        </div>
+
       </div>
     )
   }

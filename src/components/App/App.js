@@ -24,7 +24,7 @@ import AddCenterPlace from '../CenterPlace/AddCenterPlace'
 
 const GlobalStyle = createGlobalStyle`
   body {
-    width: 100%;
+    // width: 100%;
     // background: #f8f5f2;
     // background-image: url('./backgroundimage.svg')
   }
