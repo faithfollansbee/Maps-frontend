@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import AccountMenu from './AccountMenu'
 // import PlaceBookLogo from './PlaceBookLogo.png'
 const logoStyle = {
   height: '80px',
@@ -16,12 +17,12 @@ const NavBarStyle = {
 }
 const authenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#change-password">Change Password</Nav.Link>
-    <Nav.Link href="#sign-out">Sign Out</Nav.Link>
     <Nav.Link href="#createplace">Add place</Nav.Link>
     <Nav.Link href="#places"> Places </Nav.Link>
     <Nav.Link href="#map"> Map </Nav.Link>
     <Nav.Link href="#simplesearch"> SimpleSearch </Nav.Link>
+    <Nav.Link href="#change-coords"> Change Coords </Nav.Link>
+    <Nav.Link href="#centerPlaces"> Center Places </Nav.Link>
   </Fragment>
 )
 
@@ -52,6 +53,7 @@ const Header = ({ user }) => (
         { user ? authenticatedOptions : unauthenticatedOptions }
       </Nav>
     </Navbar.Collapse>
+    {user && <AccountMenu user={user}/>}
   </Navbar>
 )
 

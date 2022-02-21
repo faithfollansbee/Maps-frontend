@@ -49,12 +49,11 @@ class SimpleSearch extends React.Component {
           longitude: LatLng.lng
         })
         this.setState({ LatLng: LatLng })
-        console.log(this.state.latitude) // returns the correct value
+        console.log(this.state.latitude)
         console.log(this.state.longitude)
-        // console.log(location)
-        console.log(LatLng)
-        // this.props.setMapCenter(this.state.latitude, this.state.longitude)
+        console.log('location', location)
         this.props.setMapCenter(this.state.LatLng)
+        // console.log('this.props', this.props)
       })
       // .then(({ lat, lng }) =>
       //   console.log('Successfully got latitude and longitude', { lat, lng })
@@ -82,7 +81,8 @@ class SimpleSearch extends React.Component {
   }
 
   render () {
-    console.log(this.state.user)
+    console.log(this.state)
+    // console.log(this.state.user)
     return (
       <div className="Search2-layout">
         <Card>

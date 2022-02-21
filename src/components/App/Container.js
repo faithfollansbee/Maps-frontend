@@ -23,8 +23,11 @@ const divstyle = { // this whole thing is keeping the map centered
 class MapContainer extends Component {
   state = {
     places: [],
-    mapCenter: this.props.mapCenter,
-    defaultCoords: { lat: 42.8125913, lng: -70.87727509999999 }
+    mapCenter: null,
+    centerPlaces: [],
+    user: this.user,
+    // defaultCoords: { lat: 42.8125913, lng: -70.87727509999999 },
+    coords: this.props.mapCenter
   }
   async componentDidMount () {
     try {
@@ -36,75 +39,85 @@ class MapContainer extends Component {
         }
       })
       this.setState({ places: response.data.places, isLoading: false })
-      console.log(this.props.mapCenter)
+      console.log(this.props.mapCenter) // only after SimpleSearch sets coords
       console.log(this.state.defaultCoords)
-      console.log(this.defaultCoords)
+      console.log(this.state) // coords = object of coords
+      // console.log(this.defaultCoords)
     } catch (error) {
     }
   }
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
+    // console.log(marker.name)
+    // console.log(props)
     this.setState({
       selectedPlace: props,
       activeMarker: marker
     })
+  }
 
   setMapCenter = (e) => {
     this.setState({
       mapCenter: ''
     })
+    console.log('called setMapCenter from Container')
+    // console.log('e.props', e.props)
+    // console.log('e.value', e.value)
+    // console.log('this.mapCenter', this.mapCenter)
   }
 
   displayMarkers = () => {
     console.log(this.state.places)
     return this.state.places.map((place, index) => {
+      // console.log('place', place)
+      // console.log(place.name)
       if (place.type === 'restaurant') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/pizza.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else if (place.type === 'entertainment') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/ferris-wheel.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else if (place.type === 'historical landmark') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/monument.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else if (place.type === 'outdoors') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/ios-filled/25/000000/deciduous-tree.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else if (place.type === 'bar') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/plasticine/50/000000/wine-glass.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else if (place.type === 'museum') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/material-sharp/24/000000/museum.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else if (place.type === 'home') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/home.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else if (place.type === 'university') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/student-center.png' }}
-        onClick={() => console.log('You clicked me!')} />
+        onClick={() => console.log(place.name)} />
       } else {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
@@ -114,11 +127,47 @@ class MapContainer extends Component {
       }
     })
   }
+
   // <img src="https://img.icons8.com/color/48/000000/student-center.png"/>
   render () {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
+    console.log(this.props.mapCenter)
+    console.log(this.state.mapCenter)
+    // this.props.mapCenter.length > 0 ? console.log('yes') : console.log('no')
+    // const { mapCenter } = this.state
+    if (this.props.mapCenter.length === 0) {
+      // this.setState({ coords: { lat: 42.3601, lng: -71.0589 } })
+      return (
+        <div>
+          { this.props.mapCenter && (
+            <div style={divstyle}>
+              <Map
+                style={style}
+                google={window.google}
+                zoom={13}
+                apiKey={this.props.apiKey}
+                initialCenter={{
+                  lat: 42.8125913,
+                  lng: -70.87727509999999
+                }}
+                // center={this.props.mapCenter}
+                // boston MA coords: 42.3601, -71.0589
+                // newburport MA coords: 42.8125913, -70.87727509999999
+              >
+                {this.displayMarkers()}
+                <Marker
+                  name={'Current location'} />
+              </Map>
+            </div>
+          )}
+        </div>
+      )
+    }
+    // if (!this.props.mapCenter) {
+    //   this.map.initialCenter = { lat: 42.3601, lng: -71.0589 }
+    // }
     return (
       <div style={divstyle}>
         <Map
@@ -128,34 +177,33 @@ class MapContainer extends Component {
           zoom={13}
           apiKey={this.props.apiKey}
           // initialCenter={this.state.mapCenter}
-          // initialCenter={this.state.mapCenter}
-          // defaultCenter={this.state.defaultCoords}
-          // initialCenter={ this.props.mapCenter ? this.props.mapCenter : this.props.defaultCoords }
-          initialCenter={{
-            lat: 42.8125913,
-            lng: -70.87727509999999
-          }}
+          // initialCenter={this.props.mapCenter}
+          // initialCenter={{ lat: 42.3601, lng: -71.0589 }}
+          // initialCenter={ this.props.mapCenter ? this.props.mapCenter : this.state.defaultCoords }
+          initialCenter={this.props.mapCenter}
+          // initialCenter={this.state.coords}
           // center={this.props.mapCenter}
           // boston MA coords: 42.3601, -71.0589
           // newburport MA coords: 42.8125913, -70.87727509999999
         >
           {this.displayMarkers()}
-          <Marker onClick={this.onMarkerClick}
+          <Marker
             name={'Current location'} />
-          <Marker
-            title={'The marker`s title will appear as a tooltip.'}
-            name={'SOMA'}
-            position={{ lat: 37.778519, lng: -122.405640 }} />
-          <Marker
-            name={'Dolores park'}
-            position={{ lat: 37.759703, lng: -122.428093 }} />
-          <Marker />
         </Map>
       </div>
     )
   }
 }
-
+// <Marker onClick={this.onMarkerClick}
+//   name={'Current location'} />
+// <Marker
+//   title={'The marker`s title will appear as a tooltip.'}
+//   name={'SOMA'}
+//   position={{ lat: 37.778519, lng: -122.405640 }} />
+// <Marker
+//   name={'Dolores park'}
+//   position={{ lat: 37.759703, lng: -122.428093 }} />
+// <Marker />
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY
 })(MapContainer)

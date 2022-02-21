@@ -8,10 +8,15 @@
   max-width: 30rem;
   position: fixed;
   right: 0;
+  z-index: 10000;
 
   .alert-body {
     margin-bottom: 0;
   }
+}
+.container {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
 }
 
 .close {

@@ -53,3 +53,19 @@ export const changePassword = (passwords, user) => {
     }
   })
 }
+
+export const changeCoords = (coords, lat, lng, user) => {
+  return axios({
+    url: apiUrl + '/change-coords',
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
+    data: {
+      coords: {
+        lat: coords.lat,
+        lng: coords.lng
+      }
+    }
+  })
+}

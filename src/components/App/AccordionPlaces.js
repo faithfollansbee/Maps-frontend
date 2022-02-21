@@ -103,6 +103,15 @@ class AccordionPlaces extends Component {
   }
 
   render (props) {
+    let placesStatus
+    if (!this.state.places.length) {
+      placesStatus = (
+        <div>
+          <div className="noPlaces">No places added yet. get started! </div>
+        </div>
+      )
+    }
+
     const placesJsx = this.state.places.map(place => (
       <Accordion key={place._id}>
         <AccordionSummary
@@ -116,6 +125,8 @@ class AccordionPlaces extends Component {
           <Typography>
             <br/>
             {place.latitude}{place.longitude}
+            <br/>
+            {place.type}
             <br/>
             <Link to={`/places/${place._id}`}>{place.name}</Link>
           </Typography>
@@ -136,7 +147,7 @@ class AccordionPlaces extends Component {
         <div>
           {this.state.places.length
             ? placesJsx
-            : <Accordion>No places found</Accordion>
+            : <div>{placesStatus}</div>
           }
         </div>
       </div>

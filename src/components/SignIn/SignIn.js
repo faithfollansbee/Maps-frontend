@@ -20,7 +20,8 @@ class SignIn extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      user: null
     }
   }
 
@@ -36,8 +37,8 @@ class SignIn extends Component {
     signIn(this.state)
       .then(res => setUser(res.data.user))
       .then(() => alert({
-        heading: 'Sign In Success',
-        message: messages.signInSuccess,
+        heading: `Welcome, ${this.state.email}`,
+        // message: messages.signInSuccess,
         variant: 'success'
       }))
       .then(() => history.push('/map'))
@@ -54,7 +55,6 @@ class SignIn extends Component {
 
   render () {
     const { email, password } = this.state
-
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">

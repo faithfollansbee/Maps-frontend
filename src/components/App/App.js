@@ -9,14 +9,18 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import MapContainer from './Container'
-// import Places from './Places'
 import Place from './Place'
-// import Search2 from './Search2'
 import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
 import AccordionPlaces from './AccordionPlaces'
 import BestSearch from './bestsearch'
 import SimpleSearch from './SimpleSearch'
+import SetMapCoords from './MapCoords/SetMapCoords'
+import CenterPlaces from '../CenterPlace/CenterPlaces'
+import CenterPlace from '../CenterPlace/CenterPlace'
+import AddCenterPlace from '../CenterPlace/AddCenterPlace'
+// import Search2 from './Search2'
+// import Places from './Places'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -32,8 +36,12 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      mapCenter: []
+      mapCenter: [],
+      mapSettings: [],
+      centerPlaces: [],
+      mapId: ''
     }
+    // this.setMapCenter = this.setMapCenter.bind(this)
   }
 
   apiKey = `${process.env.REACT_APP_API_KEY}`
@@ -45,16 +53,26 @@ class App extends Component {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
   setMapCenter = (LatLng) => {
+    // console.log(this.props)
+    console.log(LatLng)
     this.setState({ mapCenter: LatLng })
+    this.setState({ mapSettings: LatLng })
+    // console.log('user.mapSettings', this.state.user.mapSettings)
     console.log('set map center callback')
     // console.log(this.latitude)
-    console.log(this.LatLng)
     console.log(this.state.mapCenter)
-    console.log(this.state.mapCenter.lng)
+    console.log(this.state.mapSettings)
+    console.log(this.state.user)
+    // console.log(this.state.mapCenter.lng)
+    // console.log('e.props', e.props)
+    // console.log('e.value', e.value)
   }
 
   render () {
     const { alerts, user } = this.state
+    // console.log(this.state.user)
+    // console.log(this.state)
+    // console.log('user.mapSettings', this.state.user.mapSettings)
     return (
       <Fragment>
         <GlobalStyle />
@@ -73,6 +91,14 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/places/'
             render={() => (<AccordionPlaces user={user}/>)}
           />
+          <AuthenticatedRoute user={user} exact path='/centerPlaces/'
+            render={() => (<CenterPlaces setMapCenter={this.setMapCenter} user={user}/>)}
+          />
+          <AuthenticatedRoute user={user} path="/createCenterPlace"
+            render={() => (<AddCenterPlace user={user}/>)}/>
+
+          <AuthenticatedRoute user={user} exact path='/centerPlaces/:id'
+            render={() => (<CenterPlace setMapCenter={this.setMapCenter} user={user}/>)}/>
 
           <AuthenticatedRoute user={user} path='/map' render={() => (
             <div>
@@ -94,6 +120,10 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
 
+          <AuthenticatedRoute user={user} path='/change-coords' render={() => (
+            <SetMapCoords alert={this.alert} user={user} setMapCenter={this.state.setMapCenter} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter}/>
+          )} />
+
           <AuthenticatedRoute user={user} exact path='/places/:id'
             render={() => (<Place user={user}/>)}/>
 
@@ -104,7 +134,7 @@ class App extends Component {
           />
           <AuthenticatedRoute user={user} path='/simplesearch'
             render={() => (
-              <SimpleSearch setMapCenter={this.setMapCenter}/>
+              <SimpleSearch user={user} setMapCenter={this.setMapCenter}/>
             )}
           />
         </main>
