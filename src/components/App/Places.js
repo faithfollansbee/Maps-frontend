@@ -72,7 +72,7 @@ class Places extends Component {
     console.log(this.state)
     return (
       <div className="places-list">
-        <h1 style={headingStyle}>My Saved Places</h1>
+        <h1 style={headingStyle}>Saved Places</h1>
         <ListGroup style={style}>
           {this.state.places.length
             ? placesJsx

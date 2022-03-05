@@ -142,7 +142,7 @@ class AccordionPlaces extends Component {
     }
     console.log(this.state)
     return (
-      <div className="places-list">
+      <div className="Search2-layout">
         <h1 style={headingStyle}>My Saved Places</h1>
         <div>
           {this.state.places.length

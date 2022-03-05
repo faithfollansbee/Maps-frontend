@@ -20,8 +20,8 @@ const style = {
   // transform: 'translate(-50%, -50%)'
 }
 const divstyle = { // this whole thing is keeping the map centered
-  marginTop: '10px',
-  backgroundColor: 'red'
+  marginTop: '10px'
+  // backgroundColor: 'red'
   // width: '90vw'
   // position: 'fixed'
   // top: '50%',
@@ -154,10 +154,9 @@ class MapContainer extends Component {
     if (this.props.mapCenter.length === 0) {
       // this.setState({ coords: { lat: 42.3601, lng: -71.0589 } })
       return (
-        <div>
+        <div className="Search2-layout">
           { this.props.mapCenter && (
             <div style={divstyle}>
-              <div>hello</div>
               <Map
                 style={style}
                 containerStyle={containerStyle}
@@ -188,13 +187,15 @@ class MapContainer extends Component {
     //   this.map.initialCenter = { lat: 42.3601, lng: -71.0589 }
     // }
     return (
-      <div>
+      <div className="Search2-layout">
         <div style={divstyle}>
           <Map
             style={style}
             google={window.google}
             // zoom={13}
             zoom={13}
+            containerStyle={containerStyle}
+
             apiKey={this.props.apiKey}
             // initialCenter={this.state.mapCenter}
             // initialCenter={this.props.mapCenter}

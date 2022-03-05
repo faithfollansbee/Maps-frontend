@@ -19,7 +19,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 // import Spinner from 'react-bootstrap/Spinner'
-
+const titleStyle = {
+  color: 'black',
+  fontSize: '40px',
+  margin: 'auto',
+  textAlign: 'center'
+}
 class CenterPlaces extends Component {
   constructor (props) {
     super(props)
@@ -111,9 +116,9 @@ class CenterPlaces extends Component {
     ))
     console.log(this.state)
     return (
-      <div className="layout-style">
+      <div className="Search2-layout">
         <Fragment>
-          <h2 className="title-style">Your genres</h2>
+          <h2 style={titleStyle}>Your Saved Maps</h2>
           <div>
             <div>
               <Tooltip title="New Genre">
