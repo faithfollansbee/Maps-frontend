@@ -37,7 +37,7 @@ class MapContainer extends Component {
     super(props)
     this.state = {
       places: [],
-      // mapCenter: [],
+      // mapCenter: this.props.mapCenter,
       centerPlaces: [],
       user: this.props.user,
       // defaultCoords: { lat: 42.8125913, lng: -70.87727509999999 },
@@ -75,9 +75,6 @@ class MapContainer extends Component {
       mapCenter: ''
     })
     console.log('called setMapCenter from Container')
-    // console.log('e.props', e.props)
-    // console.log('e.value', e.value)
-    // console.log('this.mapCenter', this.mapCenter)
   }
 
   displayMarkers = () => {
@@ -144,86 +141,83 @@ class MapContainer extends Component {
   }
 
   // <img src="https://img.icons8.com/color/48/000000/student-center.png"/>
-  render (props) {
+  render () {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
     console.log(this.props.mapCenter)
     console.log(this.props.mapCenter.length)
-    // console.log(this.state.mapCenter)
-    // console.log(this.state.mapCenter.length)
-
-    // this.props.mapCenter.length > 0 ? console.log('yes') : console.log('no')
-    // const { mapCenter } = this.state
-    if (this.props.mapCenter.length === 0) {
-      return (
-        <div className="Search2-layout">
-          { this.props.mapCenter && (
-            <div style={divstyle}>
-              <Map
-                style={style}
-                containerStyle={containerStyle}
-                google={window.google}
-                zoom={13}
-                apiKey={this.props.apiKey}
-                initialCenter={{
-                  lat: 42.8125913,
-                  lng: -70.87727509999999
-                }}
-                center={this.props.mapCenter}
-                // initialCenter={this.props.mapCenter}
-                // center={this.props.mapCenter}
-                // boston MA coords: 42.3601, -71.0589
-                // newburport MA coords: 42.8125913, -70.87727509999999
-              >
-                {this.displayMarkers()}
-                <Marker
-                  name={'Current location'} />
-              </Map>
-
-            </div>
-
-          )}
-        </div>
-      )
-    }
-    // if (!this.props.mapCenter) {
-    //   this.map.initialCenter = { lat: 42.3601, lng: -71.0589 }
-    // }
     return (
       <div className="Search2-layout">
-        <div style={divstyle}>
-          <Map
-            style={style}
-            google={window.google}
-            // zoom={13}
-            zoom={13}
-            containerStyle={containerStyle}
+        { this.props.mapCenter && (
+          <div style={divstyle}>
+            <Map
+              style={style}
+              containerStyle={containerStyle}
+              google={window.google}
+              zoom={13}
+              apiKey={this.props.apiKey}
+              initialCenter={{
+                lat: 42.8125913,
+                lng: -70.87727509999999
+              }}
+              // initialCenter={this.props.mapCenter}
+              center={this.props.mapCenter}
+              // boston MA coords: 42.3601, -71.0589
+              // newburport MA coords: 42.8125913, -70.87727509999999
+            >
+              {this.displayMarkers()}
+              <Marker
+                name={'Current location'} />
+            </Map>
 
-            apiKey={this.props.apiKey}
-            // initialCenter={this.state.mapCenter}
-            // initialCenter={this.props.mapCenter}
-            // initialCenter={{ lat: 42.3601, lng: -71.0589 }}
-            // initialCenter={ this.props.mapCenter ? this.props.mapCenter : this.state.defaultCoords }
-            initialCenter={this.props.mapCenter}
-            // initialCenter={{
-            //   lat: 42.8125913,
-            //   lng: -70.87727509999999
-            // }}
-            center={this.props.mapCenter}
-            // initialCenter={this.state.coords}
-            // center={this.props.mapCenter}
-            // boston MA coords: 42.3601, -71.0589
-            // newburport MA coords: 42.8125913, -70.87727509999999
-          >
-            {this.displayMarkers()}
-            <Marker
-              name={'Current location'} />
-          </Map>
+          </div>
 
-        </div>
+        )}
       </div>
     )
+    // return (
+    //   <div className="Search2-layout">
+    //     { this.state.mapCenter
+    //       ? <div style={divstyle}>
+    //         <Map
+    //           style={style}
+    //           google={window.google}
+    //           zoom={13}
+    //           containerStyle={containerStyle}
+    //           apiKey={this.props.apiKey}
+    //           initialCenter={this.state.mapCenter}
+    //         >
+    //           {this.displayMarkers()}
+    //           <Marker
+    //             name={'Current location'} />
+    //         </Map>
+    //
+    //       </div>
+    //       : <div style={divstyle}>
+    //         <Map
+    //           style={style}
+    //           containerStyle={containerStyle}
+    //           google={window.google}
+    //           zoom={13}
+    //           apiKey={this.props.apiKey}
+    //           initialCenter={{
+    //             lat: 42.8125913,
+    //             lng: -70.87727509999999
+    //           }}
+    //           // center={this.props.mapCenter}
+    //           // boston MA coords: 42.3601, -71.0589
+    //           // newburport MA coords: 42.8125913, -70.87727509999999
+    //         >
+    //           {this.displayMarkers()}
+    //           <Marker
+    //             name={'Current location'} />
+    //         </Map>
+    //
+    //       </div>
+    //     }
+    //   </div>
+    // )
   }
 }
 // <Marker onClick={this.onMarkerClick}

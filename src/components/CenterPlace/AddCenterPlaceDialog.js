@@ -4,6 +4,8 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
+import Tooltip from '@material-ui/core/Tooltip'
+
 // import GenreForm from './GenreForm'
 import AddCenterPlace from './AddCenterPlace'
 // import GenreDialogForm from './GenreDialogForm'
@@ -21,9 +23,11 @@ export default function AddCenterPlaceDialog (props) {
   // console.log('props.user', props.user)
   return (
     <div>
-      <IconButton onClick={handleClickOpen}>
-        <AddIcon/>
-      </IconButton>
+      <Tooltip title="Add new map">
+        <IconButton onClick={handleClickOpen}>
+          <AddIcon/>
+        </IconButton>
+      </Tooltip>
       <Dialog
         user={props.user}
         fullWidth={true}

@@ -6,13 +6,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 import AddCenterPlaceDialog from './AddCenterPlaceDialog'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
+// import CardContent from '@material-ui/core/CardContent'
 import CardActionArea from '@material-ui/core/CardActionArea'
-// import Fab from '@material-ui/core/Fab'
-// import FormControl from 'react-bootstrap/FormControl'
-// import Button from '@material-ui/core/Button'
-// import AddIcon from '@material-ui/icons/Add'
-// import Row from 'react-bootstrap/Row'
 import CardHeader from '@material-ui/core/CardHeader'
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
@@ -31,7 +26,6 @@ class CenterPlaces extends Component {
 
     this.state = {
       centerPlaces: [],
-      // userCenterPlaces: [],
       isLoading: true,
       filtered: false
     }
@@ -86,12 +80,13 @@ class CenterPlaces extends Component {
   //   const searchResults = genres.filter(genre => genre.name.toLowerCase().includes(searchString))
   //   this.setState({ userGenres: searchResults, queryLength: queryLength })
   // }
-
+  // href={`#/centerPlaces/${centerPlace._id}`}
   render (props) {
     const { centerPlaces } = this.state
+    console.log(centerPlaces)
     const centerPlacesJSX = centerPlaces.map(centerPlace => (
-      <Card key={centerPlace._id} className="card-style">
-        <CardActionArea href={`#/centerPlaces/${centerPlace._id}`} style={{ color: 'inherit', textDecoration: 'none' }} >
+      <Card key={centerPlace._id} className="card-style" onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}>
+        <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
           <CardHeader
             action={
               <IconButton aria-label="settings">
@@ -99,14 +94,14 @@ class CenterPlaces extends Component {
               </IconButton>
             }
             title={centerPlace.name}
+            subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
           />
-          <CardContent>
-          </CardContent>
-          <br/>
           <CardActions>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
+            <Tooltip title="add to favorites">
+              <IconButton aria-label="add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+            </Tooltip>
             <IconButton aria-label="edit">
               <EditIcon />
             </IconButton>
@@ -114,23 +109,11 @@ class CenterPlaces extends Component {
         </CardActionArea>
       </Card>
     ))
-    console.log(this.state)
     return (
       <div className="Search2-layout">
         <Fragment>
           <h2 style={titleStyle}>Your Saved Maps</h2>
-          <div>
-            <div>
-              <Tooltip title="New Genre">
-                <span>
-                  <AddCenterPlaceDialog user={this.props.user} />
-                </span>
-              </Tooltip>
-            </div>
-            <Tooltip title="Edit">
-              <EditIcon />
-            </Tooltip>
-          </div>
+          <AddCenterPlaceDialog user={this.props.user} />
           <div>
             {centerPlacesJSX}
           </div>

@@ -144,40 +144,21 @@ class CenterPlace extends React.Component {
   }
 
   render () {
-    console.log(this.state)
-    // console.log('genre movies', this.state.genre.movies)
-    // console.log('genre length', this.state.genre)
-    // console.log('number of movies', this.state.movies.length)
-    // console.log(Object.keys(this.state.movies))
-
     const { centerPlace } = this.state
     if (centerPlace) {
-      // console.log(genre.movies[0].released.substring(5).split('-').concat(genre.movies[0].released.substring(0, 4)).join('/'))
-      // console.log(genre.updatedAt.split('T', 1)[0])
-      // console.log(genre.updatedAt.substring(0, genre.updatedAt.indexOf('T')))
-      // const deletebutton = (
-      //   <Fragment>
-      //     <IconButton onClick={this.handleDelete} aria-label="Delete">
-      //       <DeleteIcon />
-      //     </IconButton>
-      //   </Fragment>
-      // )
       return (
-        <div className="layout-style my-5">
+        <div className="Search2-layout my-5">
           { centerPlace && (
             <div>
               <Card onClick={this.setPlace} className="card-style" variant="outlined">
                 <CardContent>
                   <div>
                     <CardHeader
-                      // variant="h5"
-                      // component="h3"
-                      // subheader={movie.released.substring(5).split('-').concat(movie.released.substring(0, 4)).join('/')}
-                      // subheader={genre.updatedAt.substring(5).split('-').concat(genre.updatedAt.substring(0, 4)).join('/')}
                       // action={
                       //   <EditCenterPlaceMenu id={this.state.centerPlace._id} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
                       // }
                       title={centerPlace.name}
+                      subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
                     />
                   </div>
                   <div className="row">

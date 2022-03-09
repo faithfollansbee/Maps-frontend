@@ -78,7 +78,7 @@ class BestSearch extends React.Component {
   render () {
     return (
       <div className="Search2-layout">
-        <Card style={{ backgroundColor: 'LightGray' }}>
+        <Card style={{ backgroundColor: 'white' }}>
           <CardContent>
             <GooglePlacesAutocomplete
               style={style}

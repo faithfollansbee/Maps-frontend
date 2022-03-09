@@ -140,10 +140,9 @@ class AccordionPlaces extends Component {
         </div>
       )
     }
-    console.log(this.state)
     return (
       <div className="Search2-layout">
-        <h1 style={headingStyle}>My Saved Places</h1>
+        <h1 style={headingStyle}>Saved Places</h1>
         <div>
           {this.state.places.length
             ? placesJsx

@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
+// import axios from 'axios'
+// import apiUrl from '../../apiConfig'
 import 'typeface-roboto'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -19,6 +21,7 @@ import SetMapCoords from './MapCoords/SetMapCoords'
 import CenterPlaces from '../CenterPlace/CenterPlaces'
 import CenterPlace from '../CenterPlace/CenterPlace'
 import AddCenterPlace from '../CenterPlace/AddCenterPlace'
+import SelectFromCenterPlace from '../CenterPlace/SelectFromCenterPlace'
 // import Search2 from './Search2'
 // import Places from './Places'
 
@@ -61,15 +64,37 @@ class App extends Component {
     console.log('set map center callback')
     // console.log(this.latitude)
     console.log(this.state.mapCenter)
-    console.log(this.state.mapSettings)
-    console.log(this.state.user)
-    // console.log(this.state.mapCenter.lng)
-    // console.log('e.props', e.props)
-    // console.log('e.value', e.value)
   }
+
+  // getCenterPlaces = () => {
+  //   const response = axios({
+  //     url: `${apiUrl}/centerPlaces`,
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': `Token token=${this.state.user.token}`
+  //     }
+  //   })
+  //   // this.setState({ centerPlaces: response.data.centerPlaces, isLoading: false })
+  //   console.log(response)
+  // }
+  // async getCenterPlaces () {
+  //   try {
+  //     const response = await axios({
+  //       url: `${apiUrl}/centerPlaces`,
+  //       method: 'GET',
+  //       headers: {
+  //         Authorization: `Token token=${this.props.user.token}`
+  //       }
+  //     })
+  //     this.setState({ centerPlaces: response.data.centerPlaces, isLoading: false })
+  //     // this.setState({ userGenres: response.data.genres })
+  //   } catch (error) {
+  //   }
+  // }
 
   render () {
     const { alerts, user } = this.state
+    console.log('this.state', this.state)
     // console.log(this.state.user)
     // console.log(this.state)
     // console.log('user.mapSettings', this.state.user.mapSettings)
@@ -100,9 +125,10 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/centerPlaces/:id'
             render={() => (<CenterPlace setMapCenter={this.setMapCenter} user={user}/>)}/>
 
-          <AuthenticatedRoute user={user} path='/map' render={() => (
+          <AuthenticatedRoute user={user} exact path='/map' render={() => (
             <div>
               <MapContainer user={user} mapCenter={this.state.mapCenter} apiKey={this.apiKey}/>
+              <SelectFromCenterPlace setMapCenter={this.setMapCenter} mapCenter={this.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
             </div>
           )} />
 
