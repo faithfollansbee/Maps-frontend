@@ -1,30 +1,17 @@
 import React, { Component } from 'react'
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
-// import SimpleSearch from './SimpleSearch'
-// import InfoBox from './InfoBox'
-
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const style = {
-  // position: 'fixed',
   position: 'relative',
   border: '4px solid gray',
   width: '100%',
-  // width: '100vw',
-  // width: '800px',
   height: '550px',
   marginTop: '10px'
-  // transform: 'translate(-50%, -50%)'
 }
-const divstyle = { // this whole thing is keeping the map centered
+const divstyle = {
   marginTop: '10px'
-  // backgroundColor: 'red'
-  // width: '90vw'
-  // position: 'fixed'
-  // top: '50%',
-  // left: '50%'
-  // transform: 'translate(-50%, -50%)'
 }
 const containerStyle = {
   position: 'relative',
@@ -37,10 +24,8 @@ class MapContainer extends Component {
     super(props)
     this.state = {
       places: [],
-      // mapCenter: this.props.mapCenter,
       centerPlaces: [],
       user: this.props.user,
-      // defaultCoords: { lat: 42.8125913, lng: -70.87727509999999 },
       coords: this.props.mapCenter
     }
   }
@@ -54,16 +39,10 @@ class MapContainer extends Component {
         }
       })
       this.setState({ places: response.data.places, isLoading: false })
-      console.log(this.props.mapCenter) // only after SimpleSearch sets coords
-      // console.log(this.state.defaultCoords)
-      console.log(this.state) // coords = object of coords
-      // console.log(this.defaultCoords)
     } catch (error) {
     }
   }
   onMarkerClick = (props, marker, e) => {
-    // console.log(marker.name)
-    // console.log(props)
     this.setState({
       selectedPlace: props,
       activeMarker: marker
@@ -80,8 +59,6 @@ class MapContainer extends Component {
   displayMarkers = () => {
     console.log(this.state.places)
     return this.state.places.map((place, index) => {
-      // console.log('place', place)
-      // console.log(place.name)
       if (place.type === 'restaurant') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
@@ -140,13 +117,12 @@ class MapContainer extends Component {
     })
   }
 
-  // <img src="https://img.icons8.com/color/48/000000/student-center.png"/>
   render () {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
-    console.log(this.props.mapCenter)
-    console.log(this.props.mapCenter.length)
+    console.log('container state', this.state)
+    console.log('container props', this.props)
     return (
       <div className="Search2-layout">
         { this.props.mapCenter && (
@@ -157,14 +133,8 @@ class MapContainer extends Component {
               google={window.google}
               zoom={13}
               apiKey={this.props.apiKey}
-              initialCenter={{
-                lat: 42.8125913,
-                lng: -70.87727509999999
-              }}
-              // initialCenter={this.props.mapCenter}
+              initialCenter={this.props.currMap.currCoords}
               center={this.props.mapCenter}
-              // boston MA coords: 42.3601, -71.0589
-              // newburport MA coords: 42.8125913, -70.87727509999999
             >
               {this.displayMarkers()}
               <Marker
@@ -176,60 +146,9 @@ class MapContainer extends Component {
         )}
       </div>
     )
-    // return (
-    //   <div className="Search2-layout">
-    //     { this.state.mapCenter
-    //       ? <div style={divstyle}>
-    //         <Map
-    //           style={style}
-    //           google={window.google}
-    //           zoom={13}
-    //           containerStyle={containerStyle}
-    //           apiKey={this.props.apiKey}
-    //           initialCenter={this.state.mapCenter}
-    //         >
-    //           {this.displayMarkers()}
-    //           <Marker
-    //             name={'Current location'} />
-    //         </Map>
-    //
-    //       </div>
-    //       : <div style={divstyle}>
-    //         <Map
-    //           style={style}
-    //           containerStyle={containerStyle}
-    //           google={window.google}
-    //           zoom={13}
-    //           apiKey={this.props.apiKey}
-    //           initialCenter={{
-    //             lat: 42.8125913,
-    //             lng: -70.87727509999999
-    //           }}
-    //           // center={this.props.mapCenter}
-    //           // boston MA coords: 42.3601, -71.0589
-    //           // newburport MA coords: 42.8125913, -70.87727509999999
-    //         >
-    //           {this.displayMarkers()}
-    //           <Marker
-    //             name={'Current location'} />
-    //         </Map>
-    //
-    //       </div>
-    //     }
-    //   </div>
-    // )
   }
 }
-// <Marker onClick={this.onMarkerClick}
-//   name={'Current location'} />
-// <Marker
-//   title={'The marker`s title will appear as a tooltip.'}
-//   name={'SOMA'}
-//   position={{ lat: 37.778519, lng: -122.405640 }} />
-// <Marker
-//   name={'Dolores park'}
-//   position={{ lat: 37.759703, lng: -122.428093 }} />
-// <Marker />
+
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY
 })(MapContainer)

@@ -27,7 +27,11 @@ class CenterPlaces extends Component {
     this.state = {
       centerPlaces: [],
       isLoading: true,
-      filtered: false
+      filtered: false,
+      mapCenter: '',
+      mapSettings: props.mapSettings,
+      centerPlace: '',
+      map: ''
     }
   }
 
@@ -81,41 +85,87 @@ class CenterPlaces extends Component {
   //   this.setState({ userGenres: searchResults, queryLength: queryLength })
   // }
   // href={`#/centerPlaces/${centerPlace._id}`}
+  // in center places, call handle change when user clicks place. then in handleChange, put event.target into format needed(like in select component)
+  // and then call props.mapCenter, just like in select.
+  handleClick = (e) => {
+    console.log(e)
+    this.props.setMapCenter(e)
+    // const newCenter = { lat: event.latitude, lng: e.longitude }
+    // const centerObj = { ...e }
+
+    this.setState({ mapCenter: e })
+    // console.log(newCenter)
+    // console.log(centerObj)
+  }
+
   render (props) {
     const { centerPlaces } = this.state
     console.log(centerPlaces)
-    const centerPlacesJSX = centerPlaces.map(centerPlace => (
-      <Card key={centerPlace._id} className="card-style" onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}>
-        <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
-          <CardHeader
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={centerPlace.name}
-            subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
-          />
-          <CardActions>
-            <Tooltip title="add to favorites">
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-            </Tooltip>
-            <IconButton aria-label="edit">
-              <EditIcon />
-            </IconButton>
-          </CardActions>
-        </CardActionArea>
-      </Card>
-    ))
+    // const centerPlacesJSX = centerPlaces.map(centerPlace => (
+    //   <Card key={centerPlace._id} className="card-style"
+    //     value={centerPlace}
+    //     onClick={this.handleClick}
+    //     // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+    //   >
+    //     <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
+    //       <CardHeader
+    //         action={
+    //           <IconButton aria-label="settings">
+    //             <MoreVertIcon />
+    //           </IconButton>
+    //         }
+    //         title={centerPlace.name}
+    //         subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
+    //       />
+    //       <CardActions>
+    //         <Tooltip title="add to favorites">
+    //           <IconButton aria-label="add to favorites">
+    //             <FavoriteIcon />
+    //           </IconButton>
+    //         </Tooltip>
+    //         <IconButton aria-label="edit">
+    //           <EditIcon />
+    //         </IconButton>
+    //       </CardActions>
+    //     </CardActionArea>
+    //   </Card>
+    // ))
     return (
       <div className="Search2-layout">
         <Fragment>
           <h2 style={titleStyle}>Your Saved Maps</h2>
           <AddCenterPlaceDialog user={this.props.user} />
           <div>
-            {centerPlacesJSX}
+            { centerPlaces.map(centerPlace => (
+              <Card key={centerPlace._id} className="card-style"
+                value={centerPlace._id}
+                // onClick={this.handleClick}
+                onClick={(e) => this.handleClick(centerPlace)}
+                // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+              >
+                <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
+                  <CardHeader
+                    action={
+                      <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                      </IconButton>
+                    }
+                    title={centerPlace.name}
+                    subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
+                  />
+                  <CardActions>
+                    <Tooltip title="add to favorites">
+                      <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <IconButton aria-label="edit">
+                      <EditIcon />
+                    </IconButton>
+                  </CardActions>
+                </CardActionArea>
+              </Card>
+            ))}
           </div>
         </Fragment>
       </div>

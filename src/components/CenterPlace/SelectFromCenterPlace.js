@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import InputLabel from '@material-ui/core/InputLabel'
+// import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
+// import Menu from '@material-ui/core/Menu'
 // import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Button from '@material-ui/core/Button'
+// import Snackbar from '@material-ui/core/Snackbar'
+
 const buttonStyle = {
   display: 'block',
   marginTop: 'theme.spacing(2)'
@@ -23,8 +26,10 @@ class SelectFromCenterPlace extends Component {
       isLoading: true,
       filtered: false,
       open: false,
-      mapCenter: '',
-      centerPlace: ''
+      mapCenter: ''
+      // mapSettings: props.mapSettings
+      // centerPlace: ''
+      // map: ''
     }
   }
 
@@ -44,123 +49,67 @@ class SelectFromCenterPlace extends Component {
     }
   }
 
-  handleOpen = () => {
+  handleOpen = (e) => {
     this.setState({ open: true })
+    this.setState({ anchorEl: e.target })
   }
   handleClose = () => {
     this.setState({ open: false })
   }
   handleChange = (event) => {
     console.log(event.target.value)
-    // this.props.setMapCenter({ lat: event.target.value.latitude, lng: event.target.value.longitude }, { lng: event.target.value.longitude })
+    this.props.setMapCenter(event.target.value)
     const newCenter = { lat: event.target.value.latitude, lng: event.target.value.longitude }
-    this.props.setMapCenter(newCenter)
+    const centerObj = { ...event.target.value }
+    // this.props.setMapCenter(newCenter)
+    // this.setState({ mapCenter: event.target.value.name })
+    this.setState({ mapCenter: event.target.value })
+    // this.setState({ mapCenter: [...event.target.value], newCenter })
     console.log(newCenter)
-    console.log(event.target.value.latitude)
+    console.log(centerObj)
   }
-  // handleChange = (value) => {
-  //   this.setState({ mapCenter: value })
-  //   this.props.setMapCenter({ value })
-  //   console.log(value)
-  // }
 
   render (props) {
-    const { centerPlaces } = this.state
-    // const { mapcenter } = this.props
+    const { centerPlaces, open } = this.state
+    console.log('select state', this.state)
+    console.log('select props', this.props)
 
-    // console.log(this.props.centerPlaces)
-    const centerPlacesJSX = centerPlaces.map(centerPlace => (
-      <MenuItem key={centerPlace._id} value={centerPlace}
-        // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-      >{centerPlace.name}</MenuItem>
-    ))
     return (
       <div className="Search2-layout">
-        <Button style={buttonStyle} onClick={this.handleOpen}>
+        <Button style={buttonStyle} onClick={this.handleOpen} aria-controls="simple-menu">
            View Other Map
         </Button>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
+          labelId="select"
           id="demo-simple-select"
           onClose={this.handleClose}
           onOpen={this.handleOpen}
           defaultValue=''
-          // value={value}
+          open={open}
+          // value={mapSettings.name}
+          // value={mapCenter}
           onChange={this.handleChange}
           // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
         >
-          {centerPlacesJSX}
+          { centerPlaces.map(centerPlace => (
+            <MenuItem key={centerPlace._id} value={centerPlace}
+              onClick={this.handleChange}
+              // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+            >{centerPlace.name}</MenuItem>
+          ))}
         </Select>
+        <h5>select props.mapSettings.name: {this.props.mapSettings.name}</h5>
+        <h5>select props.currMap.name: {this.props.currMap.name}</h5>
+
       </div>
     )
   }
 }
-export default SelectFromCenterPlace
+// const centerPlacesJSX = centerPlaces.map(centerPlace => (
+//   <MenuItem key={centerPlace._id} value={centerPlace}
+//     // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+//   >{centerPlace.name}</MenuItem>
+// ))
+// {centerPlacesJSX}
 
-// import React from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-// import InputLabel from '@material-ui/core/InputLabel'
-// import MenuItem from '@material-ui/core/MenuItem'
-// import FormControl from '@material-ui/core/FormControl'
-// import Select from '@material-ui/core/Select'
-// import Button from '@material-ui/core/Button'
-//
-// const useStyles = makeStyles((theme) => ({
-//   button: {
-//     display: 'block',
-//     marginTop: theme.spacing(2)
-//   },
-//   formControl: {
-//     margin: theme.spacing(1),
-//     minWidth: 120
-//   }
-// }))
-//
-// export default function SelectFromCenterPlace (props) {
-//   const classes = useStyles()
-//   const [open, setOpen] = React.useState(false)
-//   const [map, setMap] = React.useState('')
-//
-//   const handleChange = (event) => {
-//     setMap(event.target.value)
-//     console.log(event.target.value)
-//     console.log(props)
-//     // props.setMapCenter(event.target.value)
-//   }
-//
-//   const handleClose = () => {
-//     setOpen(false)
-//   }
-//
-//   const handleOpen = () => {
-//     setOpen(true)
-//   }
-//
-//   return (
-//     <div>
-//       <Button className={classes.button} onClick={handleOpen}>
-//         View Other Map
-//       </Button>
-//       <FormControl className={classes.formControl}>
-//         <InputLabel id="demo-controlled-open-select-label">Map</InputLabel>
-//         <Select
-//           labelId="demo-controlled-open-select-label"
-//           id="demo-controlled-open-select"
-//           open={open}
-//           onClose={handleClose}
-//           onOpen={handleOpen}
-//           value={map}
-//           onChange={handleChange}
-//         >
-//           <MenuItem value="">
-//             <em>None</em>
-//           </MenuItem>
-//           <MenuItem value={10}>Ten</MenuItem>
-//           <MenuItem value={20}>Twenty</MenuItem>
-//           <MenuItem value={30}>Thirty</MenuItem>
-//         </Select>
-//       </FormControl>
-//     </div>
-//   )
-// }
+export default SelectFromCenterPlace

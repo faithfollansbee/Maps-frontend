@@ -42,7 +42,14 @@ class App extends Component {
       mapCenter: [],
       mapSettings: [],
       centerPlaces: [],
-      mapId: ''
+      mapId: '',
+      currMap: {
+        name: 'Boston',
+        currCoords: {
+          lat: '42.3600825',
+          lng: '-71.0588801'
+        }
+      }
     }
     // this.setMapCenter = this.setMapCenter.bind(this)
   }
@@ -58,12 +65,27 @@ class App extends Component {
   setMapCenter = (LatLng) => {
     // console.log(this.props)
     console.log(LatLng)
-    this.setState({ mapCenter: LatLng })
+    // console.log(LatLng.name)
+    console.log({ lat: LatLng.latitude, lng: LatLng.longitude })
+    const coordSet = { lat: LatLng.latitude, lng: LatLng.longitude }
+    // this.setState({ mapCenter: LatLng })
+    this.setState({ mapCenter: coordSet })
     this.setState({ mapSettings: LatLng })
+    // this.setState({ currMap: LatLng.name })
+    this.setState({
+      currMap: {
+        name: LatLng.name,
+        currCoords: {
+          lat: LatLng.latitude,
+          lng: LatLng.longitude
+        }
+      }
+    })
+    // this.setState({ mapSettings: [...LatLng], lat: LatLng.latitude, lng: LatLng.longitude })
+
     // console.log('user.mapSettings', this.state.user.mapSettings)
     console.log('set map center callback')
-    // console.log(this.latitude)
-    console.log(this.state.mapCenter)
+    // console.log(this.state.mapCenter)
   }
 
   // getCenterPlaces = () => {
@@ -94,7 +116,9 @@ class App extends Component {
 
   render () {
     const { alerts, user } = this.state
-    console.log('this.state', this.state)
+    console.log('app state', this.state)
+    console.log('app curr Map state', this.state.currMap)
+
     // console.log(this.state.user)
     // console.log(this.state)
     // console.log('user.mapSettings', this.state.user.mapSettings)
@@ -127,8 +151,8 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} exact path='/map' render={() => (
             <div>
-              <MapContainer user={user} mapCenter={this.state.mapCenter} apiKey={this.apiKey}/>
-              <SelectFromCenterPlace setMapCenter={this.setMapCenter} mapCenter={this.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
+              <MapContainer user={user} mapCenter={this.state.mapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
+              <SelectFromCenterPlace setMapCenter={this.setMapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
             </div>
           )} />
 
