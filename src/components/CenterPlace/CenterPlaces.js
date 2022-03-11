@@ -88,7 +88,7 @@ class CenterPlaces extends Component {
   // in center places, call handle change when user clicks place. then in handleChange, put event.target into format needed(like in select component)
   // and then call props.mapCenter, just like in select.
   handleClick = (e) => {
-    console.log(e)
+    // console.log(e)
     this.props.setMapCenter(e)
     // const newCenter = { lat: event.latitude, lng: e.longitude }
     // const centerObj = { ...e }
@@ -100,7 +100,7 @@ class CenterPlaces extends Component {
 
   render (props) {
     const { centerPlaces } = this.state
-    console.log(centerPlaces)
+    console.log('re render, centerPlaces', centerPlaces)
     // const centerPlacesJSX = centerPlaces.map(centerPlace => (
     //   <Card key={centerPlace._id} className="card-style"
     //     value={centerPlace}

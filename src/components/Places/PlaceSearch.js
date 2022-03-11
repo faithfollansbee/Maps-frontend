@@ -1,9 +1,7 @@
 import React from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
 import 'react-google-places-autocomplete/dist/assets/index.css'
-import AddPlace from '../Places/AddPlace'
+import AddPlace from './AddPlace'
 
 const style = {
   zIndex: 2,
@@ -17,7 +15,7 @@ const style2 = {
   margin: 15,
   padding: 15
 }
-class BestSearch extends React.Component {
+class PlaceSearch extends React.Component {
   state = {
     name: '',
     type: '',
@@ -76,47 +74,46 @@ class BestSearch extends React.Component {
   }
 
   render () {
+    const { handleSubmitClose } = this.props
     return (
       <div className="Search2-layout">
-        <Card style={{ backgroundColor: 'white' }}>
-          <CardContent>
-            <GooglePlacesAutocomplete
-              style={style}
-              autocompletionRequest={{
-                componentRestrictions: {
-                  country: ['us', 'ca']
-                }
-              }}
-              onSelect={this.handleSelect}
-              renderInput={(props) => (
-                <div className="custom-wrapper">
-                  <input
-                  // Custom properties
-                    {...props}
-                  />
-                </div>
-              )}
-              renderSuggestions={(active, suggestions, onSelectSuggestion) => (
-                <div className="suggestions-container">
-                  {
-                    suggestions.map((suggestion) => (
-                      <div
-                        className="suggestion"
-                        onClick={(event) => onSelectSuggestion(suggestion, event)} key={suggestion.id}
-                      >
-                        {suggestion.description}
-                        {suggestion.location}
-                      </div>
-                    ))
-                  }
-                </div>
-              )}
-            />
-            <AddPlace style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
-          </CardContent>
-        </Card>
+        <GooglePlacesAutocomplete
+          style={style}
+          autocompletionRequest={{
+            componentRestrictions: {
+              country: ['us', 'ca']
+            }
+          }}
+          onSelect={this.handleSelect}
+          renderInput={(props) => (
+            <div className="custom-wrapper">
+              <input
+              // Custom properties
+                {...props}
+              />
+            </div>
+          )}
+          renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+            <div className="suggestions-container">
+              {
+                suggestions.map((suggestion) => (
+                  <div
+                    className="suggestion"
+                    onClick={(event) => onSelectSuggestion(suggestion, event)} key={suggestion.id}
+                  >
+                    {suggestion.description}
+                    {suggestion.location}
+                  </div>
+                ))
+              }
+            </div>
+          )}
+        />
+        <AddPlace handleSubmitClose={handleSubmitClose} style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
       </div>
     )
   }
 }
-export default BestSearch
+// <AddPlace style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
+
+export default PlaceSearch

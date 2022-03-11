@@ -76,7 +76,10 @@ class SimpleSearch extends React.Component {
     //   )
     // this.props.setMapCenter(this.state.latitude)
     return (
-      <p>{this.state.latitude}</p>
+      <div>
+        <p>{this.state.latitude}</p>
+        <p>{this.state.name}</p>
+      </div>
     )
   }
 
@@ -120,6 +123,7 @@ class SimpleSearch extends React.Component {
               )}
             />
           </CardContent>
+          <p>{this.state.name}</p>
         </Card>
         <button onClick={() => this.props.setMapCenter(this.state.LatLng)}>set map center</button>
       </div>

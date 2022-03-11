@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+// import React, { Component } from 'react'
+import React from 'react'
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
 // import MarkerWithInfoWindow from './Marker'
 
@@ -21,7 +22,7 @@ const containerStyle = {
   height: '100%'
 }
 
-class MapContainer extends Component {
+class MapContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -58,7 +59,9 @@ class MapContainer extends Component {
   //   // })
   // }
   onMarkerClick = (props, marker, e) => {
+    console.log(props.title)
     console.log(props)
+    console.log(marker)
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -83,6 +86,9 @@ class MapContainer extends Component {
   windowOpened = () => {
     console.log('window opened')
   }
+  windowClosed = () => {
+    console.log('window closed')
+  }
 
   // onToggleOpen = () => {
   //   this.setState({
@@ -102,11 +108,11 @@ class MapContainer extends Component {
           onClick={this.onMarkerClick}
         />
       } else if (place.type === 'entertainment') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/ferris-wheel.png' }}
-        onClick={() => console.log(place.name)} />
+        onClick={this.onMarkerClick} />
       } else if (place.type === 'historical landmark') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
@@ -158,6 +164,9 @@ class MapContainer extends Component {
     console.log('container state', this.state)
     console.log('container props', this.props)
     console.log('container props.currMap', this.props.currMap)
+    // console.log(props)
+    // props.google.maps.InfoWindow
+    // .Marker
     if (this.props.mapCenter.length === 0) {
       return (
         <div className="Search2-layout">
@@ -187,6 +196,7 @@ class MapContainer extends Component {
                   visible={this.state.showingInfoWindow}
                   // marker={this.props.place}
                   onOpen={this.windowOpened}
+                  onClose={this.windowClosed}
                   // visible={true}
                 >{this.state.selectedPlace.name}
                 </InfoWindow>
@@ -198,8 +208,15 @@ class MapContainer extends Component {
         </div>
       )
     }
-    // <Marker
-    //   name={'Current location'} />
+    // <InfoWindow
+    //   marker={this.state.activeMarker}
+    //   visible={this.state.showingInfoWindow}
+    //   // marker={this.props.place}
+    //   onOpen={this.windowOpened}
+    //   onClose={this.windowClosed}
+    //   // visible={true}
+    // >{this.state.selectedPlace.name}
+    // </InfoWindow>
     return (
       <div className="Search2-layout">
         <div style={divstyle}>
@@ -216,18 +233,14 @@ class MapContainer extends Component {
             //   lat: 42.8125913,
             //   lng: -70.87727509999999
             // }}
-            // center={this.props.mapSettings}
             center={this.props.mapCenter}
-
-            // initialCenter={this.state.coords}
           >
             {this.displayMarkers()}
             <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
-              // marker={this.props.place}
               onOpen={this.windowOpened}
-              // visible={true}
+              onClose={this.windowClosed}
             >{this.state.selectedPlace.name}
             </InfoWindow>
           </Map>

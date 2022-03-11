@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 import { withRouter } from 'react-router-dom'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
@@ -11,6 +10,8 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
+import DialogActions from '@material-ui/core/DialogActions'
+import Button from '@material-ui/core/Button'
 
 // const listStyle = {
 //   listStyleType: 'none'
@@ -63,6 +64,7 @@ class AddPlace extends Component {
         this.props.history.push(`/places/${response.data.place._id}`)
       })
       .catch(err => this.setState({ error: err.message }))
+    this.props.handleSubmitClose()
   }
 
   handleOptionChange = changeEvent => {
@@ -72,7 +74,8 @@ class AddPlace extends Component {
   }
 
   render () {
-    // console.log(this.state.place)
+    const { handleSubmitClose } = this.props
+
     return (
 
       <div className="Search2-layout" margin="auto">
@@ -190,11 +193,18 @@ class AddPlace extends Component {
                       <img src='https://img.icons8.com/ios-filled/25/000000/deciduous-tree.png'/>
                     </div>}
                   label="Outdoors" />
-
               </RadioGroup>
             </FormControl>
           </div>
-          <Button variant="dark" type="submit">
+          <DialogActions>
+            <Button onClick={handleSubmitClose} color="primary">
+               Cancel
+            </Button>
+            <Button onClick={this.handleSubmit} type="submit" color="primary">
+               Submit
+            </Button>
+          </DialogActions>
+          <Button variant="dark" color="primary" type="submit">
             Submit
           </Button>
         </Form>

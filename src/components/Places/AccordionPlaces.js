@@ -9,6 +9,7 @@ import MuiAccordion from '@material-ui/core/Accordion'
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
+import AddPlaceDialog from './AddPlaceDialog'
 
 const Accordion = withStyles({
   root: {
@@ -85,6 +86,8 @@ class AccordionPlaces extends Component {
       this.setState({ userPlaces: response.data.places })
     } catch (error) {
     }
+    console.log('state', this.state)
+    console.log('props', this.props)
   }
 
   handleFilter = event => {
@@ -111,7 +114,6 @@ class AccordionPlaces extends Component {
         </div>
       )
     }
-
     const placesJsx = this.state.places.map(place => (
       <Accordion key={place._id}>
         <AccordionSummary
@@ -143,6 +145,7 @@ class AccordionPlaces extends Component {
     return (
       <div className="Search2-layout">
         <h1 style={headingStyle}>Saved Places</h1>
+        <AddPlaceDialog user={this.props.user} />
         <div>
           {this.state.places.length
             ? placesJsx

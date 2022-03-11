@@ -11,19 +11,17 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import MapContainer from './Container'
-import Place from './Place'
+import Place from '../Places/Place'
 import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
-import AccordionPlaces from './AccordionPlaces'
-import BestSearch from './bestsearch'
+import AccordionPlaces from '../Places/AccordionPlaces'
+// import BestSearch from './bestsearch'
 import SimpleSearch from './SimpleSearch'
-import SetMapCoords from './MapCoords/SetMapCoords'
+// import SetMapCoords from './MapCoords/SetMapCoords'
 import CenterPlaces from '../CenterPlace/CenterPlaces'
 import CenterPlace from '../CenterPlace/CenterPlace'
 import AddCenterPlace from '../CenterPlace/AddCenterPlace'
 import SelectFromCenterPlace from '../CenterPlace/SelectFromCenterPlace'
-// import Search2 from './Search2'
-// import Places from './Places'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -170,18 +168,9 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
 
-          <AuthenticatedRoute user={user} path='/change-coords' render={() => (
-            <SetMapCoords alert={this.alert} user={user} setMapCenter={this.state.setMapCenter} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter}/>
-          )} />
-
           <AuthenticatedRoute user={user} exact path='/places/:id'
             render={() => (<Place user={user}/>)}/>
 
-          <AuthenticatedRoute user={user} path='/createplace'
-            render={() => (
-              <BestSearch user={user}/>
-            )}
-          />
           <AuthenticatedRoute user={user} path='/simplesearch'
             render={() => (
               <SimpleSearch user={user} setMapCenter={this.setMapCenter}/>
@@ -193,5 +182,12 @@ class App extends Component {
   }
 }
 // <Search2 user={user}/>
-
+// <AuthenticatedRoute user={user} path='/change-coords' render={() => (
+//   <SetMapCoords alert={this.alert} user={user} setMapCenter={this.state.setMapCenter} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter}/>
+// )} />
+// <AuthenticatedRoute user={user} path='/createplace'
+//   render={() => (
+//     <BestSearch user={user}/>
+//   )}
+// />
 export default App

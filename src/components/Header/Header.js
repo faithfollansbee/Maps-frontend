@@ -17,11 +17,9 @@ const NavBarStyle = {
 }
 const authenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#createplace">Add place</Nav.Link>
     <Nav.Link href="#places"> Places </Nav.Link>
     <Nav.Link href="#map"> Map </Nav.Link>
     <Nav.Link href="#simplesearch"> SimpleSearch </Nav.Link>
-    <Nav.Link href="#change-coords"> Change Coords </Nav.Link>
     <Nav.Link href="#centerPlaces"> Center Places </Nav.Link>
   </Fragment>
 )
@@ -57,6 +55,9 @@ const Header = ({ user }) => (
 )
 
 export default Header
+
+// <Nav.Link href="#change-coords"> Change Coords </Nav.Link>
+// <Nav.Link href="#createplace">Add place</Nav.Link>
 
 // <Navbar.Brand href="#">
 //   PLACEBOOK
