@@ -14,7 +14,9 @@ import MapContainer from './Container'
 import Place from '../Places/Place'
 import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
-import AccordionPlaces from '../Places/AccordionPlaces'
+// import AccordionPlaces from '../Places/AccordionPlaces'
+import Places from '../Places/Places'
+
 // import BestSearch from './bestsearch'
 import SimpleSearch from './SimpleSearch'
 // import SetMapCoords from './MapCoords/SetMapCoords'
@@ -136,7 +138,7 @@ class App extends Component {
         <main className="container" style={{ backgroundImage: 'url(require("./backgroundimage"))' }}>
 
           <AuthenticatedRoute user={user} exact path='/places/'
-            render={() => (<AccordionPlaces user={user}/>)}
+            render={() => (<Places user={user}/>)}
           />
           <AuthenticatedRoute user={user} exact path='/centerPlaces/'
             render={() => (<CenterPlaces setMapCenter={this.setMapCenter} user={user}/>)}

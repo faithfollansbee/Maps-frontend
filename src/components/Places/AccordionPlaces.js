@@ -10,6 +10,12 @@ import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import AddPlaceDialog from './AddPlaceDialog'
+// import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+// import EditIcon from '@material-ui/icons/Edit'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+
+import placeTypes from '../App/PlaceTypes'
 
 const Accordion = withStyles({
   root: {
@@ -43,7 +49,15 @@ const AccordionSummary = withStyles({
       margin: '12px 0'
     }
   },
-  expanded: {}
+  expanded: {},
+  heading: {
+    flexBasis: '33.33%',
+    flexShrink: 0,
+    color: 'red'
+  },
+  secondaryHeading: {
+    color: 'green'
+  }
 })(MuiAccordionSummary)
 
 const AccordionDetails = withStyles((theme) => ({
@@ -51,9 +65,11 @@ const AccordionDetails = withStyles((theme) => ({
     padding: theme.spacing(2)
   }
 }))(MuiAccordionDetails)
+
 // const style = {
 //   margin: 50
 // }
+
 const headingStyle = {
   color: 'black',
   fontSize: '40px',
@@ -69,7 +85,8 @@ class AccordionPlaces extends Component {
       places: [],
       isLoading: true,
       userPlaces: [],
-      filtered: false
+      filtered: false,
+      placeTypes: placeTypes
     }
   }
 
@@ -104,8 +121,25 @@ class AccordionPlaces extends Component {
 
     this.setState({ userRecipes: searchResults, queryLength: queryLength })
   }
+  findEmjoji = (type) => {
+    // const found = this.state.placeTypes.find(placeType => placeType === type)
+    // this.state.placeTypes.find(placeType => placeType === type)
+    console.log(type)
+    // return found
+    // console.log(placeType)
+    // return placeType === type
+    return this.state.placeTypes.find((placeType, index) => {
+      if (placeType.id === type) {
+        return <h5>{placeType.id}</h5>
+      }
+    })
+    // return this.state.placeTypes.find(function (placeType) {
+    //   return placeType === type
+    // })
+  }
 
   render (props) {
+    const { placeTypes } = this.state
     let placesStatus
     if (!this.state.places.length) {
       placesStatus = (
@@ -121,9 +155,30 @@ class AccordionPlaces extends Component {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
+          <div>
+            {placeTypes.map((placeType) => {
+              if (placeType.placeType === place.type) {
+                return <h5>{placeType.emoji}</h5>
+              }
+            })}
+          </div>
+          <FormControlLabel
+            aria-label="Edit"
+            onClick={(event) => event.stopPropagation()}
+            onFocus={(event) => event.stopPropagation()}
+            control={<MoreVertIcon />}
+            // label="I acknowledge that I should stop the click event propagation"
+            title="edit"
+          />
           <Typography>{place.name}</Typography>
+          <Typography variant="secondary">I am an accordion</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          {placeTypes.map((placeType) => {
+            if (placeType.placeType === place.type) {
+              return <h5>{placeType.emoji}</h5>
+            }
+          })}
           <Typography>
             <br/>
             {place.latitude}{place.longitude}
@@ -135,7 +190,16 @@ class AccordionPlaces extends Component {
         </AccordionDetails>
       </Accordion>
     ))
+    // {placeTypes[0].emoji}
 
+    // {find(this.findEmoji, place.type)}
+    // {this.findEmoji(place.type)}
+    // {placeTypes.find(placeType => placeType === place.type)}
+    // {placeTypes.find((placeType) => {
+    //   if (placeType.placeType === place.type) {
+    //     return <h5>hi</h5>
+    //   }
+    // })}
     if (this.state.isLoading) {
       return (
         <div className="text-center">
@@ -157,3 +221,5 @@ class AccordionPlaces extends Component {
   }
 }
 export default AccordionPlaces
+// export default withStyles(AccordionPlaces)
+// export default withStyles({ withTheme: true })(AccordionPlaces)

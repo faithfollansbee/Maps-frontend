@@ -113,7 +113,7 @@ class MapContainer extends React.Component {
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/ferris-wheel.png' }}
         onClick={this.onMarkerClick} />
-      } else if (place.type === 'historical landmark') {
+      } else if (place.type === 'landmark') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,
           lng: place.longitude

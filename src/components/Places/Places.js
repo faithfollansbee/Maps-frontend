@@ -2,10 +2,23 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { Link } from 'react-router-dom'
-import ListGroup from 'react-bootstrap/ListGroup'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import Tooltip from '@material-ui/core/Tooltip'
+import AddPlaceDialog from './AddPlaceDialog'
+import EditPlaceDialog from './EditPlaceDialog'
+// import Divider from '@material-ui/core/Divider'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
+
+import Paper from '@material-ui/core/Paper'
+
+import placeTypes from '../App/PlaceTypes'
 
 const style = {
-  margin: 50
+  // margin: 50
 }
 const headingStyle = {
   color: 'black',
@@ -13,7 +26,9 @@ const headingStyle = {
   margin: 'auto',
   textAlign: 'center'
 }
-
+// function ListItemLink (props) {
+//   return <ListItem button component="a" {...props} />
+// }
 class Places extends Component {
   constructor (props) {
     super(props)
@@ -22,7 +37,8 @@ class Places extends Component {
       places: [],
       isLoading: true,
       userPlaces: [],
-      filtered: false
+      filtered: false,
+      placeTypes: placeTypes
     }
   }
 
@@ -57,11 +73,34 @@ class Places extends Component {
   }
 
   render (props) {
+    const { placeTypes } = this.state
+
     const placesJsx = this.state.places.map(place => (
-      <ListGroup.Item key={place._id}>
-        <Link to={`/places/${place._id}`}>{place.name}</Link>
-      </ListGroup.Item>
+      <ListItem button key={place._id}>
+        <ListItemIcon>
+          {placeTypes.map((placeType) => {
+            if (placeType.placeType === place.type) {
+              return <h5>{placeType.emoji}</h5>
+            }
+          })}
+        </ListItemIcon>
+        <ListItemText>
+          {place.name}
+        </ListItemText>
+        <Link to={`/places/${place._id}`} href={`/places/${place._id}`}>
+          <Tooltip title="More">
+            <KeyboardArrowRightIcon />
+          </Tooltip>
+        </Link>
+        <EditPlaceDialog place={[...place]}/>
+        <ListItemIcon title="more">
+          <MoreVertIcon/>
+        </ListItemIcon>
+      </ListItem>
     ))
+    // <Link to={`/places/${place._id}`}>{place.name}</Link>
+
+    // <ListItemLink href="/" to={`/places/${place._id}`}>{place.name}</ListItemLink>
 
     if (this.state.isLoading) {
       return (
@@ -71,14 +110,17 @@ class Places extends Component {
     }
     console.log(this.state)
     return (
-      <div className="places-list">
+      <div className="Search2-layout">
         <h1 style={headingStyle}>Saved Places</h1>
-        <ListGroup style={style}>
-          {this.state.places.length
-            ? placesJsx
-            : <ListGroup.Item>No places found</ListGroup.Item>
-          }
-        </ListGroup>
+        <AddPlaceDialog user={this.props.user} />
+        <Paper >
+          <List style={style}>
+            {this.state.places.length
+              ? placesJsx
+              : <ListItem>No places found</ListItem>
+            }
+          </List>
+        </Paper>
       </div>
     )
   }

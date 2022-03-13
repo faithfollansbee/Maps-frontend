@@ -77,7 +77,7 @@ class AddPlace extends Component {
     const { handleSubmitClose } = this.props
 
     return (
-
+      // 🍕🍺🍿🏠🏛🌲🥡
       <div className="Search2-layout" margin="auto">
         <Form onSubmit={this.handleSubmit}>
           <div className="col">
@@ -99,6 +99,7 @@ class AddPlace extends Component {
                         value="restaurant"
                         name="radio-buttons"
                         inputProps={{ 'aria-label': 'restaurant' }} />
+                        🍕
                       <img src='https://img.icons8.com/color/48/000000/pizza.png'/>
                     </div>}
                   label="Restaurant" />
