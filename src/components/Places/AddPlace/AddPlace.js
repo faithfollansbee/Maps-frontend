@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
+import apiUrl from '../../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import { withRouter } from 'react-router-dom'
 import Radio from '@material-ui/core/Radio'
@@ -99,7 +99,6 @@ class AddPlace extends Component {
                         value="restaurant"
                         name="radio-buttons"
                         inputProps={{ 'aria-label': 'restaurant' }} />
-                        🍕
                       <img src='https://img.icons8.com/color/48/000000/pizza.png'/>
                     </div>}
                   label="Restaurant" />

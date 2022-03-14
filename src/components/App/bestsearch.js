@@ -3,7 +3,7 @@ import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-goo
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import 'react-google-places-autocomplete/dist/assets/index.css'
-import AddPlace from '../Places/AddPlace'
+import AddPlace from '../Places/AddPlace/AddPlace'
 
 const style = {
   zIndex: 2,

@@ -11,7 +11,8 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import MapContainer from './Container'
-import Place from '../Places/Place'
+// import Place from '../Places/Place'
+import PlaceDetail from '../Places/PlaceDetail'
 import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
 // import AccordionPlaces from '../Places/AccordionPlaces'
@@ -171,7 +172,7 @@ class App extends Component {
           )} />
 
           <AuthenticatedRoute user={user} exact path='/places/:id'
-            render={() => (<Place user={user}/>)}/>
+            render={() => (<PlaceDetail user={user}/>)}/>
 
           <AuthenticatedRoute user={user} path='/simplesearch'
             render={() => (
