@@ -5,7 +5,8 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import EditIcon from '@material-ui/icons/Edit'
 import MenuItem from '@material-ui/core/MenuItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import EditPlaceForm from './EditPlaceForm'
+// import EditPlaceForm from './EditPlaceForm'
+import EditPlace from './EditPlace'
 
 export default function EditPlaceDialog (props) {
   const [open, setOpen] = React.useState(false)
@@ -34,7 +35,7 @@ export default function EditPlaceDialog (props) {
           <DialogTitle id="form-dialog-title">Edit &quot;{props.place.name}&quot;</DialogTitle>
           <DialogContent user={props.user}>
             {props.type}
-            <EditPlaceForm user={props.user} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>
+            <EditPlace user={props.user} name={props.place.name} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>
           </DialogContent>
         </Dialog>
       </ListItemIcon>
@@ -42,6 +43,8 @@ export default function EditPlaceDialog (props) {
     </MenuItem>
   )
 }
+// <EditPlaceForm user={props.user} name={props.place.name} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>
+
 // <EditPlace place={props.place} type={props.place.type} id={props.id} handleSubmitClose={handleClose} user={props.user}/>
 // <GenreDialogForm handleSubmit={props.handleSubmit} handleChange={props.handleChange} handleSubmitClose={handleClose} user={props.user} closeMovieInfo={props.closeMovieInfo} />
 // <GenreForm handleSubmitClose={handleClose} saved={props.saved} user={props.user} />

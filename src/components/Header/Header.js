@@ -2,7 +2,10 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import AccountMenu from './AccountMenu'
+import { withRouter, NavLink } from 'react-router-dom'
+import '../../index.scss'
 // import PlaceBookLogo from './PlaceBookLogo.png'
+
 const logoStyle = {
   height: '80px',
   width: '110px',
@@ -15,12 +18,13 @@ const NavBarStyle = {
   padding: '0px',
   position: 'relative'
 }
+
 const authenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#places"> Places </Nav.Link>
-    <Nav.Link href="#map"> Map </Nav.Link>
-    <Nav.Link href="#simplesearch"> SimpleSearch </Nav.Link>
-    <Nav.Link href="#centerPlaces"> Center Places </Nav.Link>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/places" href="#places"> Places </NavLink>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/map" href="#map"> Map </NavLink>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/simplesearch" href="#simplesearch"> SimpleSearch </NavLink>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/centerplaces" href="#centerPlaces"> Center Places </NavLink>
   </Fragment>
 )
 
@@ -36,14 +40,14 @@ const alwaysOptions = (
   </Fragment>
 )
 
-const Header = ({ user }) => (
+const Header = ({ user, location }) => (
   <Navbar variant="dark" expand="md" style={NavBarStyle}>
-    <Navbar.Brand href="#">
+    <Navbar.Brand href="#map">
     </Navbar.Brand>
     <div className="logoContainer" style={logoStyle}>
       <img src={require('./PlaceBookLogo.png')} style={logoStyle} alt="PlaceBook-logo"/>
     </div>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
         { alwaysOptions }
@@ -54,7 +58,7 @@ const Header = ({ user }) => (
   </Navbar>
 )
 
-export default Header
+export default withRouter(Header)
 
 // <Nav.Link href="#change-coords"> Change Coords </Nav.Link>
 // <Nav.Link href="#createplace">Add place</Nav.Link>

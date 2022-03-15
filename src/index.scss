@@ -3,7 +3,14 @@
 main {
   width: 100%;
 }
+*:focus {
+    outline: none !important;
+}
 
+.active-link {
+  color: white;
+  // border-bottom: 1px solid white;
+}
 // body {
 //   background-color: #7ca2a1;
 //   font-family: 'Work Sans', sans-serif;

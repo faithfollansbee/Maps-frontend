@@ -13,6 +13,8 @@ import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import EditIcon from '@material-ui/icons/Edit'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+// import ButtonBase from '@material-ui/core/ButtonBase'
+
 // import Spinner from 'react-bootstrap/Spinner'
 const titleStyle = {
   color: 'black',
@@ -20,6 +22,7 @@ const titleStyle = {
   margin: 'auto',
   textAlign: 'center'
 }
+
 class CenterPlaces extends Component {
   constructor (props) {
     super(props)
@@ -155,11 +158,11 @@ class CenterPlaces extends Component {
                   />
                   <CardActions>
                     <Tooltip title="add to favorites">
-                      <IconButton aria-label="add to favorites">
+                      <IconButton aria-label="add to favorites" variant="contained" disableRipple>
                         <FavoriteIcon />
                       </IconButton>
                     </Tooltip>
-                    <IconButton aria-label="edit">
+                    <IconButton aria-label="edit" disableRipple>
                       <EditIcon />
                     </IconButton>
                   </CardActions>

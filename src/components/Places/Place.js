@@ -6,18 +6,36 @@ import { withRouter, Redirect, Link } from 'react-router-dom'
 import apiUrl from '../../apiConfig'
 // import Button from 'react-bootstrap/Button'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+// import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Tooltip from '@material-ui/core/Tooltip'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 // import AddPlaceDialog from './AddPlaceDialog'
+// import Card from '@material-ui/core/Card'
+// import CardActions from '@material-ui/core/CardActions'
+// import CardActionArea from '@material-ui/core/CardActionArea'
+// import CardContent from '@material-ui/core/CardContent'
+// import CardActionArea from '@material-ui/core/CardActionArea'
+// import CardHeader from '@material-ui/core/CardHeader'
 import EditPlaceMenu from './EditPlace/EditPlaceMenu'
+import IconButton from '@material-ui/core/IconButton'
+// import Button from '@material-ui/core/Button'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
+// import { purple, blue, yellow, red } from '@material-ui/core/colors'
 
 import placeTypes from '../App/PlaceTypes'
 
 const style = {
   // margin: 50
 }
+// const primary = green[50] // #f44336
+// const accent = purple['A200'] // #e040fb
+// const third = blue[100]
+// const fourth = yellow[100]
+// const fifth = red[100]
+// const fourth = yellow[100]
+// const accent = purple.A200 // #e040fb (alternative method)
 
 class Place extends Component {
   constructor (props) {
@@ -80,22 +98,25 @@ class Place extends Component {
         <div style={style}>
           { place && (
             <ListItem button key={place._id}>
-              <ListItemIcon>
+              <ListItemAvatar>
                 {placeTypes.map((placeType) => {
                   if (placeType.placeType === place.type) {
-                    return <h4> {placeType.emoji} </h4>
+                    return <h4 key={placeType.id} style={{ marginLeft: '12px', marginRight: '12px', marginBottom: '0' }}> {placeType.emoji} </h4>
                   }
                 })}
-              </ListItemIcon>
-              <ListItemText>
-                {place.name}
-              </ListItemText>
+              </ListItemAvatar>
+              <ListItemText primary={place.name} secondary={place.type}/>
+
               <Link to={`/places/${place._id}`} href={`/places/${place._id}`}>
                 <Tooltip title="More">
-                  <KeyboardArrowRightIcon />
+                  <IconButton disableRipple>
+                    <KeyboardArrowRightIcon fontSize="medium" />
+                  </IconButton>
                 </Tooltip>
               </Link>
-              <EditPlaceMenu user={this.props.user} deletePlace={this.handleDelete} title="more" {...place} place={place} type={place.type} id={place._id} name={place.name} />
+              <ListItemSecondaryAction>
+                <EditPlaceMenu user={this.props.user} deletePlace={this.handleDelete} title="more" {...place} place={place} type={place.type} id={place._id} name={place.name} />
+              </ListItemSecondaryAction>
             </ListItem>
           )}
         </div>
@@ -104,29 +125,3 @@ class Place extends Component {
 }
 
 export default withRouter(Place)
-// <div style={style}>
-//   { place && (
-//     <Fragment>
-//       <CardDeck>
-//         <Card>
-//           <Card.Body>
-//             <Card.Title>{place.name}</Card.Title>
-//             <Card.Subtitle>{place.type}</Card.Subtitle>
-//             <Card.Text>
-//             </Card.Text>
-//           </Card.Body>
-//           <Card.Footer>
-//             <div className="cardLink">
-//               <Link to="/places" className="cardLink">Back to all</Link>
-//             </div>
-//             <div className="cardButton">
-//               <Button onClick={this.deleteplace} className="cardButton" variant="dark" type="submit">
-//                 Delete this place
-//               </Button>
-//             </div>
-//           </Card.Footer>
-//         </Card>
-//       </CardDeck>
-//     </Fragment>
-//   )}
-// </div>

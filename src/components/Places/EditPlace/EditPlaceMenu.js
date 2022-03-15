@@ -8,6 +8,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditPlaceDialog from './EditPlaceDialog'
+// import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 export default function EditPlaceMenu ({ place, id, user, type, deletePlace }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -23,14 +24,17 @@ export default function EditPlaceMenu ({ place, id, user, type, deletePlace }) {
     setAnchorEl(null)
     console.log('EditPlaceMenu closed')
   }
+  // const handleClickAway = () => {
+  //   // setAnchorEl(null)
+  //   console.log('clicked away')
+  // }
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="options">
-          <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-            {/*  {user && <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>} */}
-            {/* {user && <Avatar sx={{ width: 32, height: 32 }}>{user.email.charAt(0).toUpperCase()}</Avatar>} */}
-            <MoreVertIcon />
+          <IconButton disableRipple onClick={handleClick}>
+            <MoreVertIcon fontSize="medium" />
           </IconButton>
         </Tooltip>
       </Box>

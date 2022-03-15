@@ -34,12 +34,17 @@ class EditPlaceForm extends Component {
   // closeMovieInfo = event => {
   //   this.setState({ currentMovie: null })
   // }
+  // handleChange = event => {
+  //   this.setState({
+  //     place: {
+  //       ...this.state.place,
+  //       [event.target.name]: event.target.value
+  //     }
+  //   })
+  // }
   handleChange = event => {
     this.setState({
-      place: {
-        ...this.state.place,
-        [event.target.name]: event.target.value
-      }
+      name: event.target.value
     })
   }
 
@@ -53,7 +58,7 @@ class EditPlaceForm extends Component {
       },
       data: {
         place: {
-          name: this.props.name,
+          name: this.state.name,
           latitude: this.props.latitude,
           longitude: this.props.longitude,
           type: this.state.type
@@ -80,6 +85,12 @@ class EditPlaceForm extends Component {
       type: changeEvent.target.value
     })
   }
+  // handleChange = changeEvent => {
+  //   this.setState({
+  //     name: changeEvent.target.value
+  //   })
+  // }
+
   // async componentDidMount () {
   //   try {
   //     const response = await axios({
@@ -97,6 +108,7 @@ class EditPlaceForm extends Component {
 
   render (props) {
     const { saved } = this.state
+    const { place } = this.props
     if (saved) {
       return <Redirect to={
         {
@@ -124,8 +136,8 @@ class EditPlaceForm extends Component {
     //       </div>}
     //     label="Restaurant" />
     const placeTypesJsx = this.state.placeTypes.map(type => (
-      <div key={type._id}>
-        <RadioGroup name="type" value={type.id} aria-labelledby="demo-controlled-radio-buttons-group">
+      <div key={type.id}>
+        <RadioGroup name="type" key={type.id} value={type.id} aria-labelledby="demo-controlled-radio-buttons-group">
           <FormControlLabel
             value={type.id}
             control={
@@ -161,15 +173,27 @@ class EditPlaceForm extends Component {
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId="name">
+            <Form.Label>Place Name</Form.Label>
+            <Form.Control
+              type="text"
+              // placeholder={genre.name}
+              defaultValue={place.name}
+              // value={place.name}
+              onChange={this.handleChange}
+              name="name"
+              required
+            />
+          </Form.Group>
           <Form.Group controlId="placeType">
             { placeTypesJsx }
-            <DialogActions>
-              <Button onClick={this.props.handleSubmitClose} color="primary">Close</Button>
-              <Button color="primary" type="submit">
-                  Submit
-              </Button>
-            </DialogActions>
           </Form.Group>
+          <DialogActions>
+            <Button onClick={this.props.handleSubmitClose} color="primary">Close</Button>
+            <Button color="primary" type="submit">
+                Submit
+            </Button>
+          </DialogActions>
         </Form>
       </div>
     )

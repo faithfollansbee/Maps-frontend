@@ -10,7 +10,6 @@ import ListItem from '@material-ui/core/ListItem'
 // import EditPlaceMenu from './EditPlaceMenu'
 // import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import AddPlaceDialog from './AddPlace/AddPlaceDialog'
-
 // import EditPlaceDialog from './EditPlaceDialog'
 // import Divider from '@material-ui/core/Divider'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
@@ -99,7 +98,9 @@ class Places extends Component {
     const { places } = this.state
 
     const placesJsx = places.map(place => (
-      <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
+      <React.Fragment key={place._id}>
+        <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
+      </React.Fragment>
     ))
     // const placesJsx = this.state.places.map(place => (
     //   <ListItem button key={place._id}>

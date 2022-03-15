@@ -119,14 +119,14 @@ class App extends Component {
     const { alerts, user } = this.state
     console.log('app state', this.state)
     console.log('app curr Map state', this.state.currMap)
-
+    console.log(location)
     // console.log(this.state.user)
     // console.log(this.state)
     // console.log('user.mapSettings', this.state.user.mapSettings)
     return (
       <Fragment>
         <GlobalStyle />
-        <Header user={user} />
+        <Header user={user} location={location} />
         {alerts.map((alert, index) => (
           <AutoDismissAlert
             key={index}
