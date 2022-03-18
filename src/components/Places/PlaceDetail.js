@@ -51,6 +51,7 @@ class Place extends Component {
     }
 
     render () {
+      console.log(this.state)
       const { place, deleted } = this.state
       if (deleted) {
         return <Redirect to={
@@ -70,6 +71,7 @@ class Place extends Component {
                     <Card.Title>{place.name}</Card.Title>
                     <Card.Subtitle>{place.type}</Card.Subtitle>
                     <Card.Text>
+                      {place.emoji}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer>

@@ -71,8 +71,8 @@ class SelectFromCenterPlace extends Component {
 
   render (props) {
     const { centerPlaces, open } = this.state
-    console.log('select state', this.state)
-    console.log('select props', this.props)
+    // console.log('select state', this.state)
+    // console.log('select props', this.props)
 
     return (
       <div className="Search2-layout">

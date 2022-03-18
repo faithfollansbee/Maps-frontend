@@ -25,13 +25,15 @@ const authenticatedOptions = (
     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/map" href="#map"> Map </NavLink>
     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/simplesearch" href="#simplesearch"> SimpleSearch </NavLink>
     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/centerplaces" href="#centerPlaces"> Center Places </NavLink>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/newmap" href="#newmap"> NewMap </NavLink>
+
   </Fragment>
 )
 
 const unauthenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#sign-up">Sign Up</Nav.Link>
-    <Nav.Link href="#sign-in">Sign In</Nav.Link>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/sign-up" href="#sign-up"> Sign Up </NavLink>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/sign-in" href="#sign-in"> Sign In </NavLink>
   </Fragment>
 )
 

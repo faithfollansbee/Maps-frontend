@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react'
+import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
+
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
@@ -55,16 +56,27 @@ class MapContainer extends Component {
     })
     console.log('called setMapCenter from Container')
   }
+  onMouseoverMarker = (props, marker, e) => {
+    console.log('marker.name', marker.name)
+    console.log('props:', props)
+    return (
+      <InfoWindow visible={true} open={open} marker={marker}>{marker.name}</InfoWindow>
+    )
+  }
 
   displayMarkers = () => {
     console.log(this.state.places)
     return this.state.places.map((place, index) => {
       if (place.type === 'restaurant') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} place={place} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/pizza.png' }}
-        onClick={() => console.log(place.name)} />
+        onClick={() => console.log(place.name)}
+        onMouseover={this.onMouseoverMarker}
+        >
+          <InfoWindow visible={true} open={open} marker={place}>{place.name}</InfoWindow>
+        </Marker>
       } else if (place.type === 'entertainment') {
         return <Marker key={index} id={index} position={{
           lat: place.latitude,

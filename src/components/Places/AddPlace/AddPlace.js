@@ -27,14 +27,18 @@ class AddPlace extends Component {
         name: props.name,
         latitude: props.latitude,
         longitude: props.longitude,
-        type: ''
+        type: '',
+        emoji: ''
       },
-      value: ''
+      value: '',
+      emoji: ''
     }
     // console.log(this.props.user)
   }
 
   handleChange = event => {
+    console.log(event)
+    console.log(event.target)
     this.setState({
       place: {
         ...this.state.place,
@@ -56,7 +60,8 @@ class AddPlace extends Component {
           name: this.props.name,
           latitude: this.props.latitude,
           longitude: this.props.longitude,
-          type: this.state.type
+          type: this.state.type,
+          emoji: this.state.emoji
         }
       }
     })
@@ -68,12 +73,20 @@ class AddPlace extends Component {
   }
 
   handleOptionChange = changeEvent => {
+    console.log(changeEvent)
+    // console.log(changeEvent.target.value)
+    console.log(changeEvent.target)
+    console.log(changeEvent.target.name)
     this.setState({
-      type: changeEvent.target.value
+      type: changeEvent.target.name,
+      emoji: changeEvent.target.value
+      // type: changeEvent.target.value.name,
+      // emoji: changeEvent.target.value.emoji
     })
   }
 
   render () {
+    console.log(this.state)
     const { handleSubmitClose } = this.props
 
     return (
@@ -96,10 +109,11 @@ class AddPlace extends Component {
                       <Radio
                         checked={this.state.type === 'restaurant'}
                         onChange={this.handleOptionChange}
-                        value="restaurant"
-                        name="radio-buttons"
+                        value={'🍕'}
+                        name="restaurant"
                         inputProps={{ 'aria-label': 'restaurant' }} />
                       <img src='https://img.icons8.com/color/48/000000/pizza.png'/>
+                      🍕
                     </div>}
                   label="Restaurant" />
 
@@ -120,12 +134,15 @@ class AddPlace extends Component {
                   control={
                     <div>
                       <Radio
-                        checked={this.state.type === 'bar'}
+                        checked={ this.state.type === 'bar' && this.state.emoji === '🍺' }
                         onChange={this.handleOptionChange}
-                        value="bar"
-                        name="radio-buttons"
+                        value={'🍺'}
+                        // value='🍺'
+                        name="bar"
+                        // name="radio-buttons"
                         inputProps={{ 'aria-label': 'bar' }} />
                       <img src='https://img.icons8.com/plasticine/50/000000/wine-glass.png'/>
+                      🍺
                     </div>}
                   label="Bar" />
 

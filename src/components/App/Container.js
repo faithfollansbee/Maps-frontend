@@ -2,6 +2,7 @@
 import React from 'react'
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
 // import MarkerWithInfoWindow from './Marker'
+// import Tooltip from '@material-ui/core/Tooltip'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -21,6 +22,13 @@ const containerStyle = {
   width: '100%',
   height: '100%'
 }
+// const tooltipStyle = {
+//   backgroundColor: '#f5f5f9',
+//   color: 'rgba(0, 0, 0, 0.87)',
+//   maxWidth: '220',
+//   fontSize: '24px',
+//   border: '1px solid #dadde9'
+// }
 
 class MapContainer extends React.Component {
   constructor (props) {
@@ -59,9 +67,9 @@ class MapContainer extends React.Component {
   //   // })
   // }
   onMarkerClick = (props, marker, e) => {
-    console.log(props.title)
-    console.log(props)
-    console.log(marker)
+    // console.log(props.title)
+    // console.log(props)
+    // console.log(marker)
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -81,13 +89,13 @@ class MapContainer extends React.Component {
     this.setState({
       mapCenter: ''
     })
-    console.log('called setMapCenter from Container')
+    // console.log('called setMapCenter from Container')
   }
   windowOpened = () => {
-    console.log('window opened')
+    // console.log('window opened')
   }
   windowClosed = () => {
-    console.log('window closed')
+    // console.log('window closed')
   }
 
   // onToggleOpen = () => {
@@ -95,12 +103,17 @@ class MapContainer extends React.Component {
   //     isOpen: !this.state.isOpen
   //   })
   // }
+
   displayMarkers = () => {
     return this.state.places.map((place, index) => {
       if (place.type === 'restaurant') {
         return <Marker key={index} id={index}
-          title={'The marker`s title will appear as a tooltip.'}
+          title={place.name}
           name={place.name}
+          label={place.emoji}
+          markerImage={place.emoji}
+          // place={place}
+          // emoji={place.emoji}
           position={{
             lat: place.latitude,
             lng: place.longitude
@@ -114,7 +127,7 @@ class MapContainer extends React.Component {
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/ferris-wheel.png' }}
         onClick={this.onMarkerClick} />
       } else if (place.type === 'landmark') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/monument.png' }}
@@ -126,25 +139,26 @@ class MapContainer extends React.Component {
         }} icon={{ url: 'https://img.icons8.com/ios-filled/25/000000/deciduous-tree.png' }}
         onClick={this.onMarkerClick}/>
       } else if (place.type === 'bar') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
-        }} icon={{ url: 'https://img.icons8.com/plasticine/50/000000/wine-glass.png' }}
+        }} icon={{ url: '/bar.ico' }}
+        // icon={{ url: 'https://img.icons8.com/plasticine/50/000000/wine-glass.png' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'museum') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/material-sharp/24/000000/museum.png' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'home') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/home.png' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'university') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/student-center.png' }}
@@ -157,16 +171,19 @@ class MapContainer extends React.Component {
   }
 
   render (props) {
+    // const mapMarkersJsx = this.state.places.map((place, index) => {
+    //   return (
+    //     <MapMarker place={place} name={place.name} key={index} title={place.name} position={{ lat: place.latitude, lng: place.longitude }} id={index} />
+    //   )
+    // })
     // const { places } = this.state
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
     console.log('container state', this.state)
     console.log('container props', this.props)
-    console.log('container props.currMap', this.props.currMap)
-    // console.log(props)
+    // console.log('container props.currMap', this.props.currMap)
     // props.google.maps.InfoWindow
-    // .Marker
     if (this.props.mapCenter.length === 0) {
       return (
         <div className="Search2-layout">
@@ -185,12 +202,6 @@ class MapContainer extends React.Component {
                 }}
               >
                 {this.displayMarkers()}
-                <Marker
-                  name={'current location'} />
-                <Marker
-                  name={'Dolores park'}
-                  position={{ lat: 37.759703, lng: -122.428093 }} />
-                <Marker />
                 <InfoWindow
                   marker={this.state.activeMarker}
                   visible={this.state.showingInfoWindow}
@@ -198,12 +209,10 @@ class MapContainer extends React.Component {
                   onOpen={this.windowOpened}
                   onClose={this.windowClosed}
                   // visible={true}
-                >{this.state.selectedPlace.name}
+                ><div>{this.state.selectedPlace.name}</div>
                 </InfoWindow>
               </Map>
-
             </div>
-
           )}
         </div>
       )
@@ -241,7 +250,10 @@ class MapContainer extends React.Component {
               visible={this.state.showingInfoWindow}
               onOpen={this.windowOpened}
               onClose={this.windowClosed}
-            >{this.state.selectedPlace.name}
+            >
+              <div>
+                {this.state.selectedPlace.name}
+              </div>
             </InfoWindow>
           </Map>
         </div>
@@ -249,6 +261,27 @@ class MapContainer extends React.Component {
     )
   }
 }
+// class TrialMarker extends React.Component {
+//   state = { open: false }
+//   render () {
+//     // console.log(this.props)
+//     const { name, position, place, key } = this.props
+//     // place={place} index={index} name={place.name}
+//     //   position={{ lat: place.latitude, lng: place.longitude }} key={index}
+//     return (
+//       <Marker position={position} place={place} key={key}>
+//         {this.state.open && (
+//           <InfoWindow onClick={() => this.setState(state => ({ open: !state.open }))}> {name} </InfoWindow>
+//         )}
+//       </Marker>
+//     )
+//   }
+// }
+// <Marker
+//   name={'current location'}/>
+// <Marker
+//   name={'Dolores park'}
+//   position={{ lat: 37.759703, lng: -122.428093 }} icon={'🍕'} />
 
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY

@@ -1,43 +1,53 @@
+// import restaurant from '../Icons/restaurant.png'
+
 const placeTypes = [
   {
     placeType: 'restaurant',
     id: 'restaurant',
-    emoji: '🍕'
+    emoji: '🍕',
+    img: require('../Icons/restaurant.png')
   },
   {
     placeType: 'bar',
     id: 'bar',
-    emoji: '🍺'
+    emoji: '🍺',
+    img: require('../Icons/wine-glass.png')
   },
   {
     placeType: 'museum',
     id: 'museum',
-    emoji: '🏛'
+    emoji: '🏛',
+    img: require('../Icons/museum.png')
   },
   {
     placeType: 'home',
     id: 'home',
-    emoji: '🏠'
+    emoji: '🏠',
+    img: require('../Icons/home.png')
   },
   {
     placeType: 'outdoors',
     id: 'outdoors',
-    emoji: '🌲'
+    emoji: '🌲',
+    img: require('../Icons/deciduous-tree.png')
   },
   {
     placeType: 'landmark',
     id: 'landmark',
-    emoji: '🗽'
+    emoji: '🗽',
+    img: require('../Icons/monument.png')
   },
   {
     placeType: 'university',
     id: 'university',
-    emoji: '🎓'
+    emoji: '🎓',
+    img: require('../Icons/student-center.png')
   },
   {
     placeType: 'entertainment',
     id: 'entertainment',
-    emoji: '🎠'
+    emoji: '🎠',
+    img: require('../Icons/ferris-wheel.png')
   }
 ]
 export default placeTypes
