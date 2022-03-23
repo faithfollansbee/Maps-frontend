@@ -19,14 +19,11 @@ import ExMap from '../Images/ExMap.jpg'
 const imgDivStyle = {
   display: 'flex',
   justifyContent: 'center'
-
-  // marginRight: '20px',
-  // marginLeft: '20px'
 }
 const imgStyle = {
   width: '70em',
   position: 'fixed'
-
+  // opacity: '0.9'
 }
 
 class Landing extends Component {

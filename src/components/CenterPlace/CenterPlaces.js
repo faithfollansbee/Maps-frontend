@@ -1,24 +1,22 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import Tooltip from '@material-ui/core/Tooltip'
+// import Tooltip from '@material-ui/core/Tooltip'
 // import CenterPlace from './CenterPlace'
 import AddCenterPlaceDialog from './AddCenterPlaceDialog'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-// import CardContent from '@material-ui/core/CardContent'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardHeader from '@material-ui/core/CardHeader'
-import IconButton from '@material-ui/core/IconButton'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import EditIcon from '@material-ui/icons/Edit'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-// import ButtonBase from '@material-ui/core/ButtonBase'
+// import Card from '@material-ui/core/Card'
+// import CardActions from '@material-ui/core/CardActions'
+// import CardActionArea from '@material-ui/core/CardActionArea'
+// import CardHeader from '@material-ui/core/CardHeader'
+// import IconButton from '@material-ui/core/IconButton'
+// import FavoriteIcon from '@material-ui/icons/Favorite'
+// import EditIcon from '@material-ui/icons/Edit'
+// import EditCenterPlaceMenu from './EditCenterPlace/EditCenterPlaceMenu'
+import CenterPlace from './CenterPlace'
 
-// import Spinner from 'react-bootstrap/Spinner'
 const titleStyle = {
   color: 'black',
-  fontSize: '40px',
+  // fontSize: '40px',
   margin: 'auto',
   textAlign: 'center'
 }
@@ -52,46 +50,28 @@ class CenterPlaces extends Component {
     } catch (error) {
     }
   }
-  // handleSubmit = event => {
-  //   event.preventDefault()
-  //   axios({
-  //     method: 'POST',
-  //     url: `${apiUrl}/centerPlaces`,
-  //     headers: {
-  //       'Authorization': `Token token=${this.props.user.token}`
-  //     },
-  //     data: {
-  //       centerPlace: {
-  //         name: this.props.name,
-  //         latitude: this.props.latitude,
-  //         longitude: this.props.longitude
-  //       }
-  //     }
-  //   })
-  //     .then(response => {
-  //       this.props.history.push('/centerPlaces')
-  //     })
-  //     .then(() => this.props.history.push('/centerPlaces'))
-  //     .catch(err => this.setState({ error: err.message }))
-  // }
+  handleDelete = (props) => {
+    console.log(this.props)
+    event.preventDefault()
+    axios.delete(`${apiUrl}/centerPlaces/${this.props.centerPlace.id}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${this.props.user.token}`
+        },
+        data: {
+          centerPlace: this.props.centerPlace
+        }
+      })
+      .then(() => this.setState({ deleted: true }))
+      .then(() => this.props.history.push('/centerPlaces'))
+      // .then(() => this.props.history.push('/genres'))
+      // .then(response => {
+      //   this.props.history.goBack()
+      // })
+  }
 
-  // handleFilter = event => {
-  //   event.preventDefault()
-  //   this.setState({ filtered: !this.state.filtered })
-  // }
-  // handleChange = event => {
-  //   const searchString = event.target.value.toLowerCase()
-  //   const queryLength = searchString.length
-  //   const prevQueryLength = this.state.queryLength || 0
-  //   const genres = queryLength > prevQueryLength ? this.state.userGenres : this.state.genres
-  //   const searchResults = genres.filter(genre => genre.name.toLowerCase().includes(searchString))
-  //   this.setState({ userGenres: searchResults, queryLength: queryLength })
-  // }
-  // href={`#/centerPlaces/${centerPlace._id}`}
-  // in center places, call handle change when user clicks place. then in handleChange, put event.target into format needed(like in select component)
-  // and then call props.mapCenter, just like in select.
   handleClick = (e) => {
-    // console.log(e)
+    console.log(e)
     this.props.setMapCenter(e)
     // const newCenter = { lat: event.latitude, lng: e.longitude }
     // const centerObj = { ...e }
@@ -104,71 +84,19 @@ class CenterPlaces extends Component {
   render (props) {
     const { centerPlaces } = this.state
     console.log('re render, centerPlaces', centerPlaces)
-    // const centerPlacesJSX = centerPlaces.map(centerPlace => (
-    //   <Card key={centerPlace._id} className="card-style"
-    //     value={centerPlace}
-    //     onClick={this.handleClick}
-    //     // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-    //   >
-    //     <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
-    //       <CardHeader
-    //         action={
-    //           <IconButton aria-label="settings">
-    //             <MoreVertIcon />
-    //           </IconButton>
-    //         }
-    //         title={centerPlace.name}
-    //         subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
-    //       />
-    //       <CardActions>
-    //         <Tooltip title="add to favorites">
-    //           <IconButton aria-label="add to favorites">
-    //             <FavoriteIcon />
-    //           </IconButton>
-    //         </Tooltip>
-    //         <IconButton aria-label="edit">
-    //           <EditIcon />
-    //         </IconButton>
-    //       </CardActions>
-    //     </CardActionArea>
-    //   </Card>
-    // ))
+    const centerPlacesJSX = centerPlaces.map(centerPlace => (
+      <CenterPlace mapSettings={this.props.mapSettings} key={centerPlace._id} centerPlace={centerPlace} user={this.props.user} name={centerPlace.name} id={centerPlace._id} handleClick={this.handleClick} setMapCenter={this.props.setMapCenter}/>
+    ))
     return (
       <div className="Search2-layout">
         <Fragment>
           <h2 style={titleStyle}>Your Saved Maps</h2>
           <AddCenterPlaceDialog user={this.props.user} />
           <div>
-            { centerPlaces.map(centerPlace => (
-              <Card key={centerPlace._id} className="card-style"
-                value={centerPlace._id}
-                // onClick={this.handleClick}
-                onClick={(e) => this.handleClick(centerPlace)}
-                // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-              >
-                <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
-                  <CardHeader
-                    action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
-                    }
-                    title={centerPlace.name}
-                    subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
-                  />
-                  <CardActions>
-                    <Tooltip title="add to favorites">
-                      <IconButton aria-label="add to favorites" variant="contained" disableRipple>
-                        <FavoriteIcon />
-                      </IconButton>
-                    </Tooltip>
-                    <IconButton aria-label="edit" disableRipple>
-                      <EditIcon />
-                    </IconButton>
-                  </CardActions>
-                </CardActionArea>
-              </Card>
-            ))}
+            {this.state.centerPlaces.length
+              ? centerPlacesJSX
+              : <div>No places found</div>
+            }
           </div>
         </Fragment>
       </div>
@@ -176,6 +104,36 @@ class CenterPlaces extends Component {
   }
 }
 export default CenterPlaces
+// <div>
+//   { centerPlaces.map(centerPlace => (
+//     <Card key={centerPlace._id} className="card-style"
+//       value={centerPlace._id}
+//       // onClick={this.handleClick}
+//       onClick={(e) => this.handleClick(centerPlace)}
+//       // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+//     >
+//       <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
+//         <CardHeader
+//           action={
+//             <EditCenterPlaceMenu user={this.props.user} deleteCenterPlace={this.handleDelete} title="more" {...centerPlace} centerPlace={centerPlace} id={centerPlace._id} name={centerPlace.name} />
+//           }
+//           title={centerPlace.name}
+//           subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
+//         />
+//         <CardActions>
+//           <Tooltip title="add to favorites">
+//             <IconButton aria-label="add to favorites" variant="contained" disableRipple>
+//               <FavoriteIcon />
+//             </IconButton>
+//           </Tooltip>
+//           <IconButton aria-label="edit" disableRipple>
+//             <EditIcon />
+//           </IconButton>
+//         </CardActions>
+//       </CardActionArea>
+//     </Card>
+//   ))}
+// </div>
 // <IconButton aria-label="edit" href={`#centerPlaces/${centerPlace._id}/edit`}>
 //   <EditIcon />
 // </IconButton>

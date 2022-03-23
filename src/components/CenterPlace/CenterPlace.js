@@ -1,27 +1,38 @@
-import React from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
+import CardActionArea from '@material-ui/core/CardActionArea'
+// import CardContent from '@material-ui/core/CardContent'
 import IconButton from '@material-ui/core/IconButton'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CardHeader from '@material-ui/core/CardHeader'
+import EditCenterPlaceMenu from './EditCenterPlace/EditCenterPlaceMenu'
+import Button from '@material-ui/core/Button'
+import Tooltip from '@material-ui/core/Tooltip'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import EditIcon from '@material-ui/icons/Edit'
+import classNames from 'classnames'
+import { withStyles } from '@material-ui/core/styles'
+import styles from './CenterPlaceStyles'
+
 // import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
 
 // import EditCenterPlaceMenu from './EditCenterPlaceMenu'
-
-class CenterPlace extends React.Component {
-  state = {
-    centerPlace: '',
-    deleted: false,
-    latitude: [],
-    longitude: [],
-    LatLng: '',
-    // userRecipes: [],
-    filtered: false
-    // addingMovie: false
+class CenterPlace extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      centerPlace: props.centerPlace,
+      deleted: false,
+      filtered: false,
+      latitude: [],
+      longitude: [],
+      LatLng: '',
+      mapCenter: ''
+    }
   }
 
   handleRefresh = async () => {
@@ -58,27 +69,11 @@ class CenterPlace extends React.Component {
     event.preventDefault()
     this.setState({ filtered: !this.state.filtered })
   }
-  setPlace = event => {
-    console.log(this.state)
-    // geocodeByAddress(location.description)
-    //   .then(results => getLatLng(results[0]))
-    //   .then(LatLng => {
-    //     this.setState({
-    //       latitude: LatLng.lat,
-    //       longitude: LatLng.lng
-    //     })
-    //     this.setState({ LatLng: LatLng })
-    //     console.log(this.state.latitude)
-    //     console.log(this.state.longitude)
-    //     console.log('location', location)
-    //     this.props.setMapCenter(this.state.LatLng)
-    //   })
-    // this.setState({ LatLng: `${this.state.latitude}${this.state.longitude}` })
-    // this.setState({ LatLng: { lat: this.state.latitude, lng: this.state.longitude } })
-
-    this.props.setMapCenter(this.state.LatLng)
-    console.log('done')
-  }
+  // setPlace = event => {
+  //   console.log(this.state)
+  //   this.props.setMapCenter(event)
+  //   console.log('done')
+  // }
 
   // handleChange = event => {
   //   const searchString = event.target.value.toLowerCase()
@@ -126,8 +121,9 @@ class CenterPlace extends React.Component {
   // }
 
   handleDelete = () => {
+    console.log(this.props)
     event.preventDefault()
-    axios.delete(`${apiUrl}/centerPlaces/${this.props.match.params.id}`,
+    axios.delete(`${apiUrl}/centerPlaces/${this.props.id}`,
       {
         headers: {
           'Authorization': `Bearer ${this.props.user.token}`
@@ -144,39 +140,47 @@ class CenterPlace extends React.Component {
   }
 
   render () {
-    const { centerPlace } = this.state
+    const { centerPlace, deleted } = this.state
+    const { mapSettings, classes } = this.props
+    if (deleted) {
+      return <Redirect to={
+        {
+          pathname: this.props.location.pathname
+        }
+      }/>
+    }
     if (centerPlace) {
       return (
-        <div className="Search2-layout my-5">
-          { centerPlace && (
-            <div>
-              <Card onClick={this.setPlace} className="card-style" variant="outlined">
-                <CardContent>
-                  <div>
-                    <CardHeader
-                      // action={
-                      //   <EditCenterPlaceMenu id={this.state.centerPlace._id} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
-                      // }
-                      title={centerPlace.name}
-                      subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
-                    />
-                  </div>
-                  <div className="row">
-                    <h6 > {this.state.centerPlace.latitude} </h6>
-                    <h6 > {this.state.centerPlace.longitude} </h6>
-                    <h6 > {this.state.latitude} </h6>
-                    <h6 > {this.state.longitude} </h6>
-                  </div>
-                </CardContent>
-                <CardActions>
-                  <IconButton href={'#centerPlaces/'} aria-label="Back">
-                    <ArrowBackIosIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </div>
-          )}
-        </div>
+        <Card
+          // variant="outlined"
+          // if this centerPlace matches the map id, apply style to differentiate
+          className={ classNames(classes.lightClass, {
+            [classes.darkClass]: mapSettings._id === centerPlace._id
+          })}
+          // onClick={this.handleClick}
+          // onClick={(e) => this.handleClick(centerPlace)}
+          // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+        >
+          <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
+            <CardHeader
+              action={
+                <EditCenterPlaceMenu id={this.state.centerPlace._id} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
+              }
+              title={centerPlace.name}
+            />
+            <CardActions>
+              <Tooltip title="add to favorites">
+                <IconButton aria-label="add to favorites" variant="contained" disableRipple>
+                  <FavoriteIcon />
+                </IconButton>
+              </Tooltip>
+              <IconButton aria-label="edit" disableRipple>
+                <EditIcon />
+              </IconButton>
+              <Button onClick={(e) => this.props.handleClick(centerPlace)} > Set Map Center</Button>
+            </CardActions>
+          </CardActionArea>
+        </Card>
       )
     }
     return (
@@ -184,5 +188,69 @@ class CenterPlace extends React.Component {
     )
   }
 }
+// if (centerPlace) {
+//   return (
+//     <div className="">
+//       { centerPlace && (
+//         <div>
+//           <Card className="card-style"
+//             // onClick={this.handleClick}
+//             // onClick={(e) => this.handleClick(centerPlace)}
+//             // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+//           >
+//             <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
+//               <CardHeader
+//                 action={
+//                   <EditCenterPlaceMenu id={this.state.centerPlace._id} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
+//                 }
+//                 title={centerPlace.name}
+//                 subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
+//               />
+//               <CardActions>
+//                 <Tooltip title="add to favorites">
+//                   <IconButton aria-label="add to favorites" variant="contained" disableRipple>
+//                     <FavoriteIcon />
+//                   </IconButton>
+//                 </Tooltip>
+//                 <IconButton aria-label="edit" disableRipple>
+//                   <EditIcon />
+//                 </IconButton>
+//                 <Button onClick={(e) => this.props.handleClick(centerPlace)} > Set Map Center</Button>
+//               </CardActions>
+//             </CardActionArea>
+//           </Card>
+//         </div>
+//       )}
+//     </div>
+//   )
+// }
 
-export default withRouter(CenterPlace)
+// <Card className="card-style" variant="outlined">
+//   <CardContent>
+//     <div>
+//       <CardHeader
+//         action={
+//           <EditCenterPlaceMenu id={this.state.centerPlace._id} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
+//         }
+//         title={centerPlace.name}
+//         subheader={`last updated: ${centerPlace.updatedAt.split('T').shift()}`}
+//       />
+//     </div>
+//     <div className="row">
+//       <h6 > {this.state.centerPlace.latitude} </h6>
+//       <h6 > {this.state.centerPlace.longitude} </h6>
+//       <h6 > {this.state.latitude} </h6>
+//       <h6 > {this.state.longitude} </h6>
+//     </div>
+//   </CardContent>
+//   <CardActions>
+//     <IconButton href={'#centerPlaces/'} aria-label="Back">
+//       <ArrowBackIosIcon />
+//     </IconButton>
+//     <Button onClick={(e) => this.props.handleClick(centerPlace)} > Set Map Center</Button>
+//   </CardActions>
+// </Card>
+export default withRouter((withStyles(styles)(CenterPlace)))
+// export default withStyles(styles, { withTheme: true })(CenterPlace)
+
+// export default withRouter(CenterPlace)

@@ -144,7 +144,7 @@ class App extends Component {
             render={() => (<Places user={user}/>)}
           />
           <AuthenticatedRoute user={user} exact path='/centerPlaces/'
-            render={() => (<CenterPlaces setMapCenter={this.setMapCenter} user={user}/>)}
+            render={() => (<CenterPlaces setMapCenter={this.setMapCenter} user={user} mapCenter={this.state.mapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings}/>)}
           />
           <AuthenticatedRoute user={user} path="/createCenterPlace"
             render={() => (<AddCenterPlace user={user}/>)}/>

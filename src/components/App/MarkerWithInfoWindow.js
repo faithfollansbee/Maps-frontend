@@ -42,6 +42,7 @@ class MarkerWithInfoWindow extends React.Component {
   }
 
   render (props) {
+    console.log(this.props)
     // const style = this.props.$hover ? markerStyleHover : markerStyle
     const style = this.state.isOpen ? markerStyleHover : markerStyle
 

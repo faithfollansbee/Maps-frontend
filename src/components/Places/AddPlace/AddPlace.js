@@ -12,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
+// import restaurant from '../Icons/restaurant.png'
 
 // const listStyle = {
 //   listStyleType: 'none'
@@ -88,7 +89,6 @@ class AddPlace extends Component {
   render () {
     console.log(this.state)
     const { handleSubmitClose } = this.props
-
     return (
       // 🍕🍺🍿🏠🏛🌲🥡
       <div className="Search2-layout" margin="auto">
@@ -112,8 +112,7 @@ class AddPlace extends Component {
                         value={'🍕'}
                         name="restaurant"
                         inputProps={{ 'aria-label': 'restaurant' }} />
-                      <img src='https://img.icons8.com/color/48/000000/pizza.png'/>
-                      🍕
+                      <img src={require('../../Icons/restaurant.png')} alt="pizza" />
                     </div>}
                   label="Restaurant" />
 
@@ -123,10 +122,10 @@ class AddPlace extends Component {
                       <Radio
                         checked={this.state.type === 'museum'}
                         onChange={this.handleOptionChange}
-                        value="museum"
-                        name="radio-buttons"
+                        value={'museum'}
+                        name="museum"
                         inputProps={{ 'aria-label': 'museum' }} />
-                      <img src='https://img.icons8.com/material-sharp/24/000000/museum.png'/>
+                      <img src={require('../../Icons/museum.png')} alt="museum" />
                     </div>}
                   label="Museum" />
 
@@ -141,8 +140,7 @@ class AddPlace extends Component {
                         name="bar"
                         // name="radio-buttons"
                         inputProps={{ 'aria-label': 'bar' }} />
-                      <img src='https://img.icons8.com/plasticine/50/000000/wine-glass.png'/>
-                      🍺
+                      <img src={require('../../Icons/wine-glass.png')} alt="wine-glass" />
                     </div>}
                   label="Bar" />
 
@@ -153,9 +151,9 @@ class AddPlace extends Component {
                         checked={this.state.type === 'historical landmark'}
                         onChange={this.handleOptionChange}
                         value="historical landmark"
-                        name="radio-buttons"
+                        name="historical landmark"
                         inputProps={{ 'aria-label': 'historical landmark' }} />
-                      <img src='https://img.icons8.com/offices/30/000000/monument.png'/>
+                      <img src={require('../../Icons/monument.png')} alt="monument" />
                     </div>}
                   label="Historical Landmark" />
 
@@ -166,9 +164,9 @@ class AddPlace extends Component {
                         checked={this.state.type === 'entertainment'}
                         onChange={this.handleOptionChange}
                         value="entertainment"
-                        name="radio-buttons"
+                        name="entertainment"
                         inputProps={{ 'aria-label': 'entertainment' }} />
-                      <img src='https://img.icons8.com/offices/30/000000/ferris-wheel.png'/>
+                      <img src={require('../../Icons/ferris-wheel.png')} alt="ferris-wheel" />
                     </div>}
                   label="Entertainment" />
 
@@ -179,9 +177,9 @@ class AddPlace extends Component {
                         checked={this.state.type === 'university'}
                         onChange={this.handleOptionChange}
                         value="university"
-                        name="radio-buttons"
+                        name="university"
                         inputProps={{ 'aria-label': 'university' }} />
-                      <img src="https://img.icons8.com/color/48/000000/student-center.png"/>
+                      <img src={require('../../Icons/student-center.png')} alt="student-center" />
                     </div>}
                   label="University" />
 
@@ -192,9 +190,9 @@ class AddPlace extends Component {
                         checked={this.state.type === 'home'}
                         onChange={this.handleOptionChange}
                         value="home"
-                        name="radio-buttons"
+                        name="home"
                         inputProps={{ 'aria-label': 'home' }} />
-                      <img src='https://img.icons8.com/color/48/000000/home.png'/>
+                      <img src={require('../../Icons/home.png')} alt="home" />
                     </div>}
                   label="Home" />
 
@@ -205,9 +203,9 @@ class AddPlace extends Component {
                         checked={this.state.type === 'outdoors'}
                         onChange={this.handleOptionChange}
                         value="outdoors"
-                        name="radio-buttons"
+                        name="outdoors"
                         inputProps={{ 'aria-label': 'outdoors' }} />
-                      <img src='https://img.icons8.com/ios-filled/25/000000/deciduous-tree.png'/>
+                      <img src={require('../../Icons/deciduous-tree.png')} alt="deciduous-tree" />
                     </div>}
                   label="Outdoors" />
               </RadioGroup>

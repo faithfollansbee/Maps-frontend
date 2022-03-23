@@ -43,24 +43,27 @@ const alwaysOptions = (
 )
 
 const Header = ({ user, location }) => (
-  <Navbar variant="dark" expand="md" style={NavBarStyle}>
-    <Navbar.Brand href="#map">
-    </Navbar.Brand>
-    <div className="logoContainer" style={logoStyle}>
-      <img src={require('./PlaceBookLogo.png')} style={logoStyle} alt="PlaceBook-logo"/>
-    </div>
-    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
-        { alwaysOptions }
-        { user ? authenticatedOptions : unauthenticatedOptions }
-      </Nav>
-    </Navbar.Collapse>
-    {user && <AccountMenu user={user}/>}
-  </Navbar>
+  <Fragment>
+    <Navbar variant="dark" expand="md" style={NavBarStyle}>
+      <Navbar.Brand href="#map">
+      </Navbar.Brand>
+      <div className="logoContainer" style={logoStyle}>
+        <img src={require('./PlaceBookLogo.png')} style={logoStyle} alt="PlaceBook-logo"/>
+      </div>
+      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          { alwaysOptions }
+          { user ? authenticatedOptions : unauthenticatedOptions }
+        </Nav>
+      </Navbar.Collapse>
+      {user && <AccountMenu user={user}/>}
+    </Navbar>
+  </Fragment>
 )
 
 export default withRouter(Header)
+// <Nav style={{ display: 'flex', justifyContent: 'space-evenly', bottom: '30px', left: '18rem', right: '18rem', position: 'fixed', zIndex: '20', backgroundColor: '#E6F7E7' }}> {unauthenticatedOptions} </Nav>
 
 // <Nav.Link href="#change-coords"> Change Coords </Nav.Link>
 // <Nav.Link href="#createplace">Add place</Nav.Link>

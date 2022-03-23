@@ -80,6 +80,7 @@ class SimpleMap extends React.Component {
   // ))}
   render () {
     console.log(this.props)
+    console.log(this.state.places)
     // const { places } = this.state
     // if (this.state)
     // if (!this.props.loaded) {
@@ -96,12 +97,12 @@ class SimpleMap extends React.Component {
                 defaultCenter={{ lat: 42.3600825, lng: -71.0588801 }}
                 // center={this.props.currMap.currCoords}
                 // defaultZoom={this.props.zoom}
-                defaultZoom={14}
+                defaultZoom={13}
                 onGoogleApiLoaded={({ map, maps }) => console.log(map, maps)}
               >
                 {this.state.places.map((place) => (
                   <MarkerWithInfoWindow
-                    key={place.id}
+                    key={place._id}
                     text={place.name}
                     name={place.name}
                     type={place.type}
