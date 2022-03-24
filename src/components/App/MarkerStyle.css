@@ -1,0 +1,40 @@
+.InfoWindow {
+  position: relative;
+  bottom: 150px;
+  left: -45px;
+  width: 220px;
+  /* background: white; */
+  background-color: white;
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  font-size: 14px;
+  z-index: 100;
+}
+
+
+/* .InfoWindow:hover .xButton {
+  opacity: 1;
+} */
+.xButton:hover {
+  opacity: 1;
+}
+
+.xButton {
+  background: none;
+  opacity: .3;
+  display: block;
+  border: 0px;
+  padding: 0px;
+  text-transform: none;
+  appearance: none;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  top: -6px;
+  right: -6px;
+  /* width: '30px';
+  height: '30px'; */
+  width: 14px;
+  height: 14px;
+  margin: 8px;
+}

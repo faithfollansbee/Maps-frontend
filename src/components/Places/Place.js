@@ -20,6 +20,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 // import CardHeader from '@material-ui/core/CardHeader'
 import EditPlaceMenu from './EditPlace/EditPlaceMenu'
 import IconButton from '@material-ui/core/IconButton'
+// import Divider from '@material-ui/core/Divider'
+import Paper from '@material-ui/core/Paper'
 // import Button from '@material-ui/core/Button'
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 // import { purple, blue, yellow, red } from '@material-ui/core/colors'
@@ -27,15 +29,11 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import placeTypes from '../App/PlaceTypes'
 
 const style = {
+  marginTop: '1px',
+  opacity: '.9'
+  // backgroundColor: 'white'
   // margin: 50
 }
-// const primary = green[50] // #f44336
-// const accent = purple['A200'] // #e040fb
-// const third = blue[100]
-// const fourth = yellow[100]
-// const fifth = red[100]
-// const fourth = yellow[100]
-// const accent = purple.A200 // #e040fb (alternative method)
 
 class Place extends Component {
   constructor (props) {
@@ -95,9 +93,9 @@ class Place extends Component {
       }
 
       return (
-        <div style={style}>
+        <Paper style={style} >
           { place && (
-            <ListItem button key={place._id}>
+            <ListItem button key={place._id} variant="outlined">
               <ListItemAvatar>
                 {placeTypes.map((placeType) => {
                   if (placeType.placeType === place.type) {
@@ -119,7 +117,7 @@ class Place extends Component {
               </ListItemSecondaryAction>
             </ListItem>
           )}
-        </div>
+        </Paper>
       )
     }
 }

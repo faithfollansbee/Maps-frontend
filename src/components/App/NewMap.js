@@ -90,7 +90,7 @@ class SimpleMap extends React.Component {
       return (
         <div className="Search2-layout">
           { this.state.loaded && (
-            <div style={{ height: '100vh', width: '100%', position: 'relative', marginTop: '10px' }}>
+            <div style={{ height: '80vh', width: '100%', position: 'relative', marginTop: '10px' }}>
               <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
                 // defaultCenter={this.props.center}

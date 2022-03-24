@@ -13,12 +13,12 @@ import AddPlaceDialog from './AddPlace/AddPlaceDialog'
 // import EditPlaceDialog from './EditPlaceDialog'
 // import Divider from '@material-ui/core/Divider'
 // import MoreVertIcon from '@material-ui/icons/MoreVert'
-import Paper from '@material-ui/core/Paper'
 import Place from './Place'
 
 import placeTypes from '../App/PlaceTypes'
 
 const style = {
+  // paddingBottom: '0'
   // margin: 50
 }
 const headingStyle = {
@@ -98,9 +98,7 @@ class Places extends Component {
     const { places } = this.state
 
     const placesJsx = places.map(place => (
-      <React.Fragment key={place._id}>
-        <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
-      </React.Fragment>
+      <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
     ))
     // const placesJsx = this.state.places.map(place => (
     //   <ListItem button key={place._id}>
@@ -137,14 +135,12 @@ class Places extends Component {
       <div className="Search2-layout">
         <h1 style={headingStyle}>Saved Places</h1>
         <AddPlaceDialog user={this.props.user} />
-        <Paper >
-          <List style={style}>
-            {this.state.places.length
-              ? placesJsx
-              : <ListItem>No places found</ListItem>
-            }
-          </List>
-        </Paper>
+        <List style={style}>
+          {this.state.places.length
+            ? placesJsx
+            : <ListItem>No places found</ListItem>
+          }
+        </List>
       </div>
     )
   }

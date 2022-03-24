@@ -1,5 +1,8 @@
 import React from 'react'
 import placeTypes from '../App/PlaceTypes'
+import CloseIcon from '@material-ui/icons/Close'
+// import IconButton from '@material-ui/core/IconButton'
+import './MarkerStyle.css'
 // import restaurant from '../Icons/restaurant.png'
 // import Pizza from '../Images/pizza-slice-solid.svg'
 // <img src={Pizza} alt="Pizza" />
@@ -66,17 +69,18 @@ class MarkerWithInfoWindow extends React.Component {
 // </div>}
 const InfoWindow = (props) => {
   const { place } = props
-  const infoWindowStyle = {
-    position: 'relative',
-    bottom: 150,
-    left: '-45px',
-    width: 220,
-    backgroundColor: 'white',
-    boxShadow: '0 2px 7px 1px rgba(0, 0, 0, 0.3)',
-    padding: 10,
-    fontSize: 14,
-    zIndex: 100
-  }
+
+  // const infoWindowStyle = {
+  // position: 'relative',
+  // bottom: 150,
+  // left: '-45px',
+  // width: 220,
+  // backgroundColor: 'white',
+  // boxShadow: '0 2px 7px 1px rgba(0, 0, 0, 0.3)',
+  // padding: 10,
+  // fontSize: 14,
+  // zIndex: 100
+  // }
   // const infoWindowStyle2 = {
   //   paddingRight: '0px',
   //   paddingBottom: '0px',
@@ -93,25 +97,9 @@ const InfoWindow = (props) => {
   //   fontWeight: '300',
   //   fontSize: '13px'
   // }
-  // const xButtonStyle = {
-  //   background: 'none',
-  //   display: 'block',
-  //   border: '0px',
-  //   margin: '0px',
-  //   padding: '0px',
-  //   textTransform: 'none',
-  //   appearance: 'none',
-  //   position: 'absolute',
-  //   cursor: 'pointer',
-  //   userSelect: 'none',
-  //   top: '-6px',
-  //   right: '-6px',
-  //   width: '30px',
-  //   height: '30px'
-  // }
-
   return (
-    <div style={infoWindowStyle}>
+    <div className="InfoWindow" >
+      <CloseIcon className="xButton"/>
       <div style={{ fontSize: 16 }}>
         {place.name}
       </div>
@@ -123,15 +111,11 @@ const InfoWindow = (props) => {
         <span style={{ color: 'orange' }}>
           {place.type}
         </span>
+      </div>
+      <div>
         <span style={{ color: 'lightgrey' }}>
           {place.name}
         </span>
-      </div>
-      <div style={{ fontSize: 14, color: 'grey' }}>
-        {place.type}
-      </div>
-      <div style={{ fontSize: 14, color: 'grey' }}>
-        {'$'.repeat(place.type)}
       </div>
       <div style={{ fontSize: 14, color: 'green' }}>
         {'Open'}

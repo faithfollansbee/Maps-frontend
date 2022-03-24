@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import { withRouter, Redirect, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+// import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
 
@@ -65,27 +65,25 @@ class Place extends Component {
         <div style={style}>
           { place && (
             <Fragment>
-              <CardDeck>
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{place.name}</Card.Title>
-                    <Card.Subtitle>{place.type}</Card.Subtitle>
-                    <Card.Text>
-                      {place.emoji}
-                    </Card.Text>
-                  </Card.Body>
-                  <Card.Footer>
-                    <div className="cardLink">
-                      <Link to="/places" className="cardLink">Back to all</Link>
-                    </div>
-                    <div className="cardButton">
-                      <Button onClick={this.deleteplace} className="cardButton" variant="dark" type="submit">
-                        Delete this place
-                      </Button>
-                    </div>
-                  </Card.Footer>
-                </Card>
-              </CardDeck>
+              <Card>
+                <Card.Body>
+                  <Card.Title>{place.name}</Card.Title>
+                  <Card.Subtitle>{place.type}</Card.Subtitle>
+                  <Card.Text>
+                    {place.emoji}
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <div className="cardLink">
+                    <Link to="/places" className="cardLink">Back to all</Link>
+                  </div>
+                  <div className="cardButton">
+                    <Button onClick={this.deleteplace} className="cardButton" variant="dark" type="submit">
+                      Delete this place
+                    </Button>
+                  </div>
+                </Card.Footer>
+              </Card>
             </Fragment>
           )}
         </div>

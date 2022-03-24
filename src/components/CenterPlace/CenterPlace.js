@@ -5,18 +5,19 @@ import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardActionArea from '@material-ui/core/CardActionArea'
-// import CardContent from '@material-ui/core/CardContent'
+import CardContent from '@material-ui/core/CardContent'
 import IconButton from '@material-ui/core/IconButton'
 // import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CardHeader from '@material-ui/core/CardHeader'
 import EditCenterPlaceMenu from './EditCenterPlace/EditCenterPlaceMenu'
 import Button from '@material-ui/core/Button'
 import Tooltip from '@material-ui/core/Tooltip'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+// import FavoriteIcon from '@material-ui/icons/Favorite'
 import EditIcon from '@material-ui/icons/Edit'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import styles from './CenterPlaceStyles'
+import Typography from '@material-ui/core/Typography'
 
 // import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
 
@@ -48,22 +49,22 @@ class CenterPlace extends Component {
   //     cookbook: response.data.cookbook
   //   })
   // }
-  async componentDidMount () {
-    try {
-      const response = await axios({
-        url: `${apiUrl}/centerPlaces/${this.props.match.params.id}`,
-        method: 'GET',
-        headers: {
-          'Authorization': `Token token=${this.props.user.token}`
-        }
-      })
-      this.setState({ centerPlace: response.data.centerPlace })
-      this.setState({ latitude: response.data.centerPlace.latitude })
-      this.setState({ longitude: response.data.centerPlace.longitude })
-      this.setState({ LatLng: { lat: this.state.latitude, lng: this.state.longitude } })
-    } catch (error) {
-    }
-  }
+  // async componentDidMount () {
+  //   try {
+  //     const response = await axios({
+  //       url: `${apiUrl}/centerPlaces/${this.props.match.params.id}`,
+  //       method: 'GET',
+  //       headers: {
+  //         'Authorization': `Token token=${this.props.user.token}`
+  //       }
+  //     })
+  //     this.setState({ centerPlace: response.data.centerPlace })
+  //     this.setState({ latitude: response.data.centerPlace.latitude })
+  //     this.setState({ longitude: response.data.centerPlace.longitude })
+  //     this.setState({ LatLng: { lat: this.state.latitude, lng: this.state.longitude } })
+  //   } catch (error) {
+  //   }
+  // }
 
   handleFilter = event => {
     event.preventDefault()
@@ -152,7 +153,7 @@ class CenterPlace extends Component {
     if (centerPlace) {
       return (
         <Card
-          // variant="outlined"
+          variant="outlined"
           // if this centerPlace matches the map id, apply style to differentiate
           className={ classNames(classes.lightClass, {
             [classes.darkClass]: mapSettings._id === centerPlace._id
@@ -163,21 +164,35 @@ class CenterPlace extends Component {
         >
           <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
             <CardHeader
+              style={{ padding: '12px 16px 2px' }}
               action={
                 <EditCenterPlaceMenu id={this.state.centerPlace._id} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
               }
               title={centerPlace.name}
             />
-            <CardActions>
-              <Tooltip title="add to favorites">
-                <IconButton aria-label="add to favorites" variant="contained" disableRipple>
-                  <FavoriteIcon />
+            <CardContent style={{ padding: '2px 18px' }}>
+              <Typography>
+                <span style={{ color: 'orange' }}>
+                  {centerPlace.name} {' '}
+                </span>
+                <span style={{ color: 'grey' }}>
+                  {centerPlace.name} {' '}
+                </span>
+                <span style={{ color: 'green' }}>
+                  {centerPlace.name} {' '}
+                </span>
+                <span style={{ color: 'lightgrey' }}>
+                  {centerPlace.name}
+                </span>
+              </Typography>
+            </CardContent>
+            <CardActions style={{ padding: '0px 12px 4px' }}>
+              <Tooltip title="edit">
+                <IconButton aria-label="edit" size="small" variant="contained" disableRipple>
+                  <EditIcon fontSize="small"/>
                 </IconButton>
               </Tooltip>
-              <IconButton aria-label="edit" disableRipple>
-                <EditIcon />
-              </IconButton>
-              <Button onClick={(e) => this.props.handleClick(centerPlace)} > Set Map Center</Button>
+              <Button onClick={(e) => this.props.handleClick(centerPlace)}> Set Map Center</Button>
             </CardActions>
           </CardActionArea>
         </Card>
