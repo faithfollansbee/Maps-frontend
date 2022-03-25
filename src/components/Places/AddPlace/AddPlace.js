@@ -5,18 +5,12 @@ import Form from 'react-bootstrap/Form'
 import { withRouter } from 'react-router-dom'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
-// import Card from '@material-ui/core/Card'
-// import CardContent from '@material-ui/core/CardContent'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
-// import restaurant from '../Icons/restaurant.png'
 
-// const listStyle = {
-//   listStyleType: 'none'
-// }
 class AddPlace extends Component {
   constructor (props) {
     super(props)
@@ -28,6 +22,7 @@ class AddPlace extends Component {
         name: props.name,
         latitude: props.latitude,
         longitude: props.longitude,
+        longName: props.longName,
         type: '',
         emoji: ''
       },
@@ -62,7 +57,8 @@ class AddPlace extends Component {
           latitude: this.props.latitude,
           longitude: this.props.longitude,
           type: this.state.type,
-          emoji: this.state.emoji
+          emoji: this.state.emoji,
+          longName: this.props.longName
         }
       }
     })

@@ -71,6 +71,7 @@ class Place extends Component {
                   <Card.Subtitle>{place.type}</Card.Subtitle>
                   <Card.Text>
                     {place.emoji}
+                    {place.longName}
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>

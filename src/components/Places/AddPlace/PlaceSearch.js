@@ -22,7 +22,8 @@ class PlaceSearch extends React.Component {
     latitude: '',
     longitude: '',
     address: '',
-    user: this.props.user
+    user: this.props.user,
+    longName: ''
   }
 
   handleSelect = (location) => {
@@ -32,6 +33,8 @@ class PlaceSearch extends React.Component {
     console.log(location.structured_formatting.main_text)
     this.setState({ location })
     this.setState({ name: location.structured_formatting.main_text })
+    this.setState({ longName: location.structured_formatting.secondary_text })
+
     this.setState({ type: location.types[0] })
     // this.setState({ })
     // console.log(typeof location)
@@ -74,6 +77,7 @@ class PlaceSearch extends React.Component {
   }
 
   render () {
+    console.log(this.state)
     const { handleSubmitClose } = this.props
     return (
       <div className="Search2-layout">
@@ -109,7 +113,7 @@ class PlaceSearch extends React.Component {
             </div>
           )}
         />
-        <AddPlace handleSubmitClose={handleSubmitClose} style={style2} user={this.state.user} name={this.state.name} latitude={this.state.latitude} longitude={this.state.longitude} />
+        <AddPlace handleSubmitClose={handleSubmitClose} style={style2} user={this.state.user} name={this.state.name} longName={this.state.longName} latitude={this.state.latitude} longitude={this.state.longitude} />
       </div>
     )
   }

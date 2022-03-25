@@ -1,8 +1,9 @@
 import React from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
+// import Card from '@material-ui/core/Card'
+// import CardContent from '@material-ui/core/CardContent'
 import 'react-google-places-autocomplete/dist/assets/index.css'
+import AddMap from './AddMap'
 
 const style = {
   zIndex: 2,
@@ -52,8 +53,8 @@ class SimpleSearch extends React.Component {
         console.log(this.state.latitude)
         console.log(this.state.longitude)
         console.log('location', location)
-        this.props.setMapCenter(this.state.LatLng)
-        // console.log('this.props', this.props)
+        // commenting this out to use "simple search" component in add center place dialog
+        // this.props.setMapCenter(this.state.LatLng)
       })
       // .then(({ lat, lng }) =>
       //   console.log('Successfully got latitude and longitude', { lat, lng })
@@ -75,59 +76,53 @@ class SimpleSearch extends React.Component {
     //     console.log('Successfully got latitude and longitude', { lat, lng })
     //   )
     // this.props.setMapCenter(this.state.latitude)
-    return (
-      <div>
-        <p>{this.state.latitude}</p>
-        <p>{this.state.name}</p>
-      </div>
-    )
+    // return (
+    //   <div>
+    //     <p>{this.state.latitude}</p>
+    //     <p>{this.state.name}</p>
+    //   </div>
+    // )
   }
 
   render () {
     console.log(this.state)
     // console.log(this.state.user)
     return (
-      <div className="Search2-layout">
-        <Card>
-          <CardContent>
-            <GooglePlacesAutocomplete
-              style={style}
-              autocompletionRequest={{
-                componentRestrictions: {
-                  country: ['us', 'ca']
-                }
-              }}
-              onSelect={this.handleSelect}
-              renderInput={(props) => (
-                <div className="custom-wrapper">
-                  <input
-                  // Custom properties
-                    {...props}
-                  />
-                </div>
-              )}
-              renderSuggestions={(active, suggestions, onSelectSuggestion) => (
-                <div className="suggestions-container">
-                  {
-                    suggestions.map((suggestion) => (
-                      <div
-                        className="suggestion"
-                        onClick={(event) => onSelectSuggestion(suggestion, event)} key={suggestion.id}
-                      >
-                        {suggestion.description}
-                        {suggestion.location}
-                      </div>
-                    ))
-                  }
-                </div>
-              )}
-            />
-          </CardContent>
-          <p>{this.state.name}</p>
-          <p>{this.state.latitude}</p>
-          <p>{this.state.longitude}</p>
-        </Card>
-        <button onClick={() => this.props.setMapCenter(this.state.LatLng)}>set map center</button>
+      <div>
+        <GooglePlacesAutocomplete
+          style={style}
+          autocompletionRequest={{
+            componentRestrictions: {
+              country: ['us', 'ca']
+            }
+          }}
+          onSelect={this.handleSelect}
+          renderInput={(props) => (
+            <div className="custom-wrapper">
+              <input
+                style={{ width: '50%' }}
+                // Custom properties
+                {...props}
+              />
+            </div>
+          )}
+          renderSuggestions={(active, suggestions, onSelectSuggestion) => (
+            <div className="suggestions-container">
+              {
+                suggestions.map((suggestion) => (
+                  <div
+                    className="suggestion"
+                    onClick={(event) => onSelectSuggestion(suggestion, event)} key={suggestion.id}
+                  >
+                    {suggestion.description}
+                    {suggestion.location}
+                  </div>
+                ))
+              }
+            </div>
+          )}
+        />
+        <AddMap name={this.state.name} lat={this.state.latitude} lng={this.state.longitude} handleSubmitClose={this.props.handleSubmitClose} user={this.state.user}/>
       </div>
     )
   }

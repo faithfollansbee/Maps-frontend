@@ -18,13 +18,12 @@ import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
 // import AccordionPlaces from '../Places/AccordionPlaces'
 import Places from '../Places/Places'
-
 // import BestSearch from './bestsearch'
-import SimpleSearch from './SimpleSearch'
+// import SimpleSearch from '../CenterPlace/SimpleSearch'
 // import SetMapCoords from './MapCoords/SetMapCoords'
 import CenterPlaces from '../CenterPlace/CenterPlaces'
 import CenterPlace from '../CenterPlace/CenterPlace'
-import AddCenterPlace from '../CenterPlace/AddCenterPlace'
+// import AddCenterPlace from '../CenterPlace/AddCenterPlace'
 import SelectFromCenterPlace from '../CenterPlace/SelectFromCenterPlace'
 
 const GlobalStyle = createGlobalStyle`
@@ -146,8 +145,6 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/centerPlaces/'
             render={() => (<CenterPlaces setMapCenter={this.setMapCenter} user={user} mapCenter={this.state.mapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings}/>)}
           />
-          <AuthenticatedRoute user={user} path="/createCenterPlace"
-            render={() => (<AddCenterPlace user={user}/>)}/>
 
           <AuthenticatedRoute user={user} exact path='/centerPlaces/:id'
             render={() => (<CenterPlace setMapCenter={this.setMapCenter} user={user}/>)}/>
@@ -182,16 +179,19 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/places/:id'
             render={() => (<PlaceDetail user={user}/>)}/>
 
-          <AuthenticatedRoute user={user} path='/simplesearch'
-            render={() => (
-              <SimpleSearch user={user} setMapCenter={this.setMapCenter}/>
-            )}
-          />
         </main>
       </Fragment>
     )
   }
 }
+// <AuthenticatedRoute user={user} path='/simplesearch'
+//   render={() => (
+//     <SimpleSearch user={user} setMapCenter={this.setMapCenter}/>
+//   )}
+// />
+// <AuthenticatedRoute user={user} path="/createCenterPlace"
+//   render={() => (<AddCenterPlace user={user}/>)}/>
+
 // <Search2 user={user}/>
 // <AuthenticatedRoute user={user} path='/change-coords' render={() => (
 //   <SetMapCoords alert={this.alert} user={user} setMapCenter={this.state.setMapCenter} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter}/>

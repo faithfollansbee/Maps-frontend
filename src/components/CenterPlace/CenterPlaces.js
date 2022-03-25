@@ -1,9 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import Tooltip from '@material-ui/core/Tooltip'
-// import CenterPlace from './CenterPlace'
-import AddCenterPlaceDialog from './AddCenterPlaceDialog'
+import AddMapDialog from './AddMap/AddMapDialog'
 // import Card from '@material-ui/core/Card'
 // import CardActions from '@material-ui/core/CardActions'
 // import CardActionArea from '@material-ui/core/CardActionArea'
@@ -91,7 +89,7 @@ class CenterPlaces extends Component {
       <div className="Search2-layout">
         <Fragment>
           <h2 style={titleStyle}>Your Saved Maps</h2>
-          <AddCenterPlaceDialog user={this.props.user} />
+          <AddMapDialog user={this.props.user} />
           <div>
             {this.state.centerPlaces.length
               ? centerPlacesJSX

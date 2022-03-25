@@ -5,7 +5,6 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import IconButton from '@material-ui/core/IconButton'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import Divider from '@material-ui/core/Divider'
 import Tooltip from '@material-ui/core/Tooltip'
 import SettingsIcon from '@material-ui/icons/Settings'
 import ArrowForward from '@material-ui/icons/ArrowForward'
@@ -23,10 +22,10 @@ export default function AccountMenu ({ user }) {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Account settings">
-          <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
+          <IconButton onClick={handleClick} disableRipple size="medium" sx={{ ml: 2 }}>
             {/*  {user && <Avatar>{user.email.charAt(0).toUpperCase()}</Avatar>} */}
             {/* {user && <Avatar sx={{ width: 32, height: 32 }}>{user.email.charAt(0).toUpperCase()}</Avatar>} */}
-            <Avatar sx={{ width: 32, height: 32 }}>{user.email.charAt(0).toUpperCase()}</Avatar>
+            <Avatar style={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }} sx={{ width: 32, height: 32 }}>{user.email.charAt(0).toUpperCase()}</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -70,19 +69,6 @@ export default function AccountMenu ({ user }) {
         // transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         // anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem component="a" href="#">
-          <ListItemIcon>
-            <Avatar fontSize="small">{user.email.charAt(0).toUpperCase()}</Avatar>
-          </ListItemIcon>
-          Profile
-        </MenuItem>
-        <Divider />
-        <MenuItem component="a" href="#settings">
-          <ListItemIcon>
-            <SettingsIcon fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
         <MenuItem component="a" href="#change-password">
           <ListItemIcon>
             <SettingsIcon fontSize="small" />

@@ -21,12 +21,11 @@ const NavBarStyle = {
 
 const authenticatedOptions = (
   <Fragment>
-    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/places" href="#places"> Places </NavLink>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/places" href="#places"> Saved Places </NavLink>
     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/map" href="#map"> Map </NavLink>
-    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/simplesearch" href="#simplesearch"> SimpleSearch </NavLink>
-    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/centerplaces" href="#centerPlaces"> Center Places </NavLink>
     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/newmap" href="#newmap"> NewMap </NavLink>
 
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/centerplaces" href="#centerPlaces"> Saved Maps </NavLink>
   </Fragment>
 )
 

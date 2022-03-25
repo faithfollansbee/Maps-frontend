@@ -114,7 +114,7 @@ const InfoWindow = (props) => {
       </div>
       <div>
         <span style={{ color: 'lightgrey' }}>
-          {place.name}
+          {place.longName}
         </span>
       </div>
       <div style={{ fontSize: 14, color: 'green' }}>
