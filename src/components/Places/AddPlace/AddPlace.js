@@ -7,7 +7,7 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
+// import FormLabel from '@material-ui/core/FormLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
 
@@ -85,13 +85,14 @@ class AddPlace extends Component {
   render () {
     console.log(this.state)
     const { handleSubmitClose } = this.props
+    // <FormLabel id="demo-controlled-radio-buttons-group"></FormLabel>
+
     return (
       // 🍕🍺🍿🏠🏛🌲🥡
-      <div margin="auto">
+      <div margin="auto" style={{ marginTop: '15px' }}>
         <Form onSubmit={this.handleSubmit}>
           <div className="col">
             <FormControl>
-              <FormLabel id="demo-controlled-radio-buttons-group">Type</FormLabel>
               <RadioGroup aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
                 //     name="controlled-radio-buttons-group"
@@ -140,14 +141,14 @@ class AddPlace extends Component {
                     </div>}
                   label="Bar" />
 
-                <FormControlLabel value="historical landmark"
+                <FormControlLabel value="landmark"
                   control={
                     <div>
                       <Radio
-                        checked={this.state.type === 'historical landmark'}
+                        checked={this.state.type === 'landmark'}
                         onChange={this.handleOptionChange}
-                        value="historical landmark"
-                        name="historical landmark"
+                        value="landmark"
+                        name="landmark"
                         inputProps={{ 'aria-label': 'historical landmark' }} />
                       <img src={require('../../Icons/monument.png')} alt="monument" />
                     </div>}
@@ -208,16 +209,13 @@ class AddPlace extends Component {
             </FormControl>
           </div>
           <DialogActions>
-            <Button onClick={handleSubmitClose} color="primary">
+            <Button onClick={handleSubmitClose} variant="dark" color="primary">
                Cancel
             </Button>
-            <Button onClick={this.handleSubmit} type="submit" color="primary">
+            <Button onClick={this.handleSubmit} variant="dark" type="submit" color="primary">
                Submit
             </Button>
           </DialogActions>
-          <Button variant="dark" color="primary" type="submit">
-            Submit
-          </Button>
         </Form>
       </div>
     )

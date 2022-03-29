@@ -54,8 +54,8 @@ class AddMap extends Component {
   render () {
     console.log(this.props)
     return (
-      <DialogActions>
-        <Button onClick={this.handleSubmit} variant="contained" type="submit">
+      <DialogActions style={{ marginTop: '15px' }}>
+        <Button onClick={this.handleSubmit} type="submit">
           Submit
         </Button>
         <Button onClick={this.props.handleSubmitClose}>Close</Button>

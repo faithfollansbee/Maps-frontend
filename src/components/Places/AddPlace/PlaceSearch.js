@@ -5,8 +5,11 @@ import AddPlace from './AddPlace'
 
 const style = {
   zIndex: 2,
-  position: 'absolute',
-  padding: 15,
+  // position: 'absolute',
+  position: 'relative',
+  padding: '20px',
+  marginBottom: '20px',
+  marginTop: '15px',
   width: '50px'
 }
 const style2 = {
@@ -14,6 +17,9 @@ const style2 = {
   position: 'absolute',
   margin: 15,
   padding: 15
+}
+const inputStyle = {
+  width: '50%'
 }
 class PlaceSearch extends React.Component {
   state = {
@@ -77,10 +83,11 @@ class PlaceSearch extends React.Component {
   }
 
   render () {
+    console.log(this.props)
     console.log(this.state)
     const { handleSubmitClose } = this.props
     return (
-      <div className="Search2-layout">
+      <div style={{ marginTop: '15px' }}>
         <GooglePlacesAutocomplete
           style={style}
           autocompletionRequest={{
@@ -88,17 +95,19 @@ class PlaceSearch extends React.Component {
               country: ['us', 'ca']
             }
           }}
+          placeholder="search..."
           onSelect={this.handleSelect}
           renderInput={(props) => (
             <div className="custom-wrapper">
               <input
-              // Custom properties
+                style={inputStyle}
+                // Custom properties
                 {...props}
               />
             </div>
           )}
           renderSuggestions={(active, suggestions, onSelectSuggestion) => (
-            <div className="suggestions-container">
+            <div className="suggestions-container" >
               {
                 suggestions.map((suggestion) => (
                   <div

@@ -10,7 +10,7 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
-import MapContainer from './Map/Container'
+// import MapContainer from './Map/Container'
 import Map from './Map/Map'
 import PlaceDetail from '../Places/PlaceDetail'
 import Background from './Background'
@@ -143,12 +143,6 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/centerPlaces/:id'
             render={() => (<CenterPlace setMapCenter={this.setMapCenter} user={user}/>)}/>
 
-          <AuthenticatedRoute user={user} exact path='/newmap' render={() => (
-            <div>
-              <MapContainer user={user} mapCenter={this.state.mapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
-              <SelectAMap setMapCenter={this.setMapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
-            </div>
-          )} />
           <AuthenticatedRoute user={user} exact path='/map' render={() => (
             <div>
               <Map user={user} mapCenter={this.state.mapCenter} mapCenterArr={this.state.mapCenterArr} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>

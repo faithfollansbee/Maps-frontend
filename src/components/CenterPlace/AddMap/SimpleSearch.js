@@ -9,7 +9,9 @@ const style = {
   // position: 'absolute',
   // overflow: 'hidden',
   // overflowY: 'scroll',
-  padding: 15,
+  padding: '20px',
+  marginBottom: '20px',
+  marginTop: '15px',
   width: '50px'
 }
 const suggestionsStyle = {
@@ -95,7 +97,7 @@ class SimpleSearch extends React.Component {
     console.log(this.props)
     // console.log(this.state.user)
     return (
-      <div>
+      <div style={{ marginTop: '15px' }}>
         <GooglePlacesAutocomplete
           // apiKey={this.props.apiKey}
           style={style}
@@ -105,6 +107,7 @@ class SimpleSearch extends React.Component {
             }
           }}
           onSelect={this.handleSelect}
+          placeholder="search..."
           renderInput={(props) => (
             <div className="custom-wrapper">
               <input

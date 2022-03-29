@@ -191,6 +191,8 @@ class Map extends React.Component {
             center={this.props.mapCenterArr}
             onGoogleApiLoaded={({ map, maps }) => console.log(map, maps)}
             yesIWantToUseGoogleMapApiInternals={true}
+            // event listener, when child is clicked, get it as param
+            // onChildClick={(child) => {}}
           >
             {this.displayMarkers()}
           </GoogleMapReact>
