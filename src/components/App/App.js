@@ -10,21 +10,18 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
-import MapContainer from './Container'
-import NewMap from './NewMap'
-// import Place from '../Places/Place'
+import MapContainer from './Map/Container'
+import Map from './Map/Map'
 import PlaceDetail from '../Places/PlaceDetail'
 import Background from './Background'
 import { createGlobalStyle } from 'styled-components'
-// import AccordionPlaces from '../Places/AccordionPlaces'
 import Places from '../Places/Places'
-// import BestSearch from './bestsearch'
-// import SimpleSearch from '../CenterPlace/SimpleSearch'
+import SimpleSearch from '../CenterPlace/AddMap/SimpleSearch'
 // import SetMapCoords from './MapCoords/SetMapCoords'
 import CenterPlaces from '../CenterPlace/CenterPlaces'
 import CenterPlace from '../CenterPlace/CenterPlace'
 // import AddCenterPlace from '../CenterPlace/AddCenterPlace'
-import SelectFromCenterPlace from '../CenterPlace/SelectFromCenterPlace'
+import SelectAMap from '../CenterPlace/SelectAMap'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -64,17 +61,13 @@ class App extends Component {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
   setMapCenter = (LatLng) => {
-    // console.log(this.props)
     console.log(LatLng)
-    // console.log(LatLng.name)
-    // console.log({ lat: LatLng.latitude, lng: LatLng.longitude })
     const coordSet = { lat: LatLng.latitude, lng: LatLng.longitude }
     const coordArr = [ Number(LatLng.latitude), Number(LatLng.longitude) ]
     console.log(coordArr)
     // this.setState({ mapCenter: LatLng })
     this.setState({ mapCenter: coordSet, mapCenterArr: coordArr })
     this.setState({ mapSettings: LatLng })
-    // this.setState({ currMap: LatLng.name })
     this.setState({
       currMap: {
         name: LatLng.name,
@@ -120,6 +113,7 @@ class App extends Component {
     const { alerts, user } = this.state
     console.log('app state', this.state)
     console.log('app curr Map state', this.state.currMap)
+    console.log(this.apiKey)
     // console.log(location)
     // console.log(this.state.user)
     // console.log(this.state)
@@ -149,19 +143,23 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/centerPlaces/:id'
             render={() => (<CenterPlace setMapCenter={this.setMapCenter} user={user}/>)}/>
 
-          <AuthenticatedRoute user={user} exact path='/map' render={() => (
-            <div>
-              <MapContainer user={user} mapCenter={this.state.mapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
-              <SelectFromCenterPlace setMapCenter={this.setMapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
-            </div>
-          )} />
           <AuthenticatedRoute user={user} exact path='/newmap' render={() => (
             <div>
-              <NewMap user={user} mapCenter={this.state.mapCenter} mapCenterArr={this.state.mapCenterArr} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
-              <SelectFromCenterPlace setMapCenter={this.setMapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
+              <MapContainer user={user} mapCenter={this.state.mapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
+              <SelectAMap setMapCenter={this.setMapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
             </div>
           )} />
-
+          <AuthenticatedRoute user={user} exact path='/map' render={() => (
+            <div>
+              <Map user={user} mapCenter={this.state.mapCenter} mapCenterArr={this.state.mapCenterArr} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
+              <SelectAMap setMapCenter={this.setMapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
+            </div>
+          )} />
+          <AuthenticatedRoute user={user} path='/simplesearch'
+            render={() => (
+              <SimpleSearch apiKey={this.apiKey} user={user} setMapCenter={this.setMapCenter}/>
+            )}
+          />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser}/>
           )} />

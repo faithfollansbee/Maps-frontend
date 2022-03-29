@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import InputLabel from '@material-ui/core/InputLabel'
+import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-// import Menu from '@material-ui/core/Menu'
-// import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import Button from '@material-ui/core/Button'
-// import Snackbar from '@material-ui/core/Snackbar'
+import FormControl from '@material-ui/core/FormControl'
+import FormHelperText from '@material-ui/core/FormHelperText'
+// import Button from '@material-ui/core/Button'
+// import Paper from '@material-ui/core/Paper'
 
-const buttonStyle = {
-  display: 'block',
-  marginTop: 'theme.spacing(2)'
-}
+// const buttonStyle = {
+//   display: 'block',
+//   marginTop: 'theme.spacing(2)'
+// }
 // const formControlStyle = {
 //   margin: 'theme.spacing(1)',
 //   minWidth: 120
 // }
-class SelectFromCenterPlace extends Component {
+const inputStyle = {
+  position: 'relative'
+}
+const formControlStyle = {
+  minWidth: '120px'
+}
+class SelectAMap extends Component {
   constructor (props) {
     super(props)
 
@@ -26,7 +32,8 @@ class SelectFromCenterPlace extends Component {
       isLoading: true,
       filtered: false,
       open: false,
-      mapCenter: ''
+      mapCenter: '',
+      currMap: this.props.currMap
       // mapSettings: props.mapSettings
       // centerPlace: ''
       // map: ''
@@ -71,36 +78,45 @@ class SelectFromCenterPlace extends Component {
 
   render (props) {
     const { centerPlaces, open } = this.state
-    // console.log('select state', this.state)
-    // console.log('select props', this.props)
-
+    console.log('select state', this.state)
+    console.log('select props', this.props)
+    console.log(this.props.currMap.name)
+    // <Button style={buttonStyle} onClick={this.handleOpen} aria-controls="simple-menu">
+    //    View Other Map
+    // </Button>
     return (
-      <div className="Search2-layout">
-        <Button style={buttonStyle} onClick={this.handleOpen} aria-controls="simple-menu">
-           View Other Map
-        </Button>
-        <Select
-          labelId="select"
-          id="demo-simple-select"
-          onClose={this.handleClose}
-          onOpen={this.handleOpen}
-          defaultValue=''
-          open={open}
-          // value={mapSettings.name}
-          // value={mapCenter}
-          onChange={this.handleChange}
-          // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-        >
-          { centerPlaces.map(centerPlace => (
-            <MenuItem key={centerPlace._id} value={centerPlace}
-              onClick={this.handleChange}
-              // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-            >{centerPlace.name}</MenuItem>
-          ))}
-        </Select>
+      <div className="SelectMap">
+        <FormControl style={formControlStyle}>
+          <InputLabel id="simple-select-label">{this.props.currMap.name}</InputLabel>
+          <Select
+            style={{ position: 'relative' }}
+            // labelId="select"
+            // id="demo-simple-select"
+            labelId="simple-select-label"
+            id="simple-select"
+            onClose={this.handleClose}
+            onOpen={this.handleOpen}
+            // defaultValue=''
+            // defaultValue={this.props.currMap.name}
+            open={open}
+            value={name}
+            // value={this.props.currMap.name}
+            // value={mapSettings.name}
+            onChange={this.handleChange}
+            // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+          >
+            { centerPlaces.map(centerPlace => (
+              <MenuItem key={centerPlace._id} value={centerPlace}
+                onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
+                // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+              >{centerPlace.name}</MenuItem>
+            ))}
+          </Select>
+          <FormHelperText>Current Map</FormHelperText>
+
+        </FormControl>
         <h5>select props.mapSettings.name: {this.props.mapSettings.name}</h5>
         <h5>select props.currMap.name: {this.props.currMap.name}</h5>
-
       </div>
     )
   }
@@ -112,4 +128,4 @@ class SelectFromCenterPlace extends Component {
 // ))
 // {centerPlacesJSX}
 
-export default SelectFromCenterPlace
+export default SelectAMap

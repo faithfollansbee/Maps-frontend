@@ -6,23 +6,18 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
-import IconButton from '@material-ui/core/IconButton'
-// import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CardHeader from '@material-ui/core/CardHeader'
 import EditCenterPlaceMenu from './EditCenterPlace/EditCenterPlaceMenu'
-import Button from '@material-ui/core/Button'
 import Tooltip from '@material-ui/core/Tooltip'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
 import EditIcon from '@material-ui/icons/Edit'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import styles from './CenterPlaceStyles'
 import Typography from '@material-ui/core/Typography'
-
+import GradeIcon from '@material-ui/icons/Grade'
 // import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
 
-// import EditCenterPlaceMenu from './EditCenterPlaceMenu'
-class CenterPlace extends Component {
+class UserMap extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -172,27 +167,18 @@ class CenterPlace extends Component {
             />
             <CardContent style={{ padding: '2px 18px' }}>
               <Typography>
-                <span style={{ color: 'orange' }}>
-                  {centerPlace.name} {' '}
-                </span>
                 <span style={{ color: 'grey' }}>
                   {centerPlace.name} {' '}
-                </span>
-                <span style={{ color: 'green' }}>
-                  {centerPlace.name} {' '}
-                </span>
-                <span style={{ color: 'lightgrey' }}>
-                  {centerPlace.name}
                 </span>
               </Typography>
             </CardContent>
             <CardActions style={{ padding: '0px 12px 4px' }}>
-              <Tooltip title="edit">
-                <IconButton aria-label="edit" size="small" variant="contained" disableRipple>
-                  <EditIcon fontSize="small"/>
-                </IconButton>
+              <Tooltip title="use this map">
+                <GradeIcon fontSize="small" onClick={(e) => this.props.handleClick(centerPlace)}/>
               </Tooltip>
-              <Button onClick={(e) => this.props.handleClick(centerPlace)}> Set Map Center</Button>
+              <Tooltip title="edit">
+                <EditIcon fontSize="small"/>
+              </Tooltip>
             </CardActions>
           </CardActionArea>
         </Card>
@@ -265,7 +251,7 @@ class CenterPlace extends Component {
 //     <Button onClick={(e) => this.props.handleClick(centerPlace)} > Set Map Center</Button>
 //   </CardActions>
 // </Card>
-export default withRouter((withStyles(styles)(CenterPlace)))
+export default withRouter((withStyles(styles)(UserMap)))
 // export default withStyles(styles, { withTheme: true })(CenterPlace)
 
 // export default withRouter(CenterPlace)

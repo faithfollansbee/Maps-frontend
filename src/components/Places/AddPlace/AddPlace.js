@@ -87,7 +87,7 @@ class AddPlace extends Component {
     const { handleSubmitClose } = this.props
     return (
       // 🍕🍺🍿🏠🏛🌲🥡
-      <div className="Search2-layout" margin="auto">
+      <div margin="auto">
         <Form onSubmit={this.handleSubmit}>
           <div className="col">
             <FormControl>

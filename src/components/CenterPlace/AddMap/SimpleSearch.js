@@ -1,15 +1,21 @@
 import React from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
-// import Card from '@material-ui/core/Card'
-// import CardContent from '@material-ui/core/CardContent'
 import 'react-google-places-autocomplete/dist/assets/index.css'
 import AddMap from './AddMap'
 
 const style = {
-  zIndex: 2,
-  position: 'absolute',
+  zIndex: 10,
+  position: 'relative',
+  // position: 'absolute',
+  // overflow: 'hidden',
+  // overflowY: 'scroll',
   padding: 15,
   width: '50px'
+}
+const suggestionsStyle = {
+  // position: 'absolute'
+  overflow: 'hidden'
+  // height: 'fit-content'
 }
 // const style2 = {
 //   zIndex: 1,
@@ -86,10 +92,12 @@ class SimpleSearch extends React.Component {
 
   render () {
     console.log(this.state)
+    console.log(this.props)
     // console.log(this.state.user)
     return (
       <div>
         <GooglePlacesAutocomplete
+          // apiKey={this.props.apiKey}
           style={style}
           autocompletionRequest={{
             componentRestrictions: {
@@ -107,7 +115,7 @@ class SimpleSearch extends React.Component {
             </div>
           )}
           renderSuggestions={(active, suggestions, onSelectSuggestion) => (
-            <div className="suggestions-container">
+            <div className="suggestions" style={suggestionsStyle}>
               {
                 suggestions.map((suggestion) => (
                   <div

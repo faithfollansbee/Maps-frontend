@@ -1,11 +1,7 @@
-// import React, { Component } from 'react'
 import React from 'react'
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
-// import MarkerWithInfoWindow from './Marker'
-// import Tooltip from '@material-ui/core/Tooltip'
-
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
+import apiUrl from '../../../apiConfig'
 
 const style = {
   position: 'relative',
@@ -41,7 +37,6 @@ class MapContainer extends React.Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {}
-      // isOpen: false
     }
   }
 
@@ -59,17 +54,7 @@ class MapContainer extends React.Component {
     }
   }
 
-  // onMarkerClick = (props, marker, e) => {
-  //   console.log(props)
-  //   // this.setState({
-  //   // selectedPlace: props,
-  //   // activeMarker: marker
-  //   // })
-  // }
   onMarkerClick = (props, marker, e) => {
-    // console.log(props.title)
-    // console.log(props)
-    // console.log(marker)
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -89,7 +74,6 @@ class MapContainer extends React.Component {
     this.setState({
       mapCenter: ''
     })
-    // console.log('called setMapCenter from Container')
   }
   windowOpened = () => {
     // console.log('window opened')
@@ -98,22 +82,13 @@ class MapContainer extends React.Component {
     // console.log('window closed')
   }
 
-  // onToggleOpen = () => {
-  //   this.setState({
-  //     isOpen: !this.state.isOpen
-  //   })
-  // }
-
   displayMarkers = () => {
     return this.state.places.map((place, index) => {
       if (place.type === 'restaurant') {
         return <Marker key={index} id={index}
           title={place.name}
           name={place.name}
-          label={place.emoji}
           markerImage={place.emoji}
-          // place={place}
-          // emoji={place.emoji}
           position={{
             lat: place.latitude,
             lng: place.longitude
@@ -143,7 +118,6 @@ class MapContainer extends React.Component {
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: '/bar.ico' }}
-        // icon={{ url: 'https://img.icons8.com/plasticine/50/000000/wine-glass.png' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'museum') {
         return <Marker key={index} id={index} name={place.name} position={{
@@ -171,61 +145,12 @@ class MapContainer extends React.Component {
   }
 
   render (props) {
-    // const mapMarkersJsx = this.state.places.map((place, index) => {
-    //   return (
-    //     <MapMarker place={place} name={place.name} key={index} title={place.name} position={{ lat: place.latitude, lng: place.longitude }} id={index} />
-    //   )
-    // })
-    // const { places } = this.state
+    // console.log(props)
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
-    console.log('container state', this.state)
-    console.log('container props', this.props)
-    // console.log('container props.currMap', this.props.currMap)
-    // props.google.maps.InfoWindow
-    if (this.props.mapCenter.length === 0) {
-      return (
-        <div className="Search2-layout">
-          { this.props.mapCenter && (
-            <div style={divstyle}>
-              <Map
-                onClick={this.onMapClicked}
-                style={style}
-                containerStyle={containerStyle}
-                google={window.google}
-                zoom={13}
-                apiKey={this.props.apiKey}
-                initialCenter={{
-                  lat: 42.3600825,
-                  lng: -71.0588801
-                }}
-              >
-                {this.displayMarkers()}
-                <InfoWindow
-                  marker={this.state.activeMarker}
-                  visible={this.state.showingInfoWindow}
-                  // marker={this.props.place}
-                  onOpen={this.windowOpened}
-                  onClose={this.windowClosed}
-                  // visible={true}
-                ><div>{this.state.selectedPlace.name}</div>
-                </InfoWindow>
-              </Map>
-            </div>
-          )}
-        </div>
-      )
-    }
-    // <InfoWindow
-    //   marker={this.state.activeMarker}
-    //   visible={this.state.showingInfoWindow}
-    //   // marker={this.props.place}
-    //   onOpen={this.windowOpened}
-    //   onClose={this.windowClosed}
-    //   // visible={true}
-    // >{this.state.selectedPlace.name}
-    // </InfoWindow>
+    // console.log('container state', this.state)
+    // console.log('container props', this.props)
     return (
       <div className="Search2-layout">
         <div style={divstyle}>
@@ -236,12 +161,7 @@ class MapContainer extends React.Component {
             zoom={13}
             containerStyle={containerStyle}
             apiKey={this.props.apiKey}
-            // initialCenter={this.props.mapSettings}
             initialCenter={this.props.currMap.currCoords}
-            // initialCenter={{
-            //   lat: 42.8125913,
-            //   lng: -70.87727509999999
-            // }}
             center={this.props.mapCenter}
           >
             {this.displayMarkers()}
@@ -261,28 +181,6 @@ class MapContainer extends React.Component {
     )
   }
 }
-// class TrialMarker extends React.Component {
-//   state = { open: false }
-//   render () {
-//     // console.log(this.props)
-//     const { name, position, place, key } = this.props
-//     // place={place} index={index} name={place.name}
-//     //   position={{ lat: place.latitude, lng: place.longitude }} key={index}
-//     return (
-//       <Marker position={position} place={place} key={key}>
-//         {this.state.open && (
-//           <InfoWindow onClick={() => this.setState(state => ({ open: !state.open }))}> {name} </InfoWindow>
-//         )}
-//       </Marker>
-//     )
-//   }
-// }
-// <Marker
-//   name={'current location'}/>
-// <Marker
-//   name={'Dolores park'}
-//   position={{ lat: 37.759703, lng: -122.428093 }} icon={'🍕'} />
-
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY
 })(MapContainer)

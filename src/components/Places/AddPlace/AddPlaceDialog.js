@@ -31,8 +31,8 @@ export default function AddPlaceDialog (props) {
         fullWidth={true}
         maxWidth="md"
         open={open} onClose={handleClose}>
-        <DialogTitle id="form-dialog-title">Title</DialogTitle>
-        <DialogContent>
+        <DialogTitle id="form-dialog-title">Add a place</DialogTitle>
+        <DialogContent dividers>
           <DialogContentText>
             To save a place to your map, search for it below. Then, pick a category by the icon you want to represent it on your map.
           </DialogContentText>

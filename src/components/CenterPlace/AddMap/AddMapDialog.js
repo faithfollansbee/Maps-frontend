@@ -7,9 +7,9 @@ import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import SimpleSearch from './SimpleSearch'
-// import GenreForm from './GenreForm'
-// import AddCenterPlace from './AddCenterPlace'
-// import GenreDialogForm from './GenreDialogForm'
+import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import DialogActions from '@material-ui/core/DialogActions'
 
 export default function AddMapDialog (props) {
   const [open, setOpen] = React.useState(false)
@@ -22,26 +22,34 @@ export default function AddMapDialog (props) {
     setOpen(false)
     console.log('called handleClose / handleSubmitClose')
   }
-  // console.log('props.user', props.user)
   return (
     <div>
       <Tooltip title="Add new map">
-        <IconButton onClick={handleClickOpen}>
+        <IconButton onClick={handleClickOpen} style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
           <AddIcon/>
         </IconButton>
       </Tooltip>
-      <Dialog
+      <Dialog style={{ marginTop: '33px', paddingBottom: '15px' }}
         user={props.user}
         fullWidth={true}
         maxWidth="md"
+        maxHeight=""
         open={open} onClose={handleClose}>
-        <DialogTitle id="form-dialog-title">Add a new map</DialogTitle>
-        <DialogContent user={props.user}>
-          <DialogContentText>
+        <DialogTitle id="form-dialog-title">Save a map</DialogTitle>
+        <DialogContent user={props.user} dividers style={{ backgroundColor: 'white' }}>
+          <DialogContentText gutterBottom>
               Search for a
           </DialogContentText>
+          <Typography gutterBottom>
+            Search for your favorite city or town and save it here! Then start adding your favorite places (bars, restaraunts, museums, etc)
+            or other locations <b>here</b>.
+            Then, save your favorite places or spots you want to check out <b>here</b>
+          </Typography>
           <SimpleSearch user={props.user} handleSubmitClose={handleClose}/>
         </DialogContent>
+        <DialogActions>
+          <Button>Hello</Button>
+        </DialogActions>
       </Dialog>
     </div>
   )

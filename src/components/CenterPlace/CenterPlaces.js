@@ -2,19 +2,10 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import AddMapDialog from './AddMap/AddMapDialog'
-// import Card from '@material-ui/core/Card'
-// import CardActions from '@material-ui/core/CardActions'
-// import CardActionArea from '@material-ui/core/CardActionArea'
-// import CardHeader from '@material-ui/core/CardHeader'
-// import IconButton from '@material-ui/core/IconButton'
-// import FavoriteIcon from '@material-ui/icons/Favorite'
-// import EditIcon from '@material-ui/icons/Edit'
-// import EditCenterPlaceMenu from './EditCenterPlace/EditCenterPlaceMenu'
 import CenterPlace from './CenterPlace'
 
 const titleStyle = {
   color: 'black',
-  // fontSize: '40px',
   margin: 'auto',
   textAlign: 'center'
 }
@@ -44,7 +35,6 @@ class CenterPlaces extends Component {
         }
       })
       this.setState({ centerPlaces: response.data.centerPlaces, isLoading: false })
-      // this.setState({ userGenres: response.data.genres })
     } catch (error) {
     }
   }

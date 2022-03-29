@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../../apiConfig'
 import Button from '@material-ui/core/Button'
-import Form from 'react-bootstrap/Form'
+// import Form from 'react-bootstrap/Form'
 import DialogActions from '@material-ui/core/DialogActions'
 // import AddMapForm from './AddMapForm'
 import { withRouter } from 'react-router-dom'
@@ -54,25 +54,12 @@ class AddMap extends Component {
   render () {
     console.log(this.props)
     return (
-      <div>
-        <Form onSubmit={this.handleSubmit} style={{ height: '300px' }}>
-          <div>
-            {this.props.name}
-          </div>
-          <div>
-            {this.props.lat}
-          </div>
-          <span>
-            {this.props.lng}
-          </span>
-          <DialogActions>
-            <Button variant="dark" type="submit">
-              Submit
-            </Button>
-            <Button onClick={this.props.handleSubmitClose} color="primary">Close</Button>
-          </DialogActions>
-        </Form>
-      </div>
+      <DialogActions>
+        <Button onClick={this.handleSubmit} variant="contained" type="submit">
+          Submit
+        </Button>
+        <Button onClick={this.props.handleSubmitClose}>Close</Button>
+      </DialogActions>
     )
   }
 }

@@ -1,6 +1,6 @@
 .InfoWindow {
   position: relative;
-  bottom: 150px;
+  bottom: 110px;
   left: -45px;
   width: 220px;
   /* background: white; */
@@ -12,12 +12,12 @@
 }
 
 
-/* .InfoWindow:hover .xButton {
-  opacity: 1;
-} */
-.xButton:hover {
+.InfoWindow:hover .xButton {
   opacity: 1;
 }
+/* .xButton:hover {
+  opacity: 1;
+} */
 
 .xButton {
   background: none;

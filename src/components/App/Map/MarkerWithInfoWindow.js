@@ -1,5 +1,5 @@
 import React from 'react'
-import placeTypes from '../App/PlaceTypes'
+import placeTypes from '../PlaceTypes'
 import CloseIcon from '@material-ui/icons/Close'
 // import IconButton from '@material-ui/core/IconButton'
 import './MarkerStyle.css'
@@ -9,6 +9,7 @@ import './MarkerStyle.css'
 // <img src={restaurant} alt="pizza" />
 // <img src={'restaurant'} alt="pizza" />
 const markerStyle = {
+  fontFamily: 'sans-serif'
   // color: 'red',
   // background: 'grey',
   // padding: '15px 10px',
@@ -45,7 +46,7 @@ class MarkerWithInfoWindow extends React.Component {
   }
 
   render (props) {
-    console.log(this.props)
+    // console.log(this.props)
     // const style = this.props.$hover ? markerStyleHover : markerStyle
     const style = this.state.isOpen ? markerStyleHover : markerStyle
 
@@ -53,7 +54,6 @@ class MarkerWithInfoWindow extends React.Component {
       <div style={style} onClick={this.onToggleOpen}>
         {placeTypes.map((placeType) => {
           if (placeType.placeType === this.props.type) {
-            // return <h4 key={placeType.id} style={{}}> {placeType.emoji} </h4>
             return <div key={placeType.id}> <img src={placeType.img} /></div>
           }
         })}
@@ -64,6 +64,22 @@ class MarkerWithInfoWindow extends React.Component {
     )
   }
 }
+// <div style={style} onClick={this.onToggleOpen}>
+//   <h5 key={this.props.id}>{this.props.emoji}</h5>
+//   {this.state.isOpen &&
+//     <InfoWindow place={this.props.place} />
+//   }
+// </div>
+// <div style={style} onClick={this.onToggleOpen}>
+//   {placeTypes.map((placeType) => {
+//     if (placeType.placeType === this.props.type) {
+//       return <div key={placeType.id}> <img src={placeType.img} /></div>
+//     }
+//   })}
+//   {this.state.isOpen &&
+//     <InfoWindow place={this.props.place} />
+//   }
+// </div>
 // <div onCloseClick={this.onToggleOpen}>
 //   <h5>{this.props.name}</h5>
 // </div>}
@@ -103,23 +119,15 @@ const InfoWindow = (props) => {
       <div style={{ fontSize: 16 }}>
         {place.name}
       </div>
-      <div style={{ fontSize: 14 }}>
-        <span style={{ color: 'grey' }}>
-          {place.type}
-          {' '}
-        </span>
-        <span style={{ color: 'orange' }}>
-          {place.type}
-        </span>
-      </div>
-      <div>
+      <div style={{ fontSize: 13 }}>
         <span style={{ color: 'lightgrey' }}>
           {place.longName}
+          {' '}
         </span>
       </div>
-      <div style={{ fontSize: 14, color: 'green' }}>
-        {'Open'}
-      </div>
+      <span style={{ color: 'orange' }}>
+        {place.type}
+      </span>
     </div>
   )
 }

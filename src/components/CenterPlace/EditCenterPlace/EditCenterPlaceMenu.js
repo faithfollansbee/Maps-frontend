@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -33,9 +33,7 @@ export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, typ
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="options">
-          <IconButton disableRipple onClick={handleClick}>
-            <MoreVertIcon fontSize="medium" />
-          </IconButton>
+          <MoreVertIcon onClick={handleClick} fontSize="medium" />
         </Tooltip>
       </Box>
       <Menu
@@ -81,7 +79,7 @@ export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, typ
         // id={this.state.genre._id} genre={this.state.genre} user={this.props.user}
       >
         <EditCenterPlaceDialog onMenuClose={handleClose} type={type} id={id} centerPlace={centerPlace} user={user} />
-        <MenuItem onClick={deleteCenterPlace} centerPlace={centerPlace} user={user} id={id} compponent="#">
+        <MenuItem onClick={deleteCenterPlace} user={user} id={id} component="a">
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>
