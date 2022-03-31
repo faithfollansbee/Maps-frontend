@@ -2,15 +2,15 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-// import IconButton from '@material-ui/core/IconButton'
+import IconButton from '@material-ui/core/IconButton'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
+import GradeIcon from '@material-ui/icons/Grade'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditCenterPlaceDialog from './EditCenterPlaceDialog'
-// import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
-export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, type, deleteCenterPlace }) {
+export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, type, deleteCenterPlace, clickStarIcon }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -24,16 +24,14 @@ export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, typ
     setAnchorEl(null)
     console.log('EditCenterPlaceMenu closed')
   }
-  // const handleClickAway = () => {
-  //   // setAnchorEl(null)
-  //   console.log('clicked away')
-  // }
 
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="options">
-          <MoreVertIcon onClick={handleClick} fontSize="medium" />
+          <IconButton disableRipple onClick={handleClick}>
+            <MoreVertIcon onClick={handleClick} fontSize="medium" />
+          </IconButton>
         </Tooltip>
       </Box>
       <Menu
@@ -84,6 +82,12 @@ export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, typ
             <DeleteIcon />
           </ListItemIcon>
           Delete
+        </MenuItem>
+        <MenuItem onClick={(e) => clickStarIcon(centerPlace)} user={user} id={id} component="a">
+          <ListItemIcon>
+            <GradeIcon />
+          </ListItemIcon>
+          Select
         </MenuItem>
       </Menu>
     </React.Fragment>

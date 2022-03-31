@@ -147,7 +147,7 @@ class EditPlaceForm extends Component {
                   checked={this.state.type === type.id}
                   onChange={this.handleOptionChange}
                 />
-                {type.emoji}
+                <img src={type.img} />
               </div>
             }
             // checked={this.state.type === type.id}

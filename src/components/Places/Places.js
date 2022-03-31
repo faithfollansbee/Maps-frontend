@@ -133,8 +133,10 @@ class Places extends Component {
     console.log(this.state)
     return (
       <div className="Search2-layout">
-        <h1 style={headingStyle}>Saved Places</h1>
-        <AddPlaceDialog user={this.props.user} />
+        <div style={{ display: 'flex', margin: '10px', alignItems: 'center' }}>
+          <h1 style={headingStyle}>Saved Places</h1>
+          <AddPlaceDialog user={this.props.user} />
+        </div>
         <List style={style}>
           {this.state.places.length
             ? placesJsx

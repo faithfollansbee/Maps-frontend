@@ -5,15 +5,14 @@ import apiUrl from '../../apiConfig'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
+// import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
 import EditCenterPlaceMenu from './EditCenterPlace/EditCenterPlaceMenu'
 import Tooltip from '@material-ui/core/Tooltip'
-import EditIcon from '@material-ui/icons/Edit'
 import classNames from 'classnames'
 import { withStyles } from '@material-ui/core/styles'
 import styles from './CenterPlaceStyles'
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
 import GradeIcon from '@material-ui/icons/Grade'
 // import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
 
@@ -150,34 +149,24 @@ class UserMap extends Component {
         <Card
           variant="outlined"
           // if this centerPlace matches the map id, apply style to differentiate
-          className={ classNames(classes.lightClass, {
-            [classes.darkClass]: mapSettings._id === centerPlace._id
-          })}
-          // onClick={this.handleClick}
-          // onClick={(e) => this.handleClick(centerPlace)}
-          // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
+          // className={ classNames(classes.lightClass, {
+          //   [classes.darkClass]: mapSettings._id === centerPlace._id
+          // })}
         >
-          <CardActionArea style={{ color: 'inherit', textDecoration: 'none' }} >
+          <CardActionArea style={{ textDecoration: 'none' }}>
             <CardHeader
+              id="CardHeader"
               style={{ padding: '12px 16px 2px' }}
               action={
-                <EditCenterPlaceMenu id={this.state.centerPlace._id} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
+                <EditCenterPlaceMenu id={this.state.centerPlace._id} clickStarIcon={this.props.handleClick} centerPlace={this.state.centerPlace} user={this.props.user} deleteCenterPlace={this.handleDelete} />
               }
               title={centerPlace.name}
             />
-            <CardContent style={{ padding: '2px 18px' }}>
-              <Typography>
-                <span style={{ color: 'grey' }}>
-                  {centerPlace.name} {' '}
-                </span>
-              </Typography>
-            </CardContent>
-            <CardActions style={{ padding: '0px 12px 4px' }}>
+            <CardActions style={{ padding: '0px 12px 4px' }} className={ classNames(classes.lightClass, {
+              [classes.darkClass]: mapSettings._id === centerPlace._id
+            })}>
               <Tooltip title="use this map">
                 <GradeIcon fontSize="small" onClick={(e) => this.props.handleClick(centerPlace)}/>
-              </Tooltip>
-              <Tooltip title="edit">
-                <EditIcon fontSize="small"/>
               </Tooltip>
             </CardActions>
           </CardActionArea>

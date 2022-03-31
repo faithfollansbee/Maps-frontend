@@ -168,7 +168,7 @@ class Map extends React.Component {
     //   )
     // }
     return (
-      <div className="Search2-layout">
+      <div style={{ width: '100%', marginTop: '5px' }}>
         <div style={{ height: '80vh', width: '100%', position: 'relative' }}>
           <GoogleMapReact
             apiKey={this.props.apiKey}

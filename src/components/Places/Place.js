@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import { withRouter, Redirect, Link } from 'react-router-dom'
 import apiUrl from '../../apiConfig'
@@ -84,7 +84,9 @@ class Place extends Component {
               <ListItemAvatar>
                 {placeTypes.map((placeType) => {
                   if (placeType.placeType === place.type) {
-                    return <h4 key={placeType.id} style={{ marginLeft: '12px', marginRight: '12px', marginBottom: '0' }}> {placeType.emoji} </h4>
+                    return <Fragment>
+                      <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} /></h4>
+                    </Fragment>
                   }
                 })}
               </ListItemAvatar>

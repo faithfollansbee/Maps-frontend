@@ -78,9 +78,11 @@ class CenterPlaces extends Component {
     return (
       <div className="Search2-layout">
         <Fragment>
-          <h2 style={titleStyle}>Your Saved Maps</h2>
-          <AddMapDialog user={this.props.user} />
-          <div>
+          <div style={{ display: 'flex', margin: '10px', alignItems: 'center' }}>
+            <h2 style={titleStyle}>Your Saved Maps</h2>
+            <AddMapDialog user={this.props.user} />
+          </div>
+          <div style={{ paddingTop: '8px', paddingBottom: '8px' }}>
             {this.state.centerPlaces.length
               ? centerPlacesJSX
               : <div>No places found</div>

@@ -3,11 +3,11 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
+// import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
-import FormHelperText from '@material-ui/core/FormHelperText'
-// import Button from '@material-ui/core/Button'
-// import Paper from '@material-ui/core/Paper'
+// import FormHelperText from '@material-ui/core/FormHelperText'
+import TextField from '@material-ui/core/TextField'
+import Tooltip from '@material-ui/core/Tooltip'
 
 // const buttonStyle = {
 //   display: 'block',
@@ -18,11 +18,20 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 //   minWidth: 120
 // }
 const inputStyle = {
-  position: 'relative'
+  // position: 'relative'
+  // color: 'black'
 }
-const formControlStyle = {
-  minWidth: '120px'
-}
+// const formControlStyle = {
+//   minWidth: 'max-content',
+//   // position: 'relative',
+//   // minWidth: 'labelWidth',
+//   // minWidth: '120px',
+//   // marginRight: '10px',
+//   // marginLeft: '10px'
+//   // paddingRight: '15px'
+//   // margin: '10px'
+//   backgroundColor: 'yellow'
+// }
 class SelectAMap extends Component {
   constructor (props) {
     super(props)
@@ -33,7 +42,8 @@ class SelectAMap extends Component {
       filtered: false,
       open: false,
       mapCenter: '',
-      currMap: this.props.currMap
+      currMap: this.props.currMap,
+      map: ''
       // mapSettings: props.mapSettings
       // centerPlace: ''
       // map: ''
@@ -74,58 +84,110 @@ class SelectAMap extends Component {
     // this.setState({ mapCenter: [...event.target.value], newCenter })
     console.log(newCenter)
     console.log(centerObj)
+    this.setState({ map: event.target.value })
   }
 
   render (props) {
-    const { centerPlaces, open } = this.state
-    console.log('select state', this.state)
-    console.log('select props', this.props)
-    console.log(this.props.currMap.name)
+    const { centerPlaces } = this.state
     // <Button style={buttonStyle} onClick={this.handleOpen} aria-controls="simple-menu">
     //    View Other Map
     // </Button>
     return (
       <div className="SelectMap">
-        <FormControl style={formControlStyle}>
-          <InputLabel id="simple-select-label">{this.props.currMap.name}</InputLabel>
-          <Select
-            style={{ position: 'relative' }}
-            // labelId="select"
-            // id="demo-simple-select"
-            labelId="simple-select-label"
-            id="simple-select"
-            onClose={this.handleClose}
-            onOpen={this.handleOpen}
-            // defaultValue=''
-            // defaultValue={this.props.currMap.name}
-            open={open}
-            value={name}
-            // value={this.props.currMap.name}
-            // value={mapSettings.name}
-            onChange={this.handleChange}
-            // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-          >
-            { centerPlaces.map(centerPlace => (
-              <MenuItem key={centerPlace._id} value={centerPlace}
-                onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
-                // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-              >{centerPlace.name}</MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>Current Map</FormHelperText>
 
-        </FormControl>
-        <h5>select props.mapSettings.name: {this.props.mapSettings.name}</h5>
-        <h5>select props.currMap.name: {this.props.currMap.name}</h5>
+        <Tooltip title="Current map">
+          <FormControl variant="filled">
+            <InputLabel id="simple-select-label" style={{ color: 'black', minWidth: 'max-content' }}>{this.props.currMap.name}</InputLabel>
+            <TextField
+              // variant="outlined"
+              size="small"
+              variant="filled"
+              style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
+              id="simple-select"
+              select
+              labelId="simple-select-label"
+              value={name}
+              onChange={this.handleChange}
+            >
+              { centerPlaces.map(centerPlace => (
+                <MenuItem key={centerPlace._id} value={centerPlace}
+                  onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
+                >{centerPlace.name}</MenuItem>
+              ))}
+            </TextField>
+          </FormControl>
+        </Tooltip>
+        <div>
+          <Tooltip title="Current map">
+            <form variant="filled">
+              <TextField
+                size="small"
+                variant="outlined"
+                // variant="filled"
+                style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
+                id="simple-select"
+                select
+                labelId="simple-select-label"
+                label={this.props.currMap.name}
+                // value={this.props.currMap.name}
+                value={name}
+                onChange={this.handleChange}
+                // label="Helper text"
+              >
+                { centerPlaces.map(centerPlace => (
+                  <MenuItem key={centerPlace._id} value={centerPlace}
+                    onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
+                  >{centerPlace.name}</MenuItem>
+                ))}
+              </TextField>
+            </form>
+          </Tooltip>
+        </div>
+        <div>
+          <form>
+            <Tooltip title="Current map">
+              <TextField
+                variant="outlined"
+                size="small"
+                // variant="filled"
+                style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
+                id="simple-select"
+                select
+                // label={this.props.currMap.name}
+                labelId="simple-select-label"
+                value={name}
+                label={this.props.currMap.name}
+                onChange={this.handleChange}
+              >
+                { centerPlaces.map(centerPlace => (
+                  <MenuItem key={centerPlace._id} value={centerPlace}
+                    onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
+                  >{centerPlace.name}</MenuItem>
+                ))}
+              </TextField>
+            </Tooltip>
+          </form>
+        </div>
       </div>
     )
   }
 }
-// const centerPlacesJSX = centerPlaces.map(centerPlace => (
-//   <MenuItem key={centerPlace._id} value={centerPlace}
-//     // onClick={(e) => this.props.setMapCenter({ lat: centerPlace.latitude, lng: centerPlace.longitude })}
-//   >{centerPlace.name}</MenuItem>
-// ))
-// {centerPlacesJSX}
 
 export default SelectAMap
+//     <Select
+//       style={{ color: 'black', backgroundColor: 'white' }}
+//       labelId="simple-select-label"
+//       id="simple-select"
+//       onClose={this.handleClose}
+//       onOpen={this.handleOpen}
+//       open={open}
+//       value={name}
+//       label={this.props.currMap.name}
+//       onChange={this.handleChange}
+//     >
+//       { centerPlaces.map(centerPlace => (
+//         <MenuItem key={centerPlace._id} value={centerPlace} map={centerPlace.name}
+//           onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
+//         >{centerPlace.name}</MenuItem>
+//       ))}
+//     </Select>

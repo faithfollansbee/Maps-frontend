@@ -23,8 +23,8 @@ export default function AddMapDialog (props) {
   return (
     <div>
       <Tooltip title="Add new map">
-        <IconButton onClick={handleClickOpen} style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
-          <AddIcon/>
+        <IconButton size="sm" onClick={handleClickOpen} style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+          <AddIcon fontSize="small" />
         </IconButton>
       </Tooltip>
       <Dialog

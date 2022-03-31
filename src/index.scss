@@ -9,6 +9,9 @@ main {
 // body {
 //   margin: 0;
 // }
+.MuiListItemIcon-root {
+  min-width: 50px !important;
+}
 .SelectMap {
   width: 100%;
   margin-top: 5px;
@@ -17,6 +20,29 @@ main {
   color: white;
   // border-bottom: 1px solid white;
 }
+.MuiFormControl-root {
+  // position: relative;
+  // padding: 5px;
+  // margin: 5px;
+  // padding-right: 10px;
+}
+.MuiInputBase-root {
+  // position: relative;
+  // padding-right: 10px;
+}
+
+// .MuiSelect-root {
+//   position: relative;
+// }
+// .MuiInputBase-input {
+//   position: relative;
+// }
+.MuiSelect-nativeInput {
+  width: 1% !important;
+  // position: relative;
+  position: relative !important;
+}
+
 // body {
 //   background-color: #7ca2a1;
 //   font-family: 'Work Sans', sans-serif;

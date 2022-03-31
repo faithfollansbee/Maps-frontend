@@ -11,7 +11,7 @@ const styles = theme => ({
     // color: 'black'
   },
   darkClass: {
-    color: 'red'
+    color: '#FFD90B'
   }
 // }
 })

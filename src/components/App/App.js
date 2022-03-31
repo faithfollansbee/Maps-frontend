@@ -121,7 +121,7 @@ class App extends Component {
     return (
       <Fragment>
         <GlobalStyle />
-        <Header user={user} location={location} />
+        <Header user={user} alert={this.alert} location={location} setUser={this.setUser} />
         {alerts.map((alert, index) => (
           <AutoDismissAlert
             key={index}
@@ -130,6 +130,7 @@ class App extends Component {
             message={alert.message}
           />
         ))}
+
         <Background user={user}/>
         <main className="container" style={{ backgroundImage: 'url(require("./backgroundimage"))' }}>
 
@@ -145,8 +146,8 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} exact path='/map' render={() => (
             <div>
-              <Map user={user} mapCenter={this.state.mapCenter} mapCenterArr={this.state.mapCenterArr} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
               <SelectAMap setMapCenter={this.setMapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings} mapCenter={this.state.mapCenter} centerPlaces={this.state.centerPlaces} getCenterPlaces={this.getCenterPlaces} user={user} />
+              <Map user={user} mapCenter={this.state.mapCenter} mapCenterArr={this.state.mapCenterArr} currMap={this.state.currMap} mapSettings={this.state.mapSettings} apiKey={this.apiKey}/>
             </div>
           )} />
           <AuthenticatedRoute user={user} path='/simplesearch'

@@ -112,6 +112,138 @@ class AddPlace extends Component {
                       <img src={require('../../Icons/restaurant.png')} alt="pizza" />
                     </div>}
                   label="Restaurant" />
+                <FormControlLabel value="fastfood"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'fastfood'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="fastfood"
+                        inputProps={{ 'aria-label': 'fastfood' }} />
+                      <img src={require('../../Icons/burger.png')} alt="fastfood" />
+                    </div>}
+                  label="fastfood" />
+                <FormControlLabel value="coffee"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'coffee'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="coffee"
+                        inputProps={{ 'aria-label': 'coffee' }} />
+                      <img src={require('../../Icons/coffee.png')} alt="coffee" />
+                    </div>}
+                  label="Coffee" />
+                <FormControlLabel value="bakery"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'bakery'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="bakery"
+                        inputProps={{ 'aria-label': 'bakery' }} />
+                      <img src={require('../../Icons/bakery.png')} alt="bakery" />
+                    </div>}
+                  label="Bakery" />
+                <FormControlLabel value="icecream"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'icecream'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="icecream"
+                        inputProps={{ 'aria-label': 'icecream' }} />
+                      <img src={require('../../Icons/icecream.png')} alt="icecream" />
+                    </div>}
+                  label="Icecream" />
+                <FormControlLabel value="vegetarian"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'vegetarian'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="vegetarian"
+                        inputProps={{ 'aria-label': 'vegetarian' }} />
+                      <img src={require('../../Icons/vegetarian.png')} alt="vegetarian" />
+                    </div>}
+                  label="Vegetarian" />
+                <FormControlLabel value="fancyrestaurant"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'fancyrestaurant'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="vegetarian"
+                        inputProps={{ 'aria-label': 'fancyrestaurant' }} />
+                      <img src={require('../../Icons/fancyrestaurant.png')} alt="fancyrestaurant" />
+                    </div>}
+                  label="Nice Restaurant" />
+                <FormControlLabel value="party"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'party'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="party"
+                        inputProps={{ 'aria-label': 'party' }} />
+                      <img src={require('../../Icons/party.png')} alt="party" />
+                    </div>}
+                  label="Party" />
+                <FormControlLabel value="takeout"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'takeout'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="takeout"
+                        inputProps={{ 'aria-label': 'takeout' }} />
+                      <img src={require('../../Icons/takeout.png')} alt="takeout" />
+                    </div>}
+                  label="Takeout" />
+                <FormControlLabel value="sushi"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'sushi'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="sushi"
+                        inputProps={{ 'aria-label': 'sushi' }} />
+                      <img src={require('../../Icons/sushi.png')} alt="sushi" />
+                    </div>}
+                  label="Sushi" />
+                <FormControlLabel value="tree"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'tree'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="tree"
+                        inputProps={{ 'aria-label': 'tree' }} />
+                      <img src={require('../../Icons/tree.png')} alt="tree" />
+                    </div>}
+                  label="Tree" />
+                <FormControlLabel value="travel"
+                  control={
+                    <div>
+                      <Radio
+                        checked={this.state.type === 'Travel'}
+                        onChange={this.handleOptionChange}
+                        value={'🍕'}
+                        name="travel"
+                        inputProps={{ 'aria-label': 'travel' }} />
+                      <img src={require('../../Icons/travel.png')} alt="travel" />
+                    </div>}
+                  label="Travel" />
 
                 <FormControlLabel value="museum"
                   control={
