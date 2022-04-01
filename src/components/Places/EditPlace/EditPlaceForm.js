@@ -6,7 +6,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 // import FormLabel from '@material-ui/core/FormLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
-
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../../apiConfig'
@@ -147,7 +146,7 @@ class EditPlaceForm extends Component {
                   checked={this.state.type === type.id}
                   onChange={this.handleOptionChange}
                 />
-                <img src={type.img} />
+                <img src={type.img} style={{ transform: 'scale(0.7)' }}/>
               </div>
             }
             // checked={this.state.type === type.id}
@@ -174,7 +173,7 @@ class EditPlaceForm extends Component {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="name">
-            <Form.Label>Place Name</Form.Label>
+            <Form.Label>{place.name}</Form.Label>
             <Form.Control
               type="text"
               // placeholder={genre.name}

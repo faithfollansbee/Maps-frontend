@@ -85,7 +85,7 @@ class Place extends Component {
                 {placeTypes.map((placeType) => {
                   if (placeType.placeType === place.type) {
                     return <Fragment>
-                      <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} /></h4>
+                      <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} style={{ transform: 'scale(0.8)' }} /></h4>
                     </Fragment>
                   }
                 })}

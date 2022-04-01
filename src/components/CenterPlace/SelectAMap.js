@@ -3,7 +3,6 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-// import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
 // import FormHelperText from '@material-ui/core/FormHelperText'
 import TextField from '@material-ui/core/TextField'
@@ -117,77 +116,32 @@ class SelectAMap extends Component {
             </TextField>
           </FormControl>
         </Tooltip>
-        <div>
-          <Tooltip title="Current map">
-            <form variant="filled">
-              <TextField
-                size="small"
-                variant="outlined"
-                // variant="filled"
-                style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
-                id="simple-select"
-                select
-                labelId="simple-select-label"
-                label={this.props.currMap.name}
-                // value={this.props.currMap.name}
-                value={name}
-                onChange={this.handleChange}
-                // label="Helper text"
-              >
-                { centerPlaces.map(centerPlace => (
-                  <MenuItem key={centerPlace._id} value={centerPlace}
-                    onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
-                  >{centerPlace.name}</MenuItem>
-                ))}
-              </TextField>
-            </form>
-          </Tooltip>
-        </div>
-        <div>
-          <form>
-            <Tooltip title="Current map">
-              <TextField
-                variant="outlined"
-                size="small"
-                // variant="filled"
-                style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
-                id="simple-select"
-                select
-                // label={this.props.currMap.name}
-                labelId="simple-select-label"
-                value={name}
-                label={this.props.currMap.name}
-                onChange={this.handleChange}
-              >
-                { centerPlaces.map(centerPlace => (
-                  <MenuItem key={centerPlace._id} value={centerPlace}
-                    onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
-                  >{centerPlace.name}</MenuItem>
-                ))}
-              </TextField>
-            </Tooltip>
-          </form>
-        </div>
       </div>
     )
   }
 }
 
 export default SelectAMap
-//     <Select
-//       style={{ color: 'black', backgroundColor: 'white' }}
-//       labelId="simple-select-label"
+// <form variant="filled">
+//   <Tooltip title="Current map">
+//     <TextField
+//       // variant="outlined"
+//       size="small"
+//       variant="filled"
+//       style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
 //       id="simple-select"
-//       onClose={this.handleClose}
-//       onOpen={this.handleOpen}
-//       open={open}
+//       select
+//       // label={this.props.currMap.name}
+//       labelId="simple-select-label"
 //       value={name}
 //       label={this.props.currMap.name}
 //       onChange={this.handleChange}
 //     >
 //       { centerPlaces.map(centerPlace => (
-//         <MenuItem key={centerPlace._id} value={centerPlace} map={centerPlace.name}
+//         <MenuItem key={centerPlace._id} value={centerPlace}
 //           onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
 //         >{centerPlace.name}</MenuItem>
 //       ))}
-//     </Select>
+//     </TextField>
+//   </Tooltip>
+// </form>

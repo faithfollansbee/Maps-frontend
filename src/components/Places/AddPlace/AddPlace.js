@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl'
 // import FormLabel from '@material-ui/core/FormLabel'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
+import placeTypes from '../../App/PlaceTypes'
 
 class AddPlace extends Component {
   constructor (props) {
@@ -18,6 +19,7 @@ class AddPlace extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
       user: props.user,
+      placeTypes: placeTypes,
       place: {
         name: props.name,
         latitude: props.latitude,
@@ -86,6 +88,30 @@ class AddPlace extends Component {
     console.log(this.state)
     const { handleSubmitClose } = this.props
     // <FormLabel id="demo-controlled-radio-buttons-group"></FormLabel>
+    const placeTypesJsx = this.state.placeTypes.map(type => (
+      <div key={type.id}>
+        <RadioGroup name={type.placeType} key={type.id} value={type.id} aria-labelledby="demo-controlled-radio-buttons-group">
+          <FormControlLabel
+            value={type.id}
+            control={
+              <div>
+                <Radio
+                  value={type.id}
+                  checked={this.state.type === type.placeType}
+                  onChange={this.handleOptionChange}
+                  inputProps={{ 'aria-label': type.placeType }}
+                  name={type.placeType}
+                />
+                <img src={type.img} style={{ transform: 'scale(0.7)' }}/>
+              </div>
+            }
+            // checked={this.state.type === type.id}
+            onChange={this.handleOptionChange}
+            label={type.placeType}
+          />
+        </RadioGroup>
+      </div>
+    ))
 
     return (
       // 🍕🍺🍿🏠🏛🌲🥡
@@ -100,243 +126,8 @@ class AddPlace extends Component {
                 // onChange={handleChange}
                 onChange={this.handleOptionChange}>
 
-                <FormControlLabel value="restaurant"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'restaurant'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="restaurant"
-                        inputProps={{ 'aria-label': 'restaurant' }} />
-                      <img src={require('../../Icons/restaurant.png')} alt="pizza" />
-                    </div>}
-                  label="Restaurant" />
-                <FormControlLabel value="fastfood"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'fastfood'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="fastfood"
-                        inputProps={{ 'aria-label': 'fastfood' }} />
-                      <img src={require('../../Icons/burger.png')} alt="fastfood" />
-                    </div>}
-                  label="fastfood" />
-                <FormControlLabel value="coffee"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'coffee'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="coffee"
-                        inputProps={{ 'aria-label': 'coffee' }} />
-                      <img src={require('../../Icons/coffee.png')} alt="coffee" />
-                    </div>}
-                  label="Coffee" />
-                <FormControlLabel value="bakery"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'bakery'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="bakery"
-                        inputProps={{ 'aria-label': 'bakery' }} />
-                      <img src={require('../../Icons/bakery.png')} alt="bakery" />
-                    </div>}
-                  label="Bakery" />
-                <FormControlLabel value="icecream"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'icecream'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="icecream"
-                        inputProps={{ 'aria-label': 'icecream' }} />
-                      <img src={require('../../Icons/icecream.png')} alt="icecream" />
-                    </div>}
-                  label="Icecream" />
-                <FormControlLabel value="vegetarian"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'vegetarian'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="vegetarian"
-                        inputProps={{ 'aria-label': 'vegetarian' }} />
-                      <img src={require('../../Icons/vegetarian.png')} alt="vegetarian" />
-                    </div>}
-                  label="Vegetarian" />
-                <FormControlLabel value="fancyrestaurant"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'fancyrestaurant'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="vegetarian"
-                        inputProps={{ 'aria-label': 'fancyrestaurant' }} />
-                      <img src={require('../../Icons/fancyrestaurant.png')} alt="fancyrestaurant" />
-                    </div>}
-                  label="Nice Restaurant" />
-                <FormControlLabel value="party"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'party'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="party"
-                        inputProps={{ 'aria-label': 'party' }} />
-                      <img src={require('../../Icons/party.png')} alt="party" />
-                    </div>}
-                  label="Party" />
-                <FormControlLabel value="takeout"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'takeout'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="takeout"
-                        inputProps={{ 'aria-label': 'takeout' }} />
-                      <img src={require('../../Icons/takeout.png')} alt="takeout" />
-                    </div>}
-                  label="Takeout" />
-                <FormControlLabel value="sushi"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'sushi'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="sushi"
-                        inputProps={{ 'aria-label': 'sushi' }} />
-                      <img src={require('../../Icons/sushi.png')} alt="sushi" />
-                    </div>}
-                  label="Sushi" />
-                <FormControlLabel value="tree"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'tree'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="tree"
-                        inputProps={{ 'aria-label': 'tree' }} />
-                      <img src={require('../../Icons/tree.png')} alt="tree" />
-                    </div>}
-                  label="Tree" />
-                <FormControlLabel value="travel"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'Travel'}
-                        onChange={this.handleOptionChange}
-                        value={'🍕'}
-                        name="travel"
-                        inputProps={{ 'aria-label': 'travel' }} />
-                      <img src={require('../../Icons/travel.png')} alt="travel" />
-                    </div>}
-                  label="Travel" />
+                { placeTypesJsx }
 
-                <FormControlLabel value="museum"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'museum'}
-                        onChange={this.handleOptionChange}
-                        value={'museum'}
-                        name="museum"
-                        inputProps={{ 'aria-label': 'museum' }} />
-                      <img src={require('../../Icons/museum.png')} alt="museum" />
-                    </div>}
-                  label="Museum" />
-
-                <FormControlLabel value="bar"
-                  control={
-                    <div>
-                      <Radio
-                        checked={ this.state.type === 'bar' && this.state.emoji === '🍺' }
-                        onChange={this.handleOptionChange}
-                        value={'🍺'}
-                        // value='🍺'
-                        name="bar"
-                        // name="radio-buttons"
-                        inputProps={{ 'aria-label': 'bar' }} />
-                      <img src={require('../../Icons/wine-glass.png')} alt="wine-glass" />
-                    </div>}
-                  label="Bar" />
-
-                <FormControlLabel value="landmark"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'landmark'}
-                        onChange={this.handleOptionChange}
-                        value="landmark"
-                        name="landmark"
-                        inputProps={{ 'aria-label': 'historical landmark' }} />
-                      <img src={require('../../Icons/monument.png')} alt="monument" />
-                    </div>}
-                  label="Historical Landmark" />
-
-                <FormControlLabel value="entertainment"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'entertainment'}
-                        onChange={this.handleOptionChange}
-                        value="entertainment"
-                        name="entertainment"
-                        inputProps={{ 'aria-label': 'entertainment' }} />
-                      <img src={require('../../Icons/ferris-wheel.png')} alt="ferris-wheel" />
-                    </div>}
-                  label="Entertainment" />
-
-                <FormControlLabel value="university"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'university'}
-                        onChange={this.handleOptionChange}
-                        value="university"
-                        name="university"
-                        inputProps={{ 'aria-label': 'university' }} />
-                      <img src={require('../../Icons/student-center.png')} alt="student-center" />
-                    </div>}
-                  label="University" />
-
-                <FormControlLabel value="home"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'home'}
-                        onChange={this.handleOptionChange}
-                        value="home"
-                        name="home"
-                        inputProps={{ 'aria-label': 'home' }} />
-                      <img src={require('../../Icons/home.png')} alt="home" />
-                    </div>}
-                  label="Home" />
-
-                <FormControlLabel value="outdoors"
-                  control={
-                    <div>
-                      <Radio
-                        checked={this.state.type === 'outdoors'}
-                        onChange={this.handleOptionChange}
-                        value="outdoors"
-                        name="outdoors"
-                        inputProps={{ 'aria-label': 'outdoors' }} />
-                      <img src={require('../../Icons/deciduous-tree.png')} alt="deciduous-tree" />
-                    </div>}
-                  label="Outdoors" />
               </RadioGroup>
             </FormControl>
           </div>

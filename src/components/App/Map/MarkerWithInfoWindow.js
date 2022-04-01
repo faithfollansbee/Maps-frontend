@@ -54,7 +54,7 @@ class MarkerWithInfoWindow extends React.Component {
       <div style={style} onClick={this.onToggleOpen}>
         {placeTypes.map((placeType) => {
           if (placeType.placeType === this.props.type) {
-            return <div key={placeType.id}> <img src={placeType.img} /></div>
+            return <div style={{ transform: 'scale(0.8)' }} key={placeType.id}> <img src={placeType.img} /></div>
           }
         })}
         {this.state.isOpen &&

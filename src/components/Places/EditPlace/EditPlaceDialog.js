@@ -34,7 +34,6 @@ export default function EditPlaceDialog (props) {
           open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Edit &quot;{props.place.name}&quot;</DialogTitle>
           <DialogContent user={props.user}>
-            {props.type}
             <EditPlace user={props.user} name={props.place.name} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>
           </DialogContent>
         </Dialog>
