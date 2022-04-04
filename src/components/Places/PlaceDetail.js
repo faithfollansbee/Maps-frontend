@@ -5,32 +5,33 @@ import Card from 'react-bootstrap/Card'
 // import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const style = {
   margin: 50
 }
 
 class Place extends Component {
-    state = {
-      place: '',
-      deleted: false,
-      filtered: false
-    }
+  state = {
+    place: '',
+    deleted: false,
+    filtered: false
+  }
 
-    async componentDidMount (props) {
-      try {
-        const response = await axios({
-          url: `${apiUrl}/places/${this.props.match.params.id}`,
-          method: 'GET',
-          headers: {
-            'Authorization': `Token token=${this.props.user.token}`
-          }
-        })
-        this.setState({ place: response.data.place })
-        console.log(this.state.place.name)
-      } catch (error) {
-      }
+  async componentDidMount (props) {
+    try {
+      const response = await axios({
+        url: `${apiUrl}/places/${this.props.match.params.id}`,
+        method: 'GET',
+        headers: {
+          'Authorization': `Token token=${this.props.user.token}`
+        }
+      })
+      this.setState({ place: response.data.place })
+      console.log(this.state.place.name)
+    } catch (error) {
     }
+  }
 
     handleFilter = event => {
       event.preventDefault()
@@ -52,6 +53,7 @@ class Place extends Component {
 
     render () {
       console.log(this.state)
+      console.log(this.props)
       const { place, deleted } = this.state
       if (deleted) {
         return <Redirect to={
@@ -63,7 +65,7 @@ class Place extends Component {
 
       return (
         <div style={style}>
-          { place && (
+          { place ? (
             <Fragment>
               <Card>
                 <Card.Body>
@@ -85,7 +87,7 @@ class Place extends Component {
                 </Card.Footer>
               </Card>
             </Fragment>
-          )}
+          ) : (<Skeleton variant="rect" style={{ height: '200rem' }}/>)}
         </div>
       )
     }

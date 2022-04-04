@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.5.1",
+    "@material-ui/lab": "^4.0.0-alpha.61",
     "@types/googlemaps": "^3.39.1",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",

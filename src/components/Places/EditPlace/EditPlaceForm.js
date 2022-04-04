@@ -146,7 +146,7 @@ class EditPlaceForm extends Component {
                   checked={this.state.type === type.id}
                   onChange={this.handleOptionChange}
                 />
-                <img src={type.img} style={{ transform: 'scale(0.7)' }}/>
+                <img src={type.img} style={{ height: '38.4px' }} />
               </div>
             }
             // checked={this.state.type === type.id}

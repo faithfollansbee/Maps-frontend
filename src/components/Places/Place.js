@@ -39,7 +39,7 @@ class Place extends Component {
   //         'Authorization': `Token token=${this.props.user.token}`
   //       }
   //     })
-  //     this.setState({ place: response.data.place })
+  //     this.setState({ place: response.data.place, loading: false })
   //     console.log(this.state.place.name)
   //   } catch (error) {
   //   }
@@ -85,7 +85,7 @@ class Place extends Component {
                 {placeTypes.map((placeType) => {
                   if (placeType.placeType === place.type) {
                     return <Fragment>
-                      <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} style={{ transform: 'scale(0.8)' }} /></h4>
+                      <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} style={{ height: '37px' }} /></h4>
                     </Fragment>
                   }
                 })}
@@ -110,3 +110,4 @@ class Place extends Component {
 }
 
 export default withRouter(Place)
+// <img src={placeType.img} style={{ transform: 'scale(0.8)' }} />

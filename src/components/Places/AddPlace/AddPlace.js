@@ -102,10 +102,12 @@ class AddPlace extends Component {
                   inputProps={{ 'aria-label': type.placeType }}
                   name={type.placeType}
                 />
-                <img src={type.img} style={{ transform: 'scale(0.7)' }}/>
+                <img src={type.img} style={{ height: '38.4px' }} />
               </div>
             }
             // checked={this.state.type === type.id}
+            // <img src={type.img} style={{ transform: 'scale(0.7)' }}/>
+
             onChange={this.handleOptionChange}
             label={type.placeType}
           />

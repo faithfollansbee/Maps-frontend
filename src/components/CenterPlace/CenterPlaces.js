@@ -3,11 +3,19 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import AddMapDialog from './AddMap/AddMapDialog'
 import CenterPlace from './CenterPlace'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import Skeleton from '@material-ui/lab/Skeleton'
+import Avatar from '@material-ui/core/Avatar'
 
 const titleStyle = {
   color: 'black',
   margin: 'auto',
   textAlign: 'center'
+}
+const skeletonPlaceStyle = {
+  marginTop: '1px',
+  opacity: '.9'
 }
 
 class CenterPlaces extends Component {
@@ -73,7 +81,7 @@ class CenterPlaces extends Component {
     const { centerPlaces } = this.state
     console.log('re render, centerPlaces', centerPlaces)
     const centerPlacesJSX = centerPlaces.map(centerPlace => (
-      <CenterPlace mapSettings={this.props.mapSettings} key={centerPlace._id} centerPlace={centerPlace} user={this.props.user} name={centerPlace.name} id={centerPlace._id} handleClick={this.handleClick} setMapCenter={this.props.setMapCenter}/>
+      <CenterPlace loading={false} mapSettings={this.props.mapSettings} key={centerPlace._id} centerPlace={centerPlace} user={this.props.user} name={centerPlace.name} id={centerPlace._id} handleClick={this.handleClick} setMapCenter={this.props.setMapCenter}/>
     ))
     return (
       <div className="Search2-layout">
@@ -82,12 +90,27 @@ class CenterPlaces extends Component {
             <h2 style={titleStyle}>Your Saved Maps</h2>
             <AddMapDialog user={this.props.user} />
           </div>
-          <div style={{ paddingTop: '8px', paddingBottom: '8px' }}>
+          <List>
             {this.state.centerPlaces.length
               ? centerPlacesJSX
-              : <div>No places found</div>
+              : (
+                <div> <ListItem>No maps found</ListItem>
+                  <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                  <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                  <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                  <br/>
+                  <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+                  <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+                  <Skeleton style={skeletonPlaceStyle} animation="pulse" variant="rect" />
+                  <br/>
+                  <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+                  <br/>
+                  <Skeleton variant="circle" width={40} height={40}><Avatar /></Skeleton>
+                  <Skeleton variant="text" />
+                </div>
+              )
             }
-          </div>
+          </List>
         </Fragment>
       </div>
     )

@@ -3,6 +3,7 @@ import GoogleMapReact from 'google-map-react'
 import MarkerWithInfoWindow from './MarkerWithInfoWindow'
 import axios from 'axios'
 import apiUrl from '../../../apiConfig'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 // const markerStyle = {
 //   color: 'white',
@@ -127,14 +128,12 @@ class Map extends React.Component {
   render (props) {
     console.log(this.props)
     console.log(this.state.places)
-    // const { places } = this.state
-    // if (this.state)
-    // if (!this.props.loaded) {
-    //   return <div>Loading...</div>
+    const { isLoading } = this.state
+
+    // if (this.state.isLoading) {
+    //   return <div> </div>
     // }
-    if (this.state.isLoading) {
-      return <div></div>
-    }
+
     // SF coords: lat: 37.7749295, lng: -122.4194155
     // if (this.props.mapCenter.length === 0) {
     //   return (
@@ -170,32 +169,36 @@ class Map extends React.Component {
     return (
       <div style={{ width: '100%', marginTop: '5px' }}>
         <div style={{ height: '80vh', width: '100%', position: 'relative' }}>
-          <GoogleMapReact
-            apiKey={this.props.apiKey}
-            // bootstrapURLKeys={{ key: this.props.apiKey }}
-            // bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
-            bootstrapURLKeys={{
-              key: `${process.env.REACT_APP_API_KEY}`,
-              // key: this.props.apiKey,
-              // key: 'AIzaSyBOXkzxWxurGgpeo_KsLSs4LczoSS0InN8',
-              language: 'en',
-              libraries: 'places'
-            }}
-            // defaultCenter={this.props.center}
-            defaultCenter={{ lat: 42.3600825, lng: -71.0588801 }}
-            // defaultCenter={{ lat: 37.7749295, lng: -122.4194155 }}
-            // defaultZoom={this.props.zoom}
-            defaultZoom={13}
-            // hoverDistance={50}
-            // initialCenter={this.props.currMap.currCoords}
-            center={this.props.mapCenterArr}
-            onGoogleApiLoaded={({ map, maps }) => console.log(map, maps)}
-            yesIWantToUseGoogleMapApiInternals={true}
-            // event listener, when child is clicked, get it as param
-            // onChildClick={(child) => {}}
-          >
-            {this.displayMarkers()}
-          </GoogleMapReact>
+          { isLoading ? (
+            <Skeleton variant="rect" style={{ height: '80vh', width: '100%', position: 'relative' }}/>
+          ) : (
+            <GoogleMapReact
+              apiKey={this.props.apiKey}
+              // bootstrapURLKeys={{ key: this.props.apiKey }}
+              // bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
+              bootstrapURLKeys={{
+                key: `${process.env.REACT_APP_API_KEY}`,
+                // key: this.props.apiKey,
+                // key: 'AIzaSyBOXkzxWxurGgpeo_KsLSs4LczoSS0InN8',
+                language: 'en',
+                libraries: 'places'
+              }}
+              // defaultCenter={this.props.center}
+              defaultCenter={{ lat: 42.3600825, lng: -71.0588801 }}
+              // defaultCenter={{ lat: 37.7749295, lng: -122.4194155 }}
+              // defaultZoom={this.props.zoom}
+              defaultZoom={13}
+              // hoverDistance={50}
+              // initialCenter={this.props.currMap.currCoords}
+              center={this.props.mapCenterArr}
+              onGoogleApiLoaded={({ map, maps }) => console.log(map, maps)}
+              yesIWantToUseGoogleMapApiInternals={true}
+              // event listener, when child is clicked, get it as param
+              // onChildClick={(child) => {}}
+            >
+              {this.displayMarkers()}
+            </GoogleMapReact>)
+          }
         </div>
       </div>
     )

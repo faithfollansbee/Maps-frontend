@@ -2,10 +2,22 @@
 
 const placeTypes = [
   {
+    placeType: 'barber',
+    id: 'barber',
+    emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
+    img: require('../Icons/barber.png')
+  },
+  {
     placeType: 'restaurant',
     id: 'restaurant',
     emoji: '🍕',
     img: require('../Icons/restaurant.png')
+  },
+  {
+    placeType: 'bakery',
+    id: 'bakery',
+    emoji: '🍕',
+    img: require('../Icons/croissant.png')
   },
   {
     placeType: 'outdoors',
@@ -43,11 +55,17 @@ const placeTypes = [
     emoji: '🗽',
     img: require('../Icons/landmark.png')
   },
+  // {
+  //   placeType: 'mortarboard(1)',
+  //   id: 'mortarboard(1)',
+  //   emoji: '🎓',
+  //   img: require('../Icons/mortarboard (1).png')
+  // },
   {
     placeType: 'university',
     id: 'university',
     emoji: '🎓',
-    img: require('../Icons/university.png')
+    img: require('../Icons/graduation.png')
   },
   {
     placeType: 'dogfriendly',
@@ -68,22 +86,46 @@ const placeTypes = [
     img: require('../Icons/coffee.png')
   },
   {
-    placeType: 'bakery',
-    id: 'bakery',
+    placeType: 'bike',
+    id: 'bike',
     emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
-    img: require('../Icons/doughnut.png')
+    img: require('../Icons/bike.png')
   },
+  {
+    placeType: 'historic',
+    id: 'historic',
+    emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
+    img: require('../Icons/historic.png')
+  },
+  // {
+  //   placeType: 'bakery',
+  //   id: 'bakery',
+  //   emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
+  //   img: require('../Icons/doughnut.png')
+  // },
   {
     placeType: 'icecream',
     id: 'icecream',
     emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
     img: require('../Icons/icecream.png')
   },
+  // {
+  //   placeType: 'vegetarian',
+  //   id: 'vegetarian',
+  //   emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
+  //   img: require('../Icons/vegetarian.png')
+  // },
+  // {
+  //   placeType: 'finedining',
+  //   id: 'finedining',
+  //   emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
+  //   img: require('../Icons/finedining.png')
+  // },
   {
-    placeType: 'vegetarian',
-    id: 'vegetarian',
+    placeType: 'entertainment',
+    id: 'entertainment',
     emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
-    img: require('../Icons/vegetarian.png')
+    img: require('../Icons/popcorn.png')
   },
   // {
   //   placeType: 'party',
@@ -91,12 +133,12 @@ const placeTypes = [
   //   emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
   //   img: require('../Icons/party.png')
   // },
-  {
-    placeType: 'sushi',
-    id: 'sushi',
-    emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
-    img: require('../Icons/sushi.png')
-  },
+  // {
+  //   placeType: 'sushi',
+  //   id: 'sushi',
+  //   emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
+  //   img: require('../Icons/sushi.png')
+  // },
   // {
   //   placeType: 'takeout',
   //   id: 'takeout',
@@ -110,16 +152,28 @@ const placeTypes = [
     img: require('../Icons/travel.png')
   },
   {
-    placeType: 'finedining',
-    id: 'finedining',
-    img: require('../Icons/finedining.png')
+    placeType: 'steakhouse',
+    id: 'steakhouse',
+    emoji: 'https://icons8.com/icon/1itCmhFEiqIW/hamburger',
+    img: require('../Icons/steak.png')
   },
   {
-    placeType: 'entertainment',
-    id: 'entertainment',
-    emoji: '🎠',
-    img: require('../Icons/movie.png')
+    placeType: 'seafood',
+    id: 'seafood',
+    emoji: '🍕',
+    img: require('../Icons/seafood.png')
   }
+  // {
+  //   placeType: 'finedining',
+  //   id: 'finedining',
+  //   img: require('../Icons/finedining.png')
+  // },
+  // {
+  //   placeType: 'entertainment',
+  //   id: 'entertainment',
+  //   emoji: '🎠',
+  //   img: require('../Icons/movie.png')
+  // }
 ]
 export default placeTypes
 

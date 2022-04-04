@@ -3,6 +3,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
+// import PlaceDetail from './PlaceDetail'
 // import { Link } from 'react-router-dom'
 // import ListItemIcon from '@material-ui/core/ListItemIcon'
 // import ListItemText from '@material-ui/core/ListItemText'
@@ -10,16 +11,19 @@ import ListItem from '@material-ui/core/ListItem'
 // import EditPlaceMenu from './EditPlaceMenu'
 // import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import AddPlaceDialog from './AddPlace/AddPlaceDialog'
-// import EditPlaceDialog from './EditPlaceDialog'
-// import Divider from '@material-ui/core/Divider'
-// import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Place from './Place'
-
+import Skeleton from '@material-ui/lab/Skeleton'
+// import Avatar from '@material-ui/core/Avatar'
 import placeTypes from '../App/PlaceTypes'
 
 const style = {
   // paddingBottom: '0'
   // margin: 50
+}
+const skeletonPlaceStyle = {
+  height: '72px',
+  marginTop: '1px',
+  opacity: '.9'
 }
 const headingStyle = {
   color: 'black',
@@ -100,6 +104,8 @@ class Places extends Component {
     const placesJsx = places.map(place => (
       <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
     ))
+    // <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
+
     // const placesJsx = this.state.places.map(place => (
     //   <ListItem button key={place._id}>
     //     <ListItemIcon>
@@ -124,12 +130,22 @@ class Places extends Component {
 
     // <ListItemLink href="/" to={`/places/${place._id}`}>{place.name}</ListItemLink>
 
-    if (this.state.isLoading) {
-      return (
-        <div className="text-center">
-        </div>
-      )
-    }
+    // if (this.state.isLoading) {
+    //   return (
+    //     <div>
+    //       <ListItem><Skeleton variant="rect"/></ListItem>
+    //       <ListItem style={{ marginTop: '2px', height: '20px' }}><Skeleton variant="rect" /></ListItem>
+    //       <ListItem style={{ marginTop: '2px', height: '20px' }}><Skeleton variant="rect" /></ListItem>
+    //       <ListItem style={{ marginTop: '2px', height: '20px' }}><Skeleton variant="rect" /></ListItem>
+    //       <ListItem style={{ marginTop: '2px', height: '20px' }}><Skeleton variant="rect" /></ListItem>
+    //       <ListItem style={{ marginTop: '2px', height: '20px' }}><Skeleton variant="rect" /></ListItem>
+    //       <Skeleton width="100%" variant="rect" />
+    //       <Skeleton width="100%" variant="rect" />
+    //       <Skeleton width="100%" variant="rect" />
+    //       <ListItem><Skeleton variant="rect"/></ListItem>
+    //     </div>
+    //   )
+    // }
     console.log(this.state)
     return (
       <div className="Search2-layout">
@@ -140,11 +156,26 @@ class Places extends Component {
         <List style={style}>
           {this.state.places.length
             ? placesJsx
-            : <ListItem>No places found</ListItem>
+            : (
+              <div>
+                <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                <Skeleton style={skeletonPlaceStyle} variant="rect" />
+                <br/>
+                <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+                <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+                <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+
+                <ListItem style={skeletonPlaceStyle}><Skeleton style={skeletonPlaceStyle} variant="rect" animation="wave"/></ListItem>
+              </div>
+            )
           }
         </List>
       </div>
     )
   }
 }
+
 export default Places
