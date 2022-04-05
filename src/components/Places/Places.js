@@ -2,18 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-// import PlaceDetail from './PlaceDetail'
-// import { Link } from 'react-router-dom'
-// import ListItemIcon from '@material-ui/core/ListItemIcon'
-// import ListItemText from '@material-ui/core/ListItemText'
-// import Tooltip from '@material-ui/core/Tooltip'
-// import EditPlaceMenu from './EditPlaceMenu'
-// import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight'
 import AddPlaceDialog from './AddPlace/AddPlaceDialog'
 import Place from './Place'
 import Skeleton from '@material-ui/lab/Skeleton'
-// import Avatar from '@material-ui/core/Avatar'
 import placeTypes from '../App/PlaceTypes'
 
 const style = {
@@ -22,12 +13,12 @@ const style = {
 }
 const skeletonPlaceStyle = {
   height: '72px',
-  marginTop: '1px',
+  marginTop: '2.5px',
   opacity: '.9'
 }
 const headingStyle = {
   color: 'black',
-  fontSize: '40px',
+  // fontSize: '40px',
   margin: 'auto',
   textAlign: 'center'
 }
@@ -43,7 +34,8 @@ class Places extends Component {
       isLoading: true,
       userPlaces: [],
       filtered: false,
-      placeTypes: placeTypes
+      placeTypes: placeTypes,
+      loading: true
     }
   }
 
@@ -56,7 +48,7 @@ class Places extends Component {
           Authorization: `Token token=${this.props.user.token}`
         }
       })
-      this.setState({ places: response.data.places, isLoading: false })
+      this.setState({ places: response.data.places, isLoading: false, loading: false })
       this.setState({ userPlaces: response.data.places })
     } catch (error) {
     }
@@ -93,18 +85,23 @@ class Places extends Component {
       .then(response => {
         this.props.history.goBack()
       })
+      // .then(response => {
+      //   this.props.history.push(`/places/${response.data.place._id}`)
+      // })
+      // .then(response => {
+      //   this.props.history.push('/places')
+      // })
   }
   editPlace = () => {
     console.log('edit eventually')
   }
 
   render (props) {
-    const { places } = this.state
+    const { places, loading } = this.state
 
     const placesJsx = places.map(place => (
-      <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
+      <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} handleDelete={this.handleDelete} />
     ))
-    // <Place place={place} key={place._id} user={this.props.user} id={place._id} name={place.name} type={place.type} />
 
     // const placesJsx = this.state.places.map(place => (
     //   <ListItem button key={place._id}>
@@ -150,32 +147,31 @@ class Places extends Component {
     return (
       <div className="Search2-layout">
         <div style={{ display: 'flex', margin: '10px', alignItems: 'center' }}>
-          <h1 style={headingStyle}>Saved Places</h1>
+          <h2 style={headingStyle}>Saved Places</h2>
           <AddPlaceDialog user={this.props.user} />
         </div>
         <List style={style}>
-          {this.state.places.length
-            ? placesJsx
-            : (
-              <div>
-                <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                <br/>
-                <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-                <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-                <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-
-                <ListItem style={skeletonPlaceStyle}><Skeleton style={skeletonPlaceStyle} variant="rect" animation="wave"/></ListItem>
-              </div>
-            )
-          }
+          { loading ? (<div>
+            <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+          </div>)
+            : <div> { this.state.places.length === 0 ? (
+              <div>no places found
+                <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+                <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+              </div>)
+              : (placesJsx)} </div>}
         </List>
       </div>
     )
   }
 }
+// { this.state.places.length === 0 ? (<div>no places found</div>)
+//   : (placesJsx)}
 
 export default Places

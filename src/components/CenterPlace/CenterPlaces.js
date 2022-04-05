@@ -4,9 +4,8 @@ import apiUrl from '../../apiConfig'
 import AddMapDialog from './AddMap/AddMapDialog'
 import CenterPlace from './CenterPlace'
 import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
+// import ListItem from '@material-ui/core/ListItem'
 import Skeleton from '@material-ui/lab/Skeleton'
-import Avatar from '@material-ui/core/Avatar'
 
 const titleStyle = {
   color: 'black',
@@ -14,7 +13,8 @@ const titleStyle = {
   textAlign: 'center'
 }
 const skeletonPlaceStyle = {
-  marginTop: '1px',
+  marginTop: '2px',
+  height: '64px',
   opacity: '.9'
 }
 
@@ -29,7 +29,8 @@ class CenterPlaces extends Component {
       mapCenter: '',
       mapSettings: props.mapSettings,
       centerPlace: '',
-      map: ''
+      map: '',
+      loading: true
     }
   }
 
@@ -42,7 +43,7 @@ class CenterPlaces extends Component {
           Authorization: `Token token=${this.props.user.token}`
         }
       })
-      this.setState({ centerPlaces: response.data.centerPlaces, isLoading: false })
+      this.setState({ centerPlaces: response.data.centerPlaces, isLoading: false, loading: false })
     } catch (error) {
     }
   }
@@ -78,7 +79,7 @@ class CenterPlaces extends Component {
   }
 
   render (props) {
-    const { centerPlaces } = this.state
+    const { centerPlaces, loading } = this.state
     console.log('re render, centerPlaces', centerPlaces)
     const centerPlacesJSX = centerPlaces.map(centerPlace => (
       <CenterPlace loading={false} mapSettings={this.props.mapSettings} key={centerPlace._id} centerPlace={centerPlace} user={this.props.user} name={centerPlace.name} id={centerPlace._id} handleClick={this.handleClick} setMapCenter={this.props.setMapCenter}/>
@@ -91,32 +92,44 @@ class CenterPlaces extends Component {
             <AddMapDialog user={this.props.user} />
           </div>
           <List>
-            {this.state.centerPlaces.length
-              ? centerPlacesJSX
-              : (
-                <div> <ListItem>No maps found</ListItem>
-                  <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                  <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                  <Skeleton style={skeletonPlaceStyle} variant="rect" />
-                  <br/>
-                  <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-                  <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-                  <Skeleton style={skeletonPlaceStyle} animation="pulse" variant="rect" />
-                  <br/>
+            { loading ? (<div>
+              <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+            </div>)
+              : <div> { this.state.centerPlaces.length === 0 ? (
+                <div>no saved maps found
                   <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
-                  <br/>
-                  <Skeleton variant="circle" width={40} height={40}><Avatar /></Skeleton>
-                  <Skeleton variant="text" />
-                </div>
-              )
-            }
+                  <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+                </div>)
+                : (centerPlacesJSX)} </div>}
           </List>
         </Fragment>
       </div>
     )
   }
 }
+// {this.state.centerPlaces.length
+//   ? centerPlacesJSX
+//   : (
+//     <div> <ListItem>No maps found</ListItem>
+//       <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+//       <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+//       <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+//       <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+//       <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+//       <br/>
+//       <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+//     </div>
+//   )
+// }
 export default CenterPlaces
+// <Skeleton variant="circle" width={40} height={40}><Avatar /></Skeleton>
+
 // <div>
 //   { centerPlaces.map(centerPlace => (
 //     <Card key={centerPlace._id} className="card-style"

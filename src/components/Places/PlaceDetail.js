@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import { withRouter, Redirect, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
-// import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
 import Skeleton from '@material-ui/lab/Skeleton'
@@ -15,7 +14,8 @@ class Place extends Component {
   state = {
     place: '',
     deleted: false,
-    filtered: false
+    filtered: false,
+    loading: true
   }
 
   async componentDidMount (props) {
@@ -27,7 +27,7 @@ class Place extends Component {
           'Authorization': `Token token=${this.props.user.token}`
         }
       })
-      this.setState({ place: response.data.place })
+      this.setState({ place: response.data.place, loading: false })
       console.log(this.state.place.name)
     } catch (error) {
     }
@@ -52,9 +52,9 @@ class Place extends Component {
     }
 
     render () {
-      console.log(this.state)
+      console.log('this.state', this.state)
       console.log(this.props)
-      const { place, deleted } = this.state
+      const { place, deleted, loading } = this.state
       if (deleted) {
         return <Redirect to={
           {
@@ -65,8 +65,8 @@ class Place extends Component {
 
       return (
         <div style={style}>
-          { place ? (
-            <Fragment>
+          { loading ? (<Skeleton variant="rect" style={{ height: '178px' }}/>)
+            : (<Fragment>
               <Card>
                 <Card.Body>
                   <Card.Title>{place.name}</Card.Title>
@@ -86,11 +86,33 @@ class Place extends Component {
                   </div>
                 </Card.Footer>
               </Card>
-            </Fragment>
-          ) : (<Skeleton variant="rect" style={{ height: '200rem' }}/>)}
+            </Fragment>)}
         </div>
       )
     }
 }
+// { place ? (
+//   <Fragment>
+//     <Card>
+//       <Card.Body>
+//         <Card.Title>{place.name}</Card.Title>
+//         <Card.Subtitle>{place.type}</Card.Subtitle>
+//         <Card.Text>
+//           {place.longName}
+//         </Card.Text>
+//       </Card.Body>
+//       <Card.Footer>
+//         <div className="cardLink">
+//           <Link to="/places" className="cardLink">Back to all</Link>
+//         </div>
+//         <div className="cardButton">
+//           <Button onClick={this.deleteplace} className="cardButton" variant="dark" type="submit">
+//             Delete this place
+//           </Button>
+//         </div>
+//       </Card.Footer>
+//     </Card>
+//   </Fragment>
+// ) : (<Skeleton variant="rect" style={{ height: '178px' }}/>)}
 
 export default withRouter(Place)

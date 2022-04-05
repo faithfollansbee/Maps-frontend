@@ -67,6 +67,9 @@ class AddPlace extends Component {
       .then(response => {
         this.props.history.push(`/places/${response.data.place._id}`)
       })
+      .then(response => {
+        this.props.history.push('/places')
+      })
       .catch(err => this.setState({ error: err.message }))
     this.props.handleSubmitClose()
   }

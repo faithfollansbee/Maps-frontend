@@ -61,10 +61,18 @@ class Place extends Component {
             place: this.state.place
           }
         })
-        .then(() => this.setState({ deleted: true }))
+        // .then(() => this.setState({ deleted: true }))
       // console.log('location', this.props.location)
       // console.log('history', this.props.history)
       // console.log(this.props.match.url)
+        // .then(response => {
+        //   this.props.history.push(`/places/${response.data.place._id}`)
+        // })
+        .then(() => this.setState({ deleted: true }))
+        // .then(response => {
+        //   this.props.history.push('/places')
+        // })
+        .then(() => this.props.history.push('/places'))
     }
 
     render (props) {

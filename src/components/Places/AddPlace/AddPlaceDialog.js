@@ -23,7 +23,7 @@ export default function AddPlaceDialog (props) {
   return (
     <div>
       <Tooltip title="Add new place">
-        <IconButton size="sm" onClick={handleClickOpen} style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+        <IconButton size="medium" onClick={handleClickOpen} style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
           <AddIcon fontSize="small"/>
         </IconButton>
       </Tooltip>

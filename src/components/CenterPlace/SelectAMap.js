@@ -93,27 +93,44 @@ class SelectAMap extends Component {
     // </Button>
     return (
       <div className="SelectMap">
-
         <Tooltip title="Current map">
           <FormControl variant="filled">
-            <InputLabel id="simple-select-label" style={{ color: 'black', minWidth: 'max-content' }}>{this.props.currMap.name}</InputLabel>
-            <TextField
-              // variant="outlined"
-              size="small"
-              variant="filled"
-              style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
-              id="simple-select"
-              select
-              labelId="simple-select-label"
-              value={name}
-              onChange={this.handleChange}
-            >
-              { centerPlaces.map(centerPlace => (
-                <MenuItem key={centerPlace._id} value={centerPlace}
-                  onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
-                >{centerPlace.name}</MenuItem>
-              ))}
-            </TextField>
+            { centerPlaces.length === 0 ? (
+              <div><InputLabel id="simple-select-label" style={{ color: 'black', minWidth: 'max-content' }}>{this.props.currMap.name}</InputLabel>
+                <TextField
+                // variant="outlined"
+                  size="small"
+                  variant="filled"
+                  style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
+                  id="simple-select"
+                  select
+                  labelId="simple-select-label"
+                  value={name}
+                  // onChange={this.handleChange}
+                >
+                  <MenuItem
+                  ><i>No places found</i></MenuItem>
+                </TextField>
+              </div>)
+              : (<div>
+                <InputLabel id="simple-select-label" style={{ color: 'black', minWidth: 'max-content' }}>{this.props.currMap.name}</InputLabel>
+                <TextField
+                // variant="outlined"
+                  size="small"
+                  variant="filled"
+                  style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
+                  id="simple-select"
+                  select
+                  labelId="simple-select-label"
+                  value={name}
+                  onChange={this.handleChange}
+                >
+                  { centerPlaces.map(centerPlace => (
+                    <MenuItem key={centerPlace._id} value={centerPlace}
+                      onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
+                    >{centerPlace.name}</MenuItem>
+                  ))}
+                </TextField></div>)}
           </FormControl>
         </Tooltip>
       </div>
@@ -122,6 +139,8 @@ class SelectAMap extends Component {
 }
 
 export default SelectAMap
+// { centerPlaces.length === 0 ? (<div>no maps found</div>) : (<div>render as usual</div>)}
+
 // <form variant="filled">
 //   <Tooltip title="Current map">
 //     <TextField
