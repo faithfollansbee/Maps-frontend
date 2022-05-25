@@ -32,8 +32,10 @@ export default function EditPlaceDialog (props) {
           fullWidth={true}
           maxWidth="sm"
           open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Edit &quot;{props.place.name}&quot;</DialogTitle>
-          <DialogContent user={props.user}>
+          <DialogTitle id="form-dialog-title" style={{ alignItems: 'center' }}>
+            Editting &quot;{props.place.name}&quot;
+          </DialogTitle>
+          <DialogContent user={props.user} dividers>
             <EditPlace user={props.user} name={props.place.name} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>
           </DialogContent>
         </Dialog>

@@ -11,6 +11,17 @@ import FormControl from '@material-ui/core/FormControl'
 import DialogActions from '@material-ui/core/DialogActions'
 import Button from '@material-ui/core/Button'
 import placeTypes from '../../App/PlaceTypes'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+
+const itemStyle = {
+  margin: '5px'
+  // flexDirection: 'row-reverse'
+}
+// const FCStyle = {
+//   display: 'flex',
+//   flexDirection: 'row-reverse'
+// }
 
 class AddPlace extends Component {
   constructor (props) {
@@ -93,11 +104,33 @@ class AddPlace extends Component {
     // <FormLabel id="demo-controlled-radio-buttons-group"></FormLabel>
     const placeTypesJsx = this.state.placeTypes.map(type => (
       <div key={type.id}>
-        <RadioGroup name={type.placeType} key={type.id} value={type.id} aria-labelledby="demo-controlled-radio-buttons-group">
+        <RadioGroup name={type.placeType} row value={type.id}>
           <FormControlLabel
             value={type.id}
+            sx={{ width: '100%' }}
+            // label={type.placeType}
+            // label={CustomLabel}
+            // label={
+            //   <div>
+            //     {type.placeType}
+            //     <img src={type.img} style={{ height: '38.4px' }} />
+            //   </div>
+            // }
+            label={
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 6
+                }}
+                // display="flex"
+                // justifyContent="space-between"
+                alignItems="center">
+                <Typography>{type.placeType}</Typography>
+                <img src={type.img} style={{ height: '38.4px' }} />
+              </Box>
+            }
             control={
-              <div>
+              <div style={itemStyle}>
                 <Radio
                   value={type.id}
                   checked={this.state.type === type.placeType}
@@ -105,31 +138,27 @@ class AddPlace extends Component {
                   inputProps={{ 'aria-label': type.placeType }}
                   name={type.placeType}
                 />
-                <img src={type.img} style={{ height: '38.4px' }} />
               </div>
             }
             // checked={this.state.type === type.id}
             // <img src={type.img} style={{ transform: 'scale(0.7)' }}/>
-
-            onChange={this.handleOptionChange}
-            label={type.placeType}
+            // onChange={this.handleOptionChange}
           />
         </RadioGroup>
       </div>
     ))
 
     return (
-      // 🍕🍺🍿🏠🏛🌲🥡
       <div margin="auto" style={{ marginTop: '15px' }}>
         <Form onSubmit={this.handleSubmit}>
           <div className="col">
             <FormControl>
               <RadioGroup aria-labelledby="demo-controlled-radio-buttons-group"
-                name="controlled-radio-buttons-group"
-                //     name="controlled-radio-buttons-group"
+                // name="controlled-radio-buttons-group"
                 value={this.type}
                 // onChange={handleChange}
-                onChange={this.handleOptionChange}>
+                onChange={this.handleOptionChange}
+              >
 
                 { placeTypesJsx }
 

@@ -6,7 +6,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 // import FormHelperText from '@material-ui/core/FormHelperText'
 import TextField from '@material-ui/core/TextField'
-import Tooltip from '@material-ui/core/Tooltip'
+import Fade from '@material-ui/core/Fade'
+// import FormHelperText from '@material-ui/core/FormHelperText'
+// import Select from '@material-ui/core/Select'
+// import Tooltip from '@material-ui/core/Tooltip'
 
 // const buttonStyle = {
 //   display: 'block',
@@ -92,16 +95,14 @@ class SelectAMap extends Component {
     //    View Other Map
     // </Button>
     return (
-      <div className="SelectMap">
-        <Tooltip title="Current map">
+      <Fade in={true} timeout={500}>
+        <div className="SelectMap">
           <FormControl variant="filled">
             { centerPlaces.length === 0 ? (
               <div><InputLabel id="simple-select-label" style={{ color: 'black', minWidth: 'max-content' }}>{this.props.currMap.name}</InputLabel>
                 <TextField
-                // variant="outlined"
                   size="small"
                   variant="filled"
-                  style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
                   id="simple-select"
                   select
                   labelId="simple-select-label"
@@ -113,54 +114,50 @@ class SelectAMap extends Component {
                 </TextField>
               </div>)
               : (<div>
-                <InputLabel id="simple-select-label" style={{ color: 'black', minWidth: 'max-content' }}>{this.props.currMap.name}</InputLabel>
+                <InputLabel id="select-map">{this.props.currMap.name}</InputLabel>
                 <TextField
-                // variant="outlined"
-                  size="small"
-                  variant="filled"
-                  style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
-                  id="simple-select"
+                  variant="outlined"
+                  // variant="filled"
+                  // color="secondary"
                   select
-                  labelId="simple-select-label"
                   value={name}
+                  // label={this.props.currMap.name}
+                  // placeholder={this.props.currMap.name}
                   onChange={this.handleChange}
+                  labelId="select-map"
+                  name="map"
                 >
                   { centerPlaces.map(centerPlace => (
                     <MenuItem key={centerPlace._id} value={centerPlace}
                       onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
-                    >{centerPlace.name}</MenuItem>
+                    >
+                      {centerPlace.name}
+                    </MenuItem>
                   ))}
-                </TextField></div>)}
+                </TextField>
+              </div>)}
           </FormControl>
-        </Tooltip>
-      </div>
+        </div>
+      </Fade>
     )
   }
 }
+// <div style={{ marginTop: '15px' }}>
+//   <TextField
+//     variant="outlined"
+//     placeholder="Enter The Zip Code"
+//     label="Zip Code"
+//     select
+//     name="zipcode"
+//   >
+//     { centerPlaces.map(centerPlace => (
+//       <MenuItem key={centerPlace._id} value={centerPlace}
+//         onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
+//       >
+//         {centerPlace.name}
+//       </MenuItem>
+//     ))}
+//   </TextField>
+// </div>
 
 export default SelectAMap
-// { centerPlaces.length === 0 ? (<div>no maps found</div>) : (<div>render as usual</div>)}
-
-// <form variant="filled">
-//   <Tooltip title="Current map">
-//     <TextField
-//       // variant="outlined"
-//       size="small"
-//       variant="filled"
-//       style={{ color: 'black', backgroundColor: 'white', borderRadius: '3px' }}
-//       id="simple-select"
-//       select
-//       // label={this.props.currMap.name}
-//       labelId="simple-select-label"
-//       value={name}
-//       label={this.props.currMap.name}
-//       onChange={this.handleChange}
-//     >
-//       { centerPlaces.map(centerPlace => (
-//         <MenuItem key={centerPlace._id} value={centerPlace}
-//           onClick={this.handleChange} name={centerPlace.name} style={inputStyle}
-//         >{centerPlace.name}</MenuItem>
-//       ))}
-//     </TextField>
-//   </Tooltip>
-// </form>

@@ -11,6 +11,8 @@ import axios from 'axios'
 import apiUrl from '../../../apiConfig'
 import { withRouter, Redirect } from 'react-router-dom'
 import placeTypes from '../../App/PlaceTypes'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 
 class EditPlaceForm extends Component {
   constructor (props) {
@@ -20,6 +22,7 @@ class EditPlaceForm extends Component {
     this.state = {
       user: props.user,
       placeTypes: placeTypes,
+      type: props.type,
       // places: [],
       filtered: false,
       place: {
@@ -107,7 +110,7 @@ class EditPlaceForm extends Component {
 
   render (props) {
     const { saved } = this.state
-    const { place } = this.props
+    const { place, type } = this.props
     if (saved) {
       return <Redirect to={
         {
@@ -136,8 +139,9 @@ class EditPlaceForm extends Component {
     //     label="Restaurant" />
     const placeTypesJsx = this.state.placeTypes.map(type => (
       <div key={type.id}>
-        <RadioGroup name="type" key={type.id} value={type.id} aria-labelledby="demo-controlled-radio-buttons-group">
+        <RadioGroup name={type.placeType} defaultValue={this.props.type} row key={type.id} value={type} aria-labelledby="demo-controlled-radio-buttons-group">
           <FormControlLabel
+            sx={{ width: '100%' }}
             value={type.id}
             control={
               <div>
@@ -146,12 +150,23 @@ class EditPlaceForm extends Component {
                   checked={this.state.type === type.id}
                   onChange={this.handleOptionChange}
                 />
-                <img src={type.img} style={{ height: '38.4px' }} />
               </div>
             }
             // checked={this.state.type === type.id}
-            onChange={this.handleOptionChange}
-            label={type.placeType}
+            // onChange={this.handleOptionChange}
+            label={
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 6
+                }}
+                // display="flex"
+                // justifyContent="space-between"
+                alignItems="center">
+                <Typography>{type.placeType}</Typography>
+                <img src={type.img} style={{ height: '38.4px' }} />
+              </Box>
+            }
           />
         </RadioGroup>
       </div>
@@ -174,18 +189,11 @@ class EditPlaceForm extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="name">
             <Form.Label>{place.name}</Form.Label>
-            <Form.Control
-              type="text"
-              // placeholder={genre.name}
-              defaultValue={place.name}
-              // value={place.name}
-              onChange={this.handleChange}
-              name="name"
-              required
-            />
           </Form.Group>
           <Form.Group controlId="placeType">
-            { placeTypesJsx }
+            <RadioGroup value={type} defaultValue={type}>
+              { placeTypesJsx }
+            </RadioGroup>
           </Form.Group>
           <DialogActions>
             <Button onClick={this.props.handleSubmitClose} color="primary">Close</Button>

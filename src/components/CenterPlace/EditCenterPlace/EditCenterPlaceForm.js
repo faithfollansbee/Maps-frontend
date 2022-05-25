@@ -85,7 +85,7 @@ class EditCenterPlaceForm extends Component {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="name">
-            <Form.Label>CenerPlace Name</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
               // placeholder={genre.name}
@@ -97,8 +97,8 @@ class EditCenterPlaceForm extends Component {
             />
           </Form.Group>
           <DialogActions>
-            <Button onClick={this.props.handleSubmitClose} color="primary">Close</Button>
-            <Button color="primary" type="submit">
+            <Button onClick={this.props.handleSubmitClose} style={{ color: '#122c38' }}>Close</Button>
+            <Button style={{ color: '#122c38' }}type="submit">
                 Submit
             </Button>
           </DialogActions>

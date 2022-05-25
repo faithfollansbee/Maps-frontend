@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 // import classNames from 'classnames'
 import Card from '@material-ui/core/Card'
+// import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
 import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
@@ -65,23 +66,21 @@ class SignIn extends Component {
       <Fade in={isSigningIn} {...(isSigningIn ? { timeout: 700 } : {})}>
         <div className="row">
           <div className="col-sm-10 col-md-8 mx-auto mt-5">
-            <Card >
+            <Card style={{ fontFamily: 'Poppins', fontWeight: '300' }}>
               <CardContent>
-                <h3>Sign In</h3>
+                <h3 style={{ marginBottom: '1rem', fontWeight: '400' }}>Sign In</h3>
                 <Form onSubmit={this.onSignIn}>
                   <Form.Group controlId="email">
-                    <Form.Label>Email address</Form.Label>
                     <Form.Control
                       required
                       type="email"
                       name="email"
                       value={email}
-                      placeholder="Enter email"
+                      placeholder="Email"
                       onChange={this.handleChange}
                     />
                   </Form.Group>
                   <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
                     <Form.Control
                       required
                       name="password"
@@ -91,12 +90,7 @@ class SignIn extends Component {
                       onChange={this.handleChange}
                     />
                   </Form.Group>
-                  <Button
-                    type="submit"
-                    variant="dark"
-                  >
-                    Submit
-                  </Button>
+                  <Button type="submit" style={{ backgroundColor: '#122c38' }}>Submit</Button>
                 </Form>
               </CardContent>
             </Card>
