@@ -116,8 +116,9 @@ class SelectAMap extends Component {
               : (<div>
                 <InputLabel id="select-map">{this.props.currMap.name}</InputLabel>
                 <TextField
-                  variant="outlined"
-                  // variant="filled"
+                  // variant="outlined"
+                  variant="filled"
+                  style={{ backgroundColor: 'white' }}
                   // color="secondary"
                   select
                   value={name}
