@@ -54,15 +54,15 @@ class Header extends Component {
     const guestSignIn = (user, setUser) => {
       event.preventDefault()
       console.log(user)
-      signIn({ email: 'guest@guest', password: 'guest!' })
+      signIn({ email: 'guest@guest', password: 'guest' })
         .then(res => setUser(res.data.user))
         .then(() => alert({
           heading: `Welcome, ${this.props.user.email}`,
-          // message: messages.signInSuccess,
           variant: 'success'
         }))
         .then(() => history.push('/map'))
     }
+
     const unauthenticatedOptions = (
       <Fragment>
         <Nav.Link onClick={() => guestSignIn(user, setUser)} href="#map">Guest</Nav.Link>
