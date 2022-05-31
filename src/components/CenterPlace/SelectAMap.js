@@ -4,22 +4,11 @@ import apiUrl from '../../apiConfig'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
-// import FormHelperText from '@material-ui/core/FormHelperText'
 import TextField from '@material-ui/core/TextField'
 import Fade from '@material-ui/core/Fade'
-// import FormHelperText from '@material-ui/core/FormHelperText'
-// import Select from '@material-ui/core/Select'
-// import Tooltip from '@material-ui/core/Tooltip'
 
-// const buttonStyle = {
-//   display: 'block',
-//   marginTop: 'theme.spacing(2)'
-// }
-// const formControlStyle = {
-//   margin: 'theme.spacing(1)',
-//   minWidth: 120
-// }
 const inputStyle = {
+  color: 'black'
   // position: 'relative'
   // color: 'black'
 }
@@ -101,20 +90,20 @@ class SelectAMap extends Component {
             { centerPlaces.length === 0 ? (
               <div><InputLabel id="simple-select-label" style={{ color: 'black', minWidth: 'max-content' }}>{this.props.currMap.name}</InputLabel>
                 <TextField
-                  size="small"
+                  // size="small"
+                  style={{ backgroundColor: 'white' }}
                   variant="filled"
                   id="simple-select"
                   select
                   labelId="simple-select-label"
                   value={name}
-                  // onChange={this.handleChange}
                 >
                   <MenuItem
                   ><i>No places found</i></MenuItem>
                 </TextField>
               </div>)
               : (<div>
-                <InputLabel id="select-map">{this.props.currMap.name}</InputLabel>
+                <InputLabel id="select-map" style={{ color: 'black' }}>{this.props.currMap.name}</InputLabel>
                 <TextField
                   // variant="outlined"
                   variant="filled"

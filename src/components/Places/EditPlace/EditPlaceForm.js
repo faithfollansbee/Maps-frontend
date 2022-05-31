@@ -110,7 +110,7 @@ class EditPlaceForm extends Component {
 
   render (props) {
     const { saved } = this.state
-    const { place, type } = this.props
+    const { type } = this.props
     if (saved) {
       return <Redirect to={
         {
@@ -187,9 +187,6 @@ class EditPlaceForm extends Component {
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="name">
-            <Form.Label>{place.name}</Form.Label>
-          </Form.Group>
           <Form.Group controlId="placeType">
             <RadioGroup value={type} defaultValue={type}>
               { placeTypesJsx }
@@ -198,7 +195,7 @@ class EditPlaceForm extends Component {
           <DialogActions>
             <Button onClick={this.props.handleSubmitClose} color="primary">Close</Button>
             <Button color="primary" type="submit">
-                Submit
+                Save
             </Button>
           </DialogActions>
         </Form>
