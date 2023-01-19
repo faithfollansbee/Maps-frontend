@@ -4,7 +4,8 @@ import DialogContent from '@material-ui/core/DialogContent'
 // import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 import Tooltip from '@material-ui/core/Tooltip'
 import SimpleSearch from './SimpleSearch'
 import Typography from '@material-ui/core/Typography'
@@ -23,9 +24,14 @@ export default function AddMapDialog (props) {
   return (
     <div>
       <Tooltip title="Add new map">
-        <IconButton size="medium" onClick={handleClickOpen} style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-          <AddIcon fontSize="small" />
-        </IconButton>
+        <Button size="medium"
+          variant="outlined"
+          // border
+          style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+          startIcon={<AddIcon fontSize="small"/>}
+          onClick={handleClickOpen}>
+          new map
+        </Button>
       </Tooltip>
       <Dialog
         user={props.user}

@@ -59,8 +59,8 @@ class EditPlace extends Component {
   }
 
   render (props) {
-    console.log(this.props)
-    console.log(this.state)
+    // console.log(this.props)
+    // console.log(this.state)
     const { place, id, type, name, handleSubmitClose } = this.props
     return (
       <div>

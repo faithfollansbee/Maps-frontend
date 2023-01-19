@@ -13,35 +13,38 @@ export default function EditPlaceDialog (props) {
 
   const handleClickOpen = () => {
     setOpen(true)
-    console.log('EditPlaceDialog opened')
+    // console.log('EditPlaceDialog opened')
   }
 
   const handleClose = () => {
     setOpen(false)
     props.onMenuClose()
-    console.log('EditPlaceDialog called menuClose, closed')
+    // console.log('EditPlaceDialog called menuClose, closed')
   }
   return (
-    <MenuItem onClick={handleClickOpen}>
-      <ListItemIcon>
-        <EditIcon />
-        <Dialog
-          user={props.user}
-          place={props.place.name}
-          id={props.id}
-          fullWidth={true}
-          maxWidth="sm"
-          open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title" style={{ alignItems: 'center' }}>
-            {props.place.name}
-          </DialogTitle>
-          <DialogContent user={props.user} dividers>
-            <EditPlace user={props.user} name={props.place.name} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>
-          </DialogContent>
-        </Dialog>
-      </ListItemIcon>
-      Edit
-    </MenuItem>
+    <div>
+      <MenuItem onClick={handleClickOpen}>
+        <ListItemIcon>
+          <EditIcon />
+          <Dialog
+            user={props.user}
+            place={props.place.name}
+            id={props.id}
+            fullWidth={true}
+            maxWidth="sm"
+            open={open}
+            onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title" style={{ alignItems: 'center' }}>
+              {props.place.name}
+            </DialogTitle>
+            <DialogContent user={props.user} dividers>
+              <EditPlace user={props.user} name={props.place.name} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>
+            </DialogContent>
+          </Dialog>
+        </ListItemIcon>
+        Edit
+      </MenuItem>
+    </div>
   )
 }
 // <EditPlaceForm user={props.user} name={props.place.name} place={props.place} type={props.type} id={props.id} handleSubmitClose={handleClose}/>

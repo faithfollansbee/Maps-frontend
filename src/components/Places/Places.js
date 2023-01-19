@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import List from '@material-ui/core/List'
@@ -7,19 +7,23 @@ import Place from './Place'
 import Skeleton from '@material-ui/lab/Skeleton'
 import placeTypes from '../App/PlaceTypes'
 
-const style = {
-  // paddingBottom: '0'
-  // margin: 50
-}
 const skeletonPlaceStyle = {
   height: '72px',
-  marginTop: '2.5px',
+  marginTop: '2px',
   opacity: '.9'
 }
 const headingStyle = {
-  color: 'black',
+  color: '#ffffff',
   // fontSize: '40px',
   margin: 'auto',
+  justifyContent: 'center',
+  textAlign: 'center'
+}
+const textStyle = {
+  color: '#ffffff',
+  // color: 'rgba(255, 255, 255, 0.5)',
+  margin: 'auto',
+  opacity: '.6',
   textAlign: 'center'
 }
 // function ListItemLink (props) {
@@ -143,30 +147,33 @@ class Places extends Component {
     //     </div>
     //   )
     // }
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div className="Search2-layout">
-        <div style={{ display: 'flex', margin: '10px', alignItems: 'center' }}>
-          <h2 style={headingStyle}>Saved Places</h2>
-          <AddPlaceDialog user={this.props.user} />
-        </div>
-        <List style={style}>
-          { loading ? (<div>
-            <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
-            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-            <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
-          </div>)
-            : <div> { this.state.places.length === 0 ? (
-              <div>no places found
-                <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
-                <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
-              </div>)
-              : (placesJsx)} </div>}
-        </List>
+        <Fragment>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <h2 style={headingStyle}>Saved Places</h2>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'right' }}>
+            <AddPlaceDialog user={this.props.user} />
+          </div>
+          <br/>
+          <List>
+            { loading ? (<div>
+              <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+              <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
+            </div>)
+              : <div> { this.state.places.length === 0 ? (
+                <div style={textStyle}>You haven&apos;t saved any places yet! Get started here</div>)
+                : (placesJsx)} </div>}
+          </List>
+        </Fragment>
+        <br/>
       </div>
     )
   }

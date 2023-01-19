@@ -16,13 +16,13 @@ export default function EditPlaceMenu ({ place, id, user, type, deletePlace }) {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
-    console.log('EditPlaceMenu clicked')
-    console.log(place)
+    // console.log('EditPlaceMenu clicked')
+    // console.log(place)
   }
 
   const handleClose = () => {
     setAnchorEl(null)
-    console.log('EditPlaceMenu closed')
+    // console.log('EditPlaceMenu closed')
   }
   // const handleClickAway = () => {
   //   // setAnchorEl(null)
@@ -80,8 +80,10 @@ export default function EditPlaceMenu ({ place, id, user, type, deletePlace }) {
         // <EditGenreDialog id={genre._id} genre={genre} user={user} />
         // id={this.state.genre._id} genre={this.state.genre} user={this.props.user}
       >
-        <EditPlaceDialog onMenuClose={handleClose} type={type} id={id} place={place} user={user} />
-        <MenuItem onClick={deletePlace} place={place} user={user} id={id} compponent="#">
+        <span>
+          <EditPlaceDialog onMenuClose={handleClose} type={type} id={id} place={place} user={user} />
+        </span>
+        <MenuItem onClick={deletePlace} place={place} user={user} id={id}>
           <ListItemIcon>
             <DeleteIcon />
           </ListItemIcon>

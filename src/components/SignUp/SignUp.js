@@ -57,10 +57,10 @@ class SignUp extends Component {
     const { email, password, passwordConfirmation, isSigningUp } = this.state
 
     return (
-      <Fade in={isSigningUp} {...(isSigningUp ? { timeout: 1000 } : {})}>
+      <Fade in={isSigningUp} {...(isSigningUp ? { timeout: 900 } : {})}>
         <div className="row">
           <div className="col-sm-10 col-md-8 mx-auto mt-5">
-            <Card style={{ fontFamily: 'Poppins' }}>
+            <Card>
               <CardContent>
                 <h3 style={{ marginBottom: '1rem', fontWeight: '400' }}>Sign Up</h3>
                 <Form onSubmit={this.onSignUp}>
@@ -94,8 +94,8 @@ class SignUp extends Component {
                       onChange={this.handleChange}
                     />
                   </Form.Group>
-                  <Button style={{ backgroundColor: '#122c38' }} type="submit">
-                    Submit
+                  <Button style={{ backgroundColor: '#122c38', padding: '10px 40px' }} type="submit">
+                    Sign Up
                   </Button>
                 </Form>
               </CardContent>

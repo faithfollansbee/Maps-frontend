@@ -23,17 +23,7 @@ class EditCenterPlaceForm extends Component {
       }
     }
   }
-  // closeMovieInfo = event => {
-  //   this.setState({ currentMovie: null })
-  // }
-  // handleChange = event => {
-  //   this.setState({
-  //     place: {
-  //       ...this.state.place,
-  //       [event.target.name]: event.target.value
-  //     }
-  //   })
-  // }
+
   handleChange = event => {
     this.setState({
       name: event.target.value
@@ -57,7 +47,7 @@ class EditCenterPlaceForm extends Component {
       }
     })
       .then(response => {
-        this.props.history.push(`/centerPlaces${this.props.id}`)
+        this.props.history.push(`/saved${this.props.id}`)
       })
       // .then(() => this.props.history.push(`/movies/${this.props.id}`))
       .catch(err => this.setState({ error: err.message }))
@@ -65,9 +55,10 @@ class EditCenterPlaceForm extends Component {
     // if editting from specific genre, should redirect to that same genre. if editting from
     // genre list, redirect to all genres
       .then(response => {
-        // this.props.history.push('/movies')
+        // this.props.history.push('/saved')
         this.props.history.goBack()
       })
+    console.log('called handleSubmit from EditCenterPlaceForm.js')
     this.props.handleSubmitClose()
   }
 

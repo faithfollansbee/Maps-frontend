@@ -128,6 +128,15 @@ const InfoWindow = (props) => {
       <span style={{ color: 'orange' }}>
         {place.type}
       </span>
+      <span style={{ color: 'green' }}>
+        {place.type}
+      </span>
+      <span style={{ color: 'purple' }}>
+        {place.type}
+      </span>
+      <span style={{ color: 'lightgreen' }}>
+        {place.type}
+      </span>
     </div>
   )
 }

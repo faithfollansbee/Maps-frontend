@@ -16,15 +16,15 @@ const logoStyle = {
 }
 const NavBarStyle = {
   margin: '0px',
-  padding: '0px',
-  position: 'relative'
+  padding: '0px'
+  // position: 'relative'
 }
 
 const authenticatedOptions = (
   <Fragment>
     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/places" href="#places"> Saved Places </NavLink>
     <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/map" href="#map"> Map </NavLink>
-    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/centerplaces" href="#centerPlaces"> Saved Maps </NavLink>
+    <NavLink className="nav-link" activeStyle={{ color: 'white' }} to="/saved" href="#saved"> Saved By You</NavLink>
   </Fragment>
 )
 
@@ -49,12 +49,12 @@ const alwaysOptions = (
 class Header extends Component {
   render () {
     const { alert, user, history, setUser } = this.props
-    console.log(history)
+    console.log('History', history)
 
     const guestSignIn = (user, setUser) => {
       event.preventDefault()
       console.log(user)
-      signIn({ email: 'guest@guest', password: 'guest' })
+      signIn({ email: 'guest@guest', password: 'guest!' })
         .then(res => setUser(res.data.user))
         .then(() => alert({
           heading: `Welcome, ${this.props.user.email}`,
@@ -73,7 +73,7 @@ class Header extends Component {
     )
     return (
       <Fragment>
-        <Navbar variant="dark" expand="md" style={NavBarStyle}>
+        <Navbar sticky="top" variant="dark" expand="md" style={NavBarStyle}>
           <Navbar.Brand href="#map">
           </Navbar.Brand>
           <div className="logoContainer" style={logoStyle}>

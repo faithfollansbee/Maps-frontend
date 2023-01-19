@@ -8,7 +8,7 @@ import List from '@material-ui/core/List'
 import Skeleton from '@material-ui/lab/Skeleton'
 
 const titleStyle = {
-  color: 'black',
+  color: '#ffffff',
   margin: 'auto',
   textAlign: 'center'
 }
@@ -16,6 +16,13 @@ const skeletonPlaceStyle = {
   marginTop: '2px',
   height: '64px',
   opacity: '.9'
+}
+const textStyle = {
+  color: '#ffffff',
+  margin: 'auto',
+  // margin: '10px',
+  opacity: '.6',
+  textAlign: 'center'
 }
 
 class CenterPlaces extends Component {
@@ -48,7 +55,6 @@ class CenterPlaces extends Component {
     }
   }
   handleDelete = (props) => {
-    console.log(this.props)
     event.preventDefault()
     axios.delete(`${apiUrl}/centerPlaces/${this.props.centerPlace.id}`,
       {
@@ -60,7 +66,7 @@ class CenterPlaces extends Component {
         }
       })
       .then(() => this.setState({ deleted: true }))
-      .then(() => this.props.history.push('/centerPlaces'))
+      // .then(() => this.props.history.push('/saved'))
       // .then(() => this.props.history.push('/genres'))
       // .then(response => {
       //   this.props.history.goBack()
@@ -68,7 +74,6 @@ class CenterPlaces extends Component {
   }
 
   handleClick = (e) => {
-    console.log(e)
     this.props.setMapCenter(e)
     // const newCenter = { lat: event.latitude, lng: e.longitude }
     // const centerObj = { ...e }
@@ -80,17 +85,21 @@ class CenterPlaces extends Component {
 
   render (props) {
     const { centerPlaces, loading } = this.state
-    console.log('re render, centerPlaces', centerPlaces)
+    // console.log('re render, centerPlaces', centerPlaces)
     const centerPlacesJSX = centerPlaces.map(centerPlace => (
       <CenterPlace loading={false} mapSettings={this.props.mapSettings} key={centerPlace._id} centerPlace={centerPlace} user={this.props.user} name={centerPlace.name} id={centerPlace._id} handleClick={this.handleClick} setMapCenter={this.props.setMapCenter}/>
     ))
     return (
       <div className="Search2-layout">
         <Fragment>
-          <div style={{ display: 'flex', margin: '10px', alignItems: 'center' }}>
-            <h2 style={titleStyle}>Your Saved Maps</h2>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <h2 style={titleStyle}>Saved Maps</h2>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'right' }}>
             <AddMapDialog user={this.props.user} />
           </div>
+          <br/>
+
           <List>
             { loading ? (<div>
               <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
@@ -102,13 +111,11 @@ class CenterPlaces extends Component {
               <Skeleton style={skeletonPlaceStyle} animation="wave" variant="rect" />
             </div>)
               : <div> { this.state.centerPlaces.length === 0 ? (
-                <div>no saved maps found
-                  <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
-                  <Skeleton style={skeletonPlaceStyle} animation={false} variant="rect" />
-                </div>)
+                <div style={textStyle}>You haven&apos;t saved any maps yet! Get started here.</div>)
                 : (centerPlacesJSX)} </div>}
           </List>
         </Fragment>
+        <br/>
       </div>
     )
   }

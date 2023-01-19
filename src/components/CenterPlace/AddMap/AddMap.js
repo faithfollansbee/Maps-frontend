@@ -47,8 +47,9 @@ class AddMap extends Component {
         this.props.history.push(`/centerPlaces${response.data.centerPlace._id}`)
       })
       .then(response => {
-        this.props.history.push('/centerPlaces')
+        this.props.history.push('/saved')
       })
+    console.log('submitted new map')
     this.props.handleSubmitClose()
   }
   render () {

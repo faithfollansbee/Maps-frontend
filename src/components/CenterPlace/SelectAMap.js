@@ -65,7 +65,7 @@ class SelectAMap extends Component {
     this.setState({ open: false })
   }
   handleChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     this.props.setMapCenter(event.target.value)
     const newCenter = { lat: event.target.value.latitude, lng: event.target.value.longitude }
     const centerObj = { ...event.target.value }
@@ -95,7 +95,7 @@ class SelectAMap extends Component {
                   variant="filled"
                   id="simple-select"
                   select
-                  labelId="simple-select-label"
+                  labelid="simple-select-label"
                   value={name}
                 >
                   <MenuItem
@@ -114,7 +114,7 @@ class SelectAMap extends Component {
                   // label={this.props.currMap.name}
                   // placeholder={this.props.currMap.name}
                   onChange={this.handleChange}
-                  labelId="select-map"
+                  labelid="select-map"
                   name="map"
                 >
                   { centerPlaces.map(centerPlace => (

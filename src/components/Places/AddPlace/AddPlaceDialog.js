@@ -3,7 +3,7 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import AddIcon from '@material-ui/icons/Add'
-import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 import Tooltip from '@material-ui/core/Tooltip'
 // import TextField from '@material-ui/core/TextField'
 // import DialogContentText from '@material-ui/core/DialogContentText'
@@ -23,9 +23,17 @@ export default function AddPlaceDialog (props) {
   return (
     <div>
       <Tooltip title="Add new place">
-        <IconButton size="medium" onClick={handleClickOpen} style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-          <AddIcon fontSize="small"/>
-        </IconButton>
+        <Button
+          // variant="contained"
+          variant="outlined"
+          color="default"
+          style={{ color: 'black', backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+          size="medium" onClick={handleClickOpen}
+          // className={classes.button}
+          startIcon={<AddIcon fontSize="small"/>}
+        >
+         new place
+        </Button>
       </Tooltip>
       <Dialog
         user={props.user}
@@ -40,7 +48,9 @@ export default function AddPlaceDialog (props) {
           <Typography gutterBottom>
             To add a place to the map, search for it below. Pick an icon to mark it on the map and submit to save it on your map.
           </Typography>
-          <PlaceSearch user={props.user} handleSubmitClose={handleClose}/>
+          <span>
+            <PlaceSearch user={props.user} handleSubmitClose={handleClose}/>
+          </span>
         </DialogContent>
       </Dialog>
     </div>

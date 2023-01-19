@@ -44,18 +44,19 @@ class EditCenterPlace extends Component {
       }
     })
       .then(response => {
-        this.props.history.push(`/centerPlaces${this.props.centerPlace._id}`)
+        this.props.history.push(`/saved${this.props.centerPlace._id}`)
       })
       .then(() => this.setState({ submitted: true }))
       .then(response => {
         this.props.history.goBack()
       })
+    console.log('called handleSubmit from EditCenterPlace.js')
     this.props.handleSubmitClose()
   }
 
   render (props) {
-    console.log(this.props)
-    console.log(this.state)
+    // console.log(this.props)
+    // console.log(this.state)
     const { centerPlace, id, name, handleSubmitClose } = this.props
     return (
       <div>

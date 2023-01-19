@@ -15,6 +15,7 @@ import placeTypes from '../App/PlaceTypes'
 
 const style = {
   marginTop: '1px',
+  marginBottom: '1px',
   opacity: '.9'
   // backgroundColor: 'white'
   // margin: 50
@@ -77,6 +78,7 @@ class Place extends Component {
 
     render (props) {
       const { place, deleted } = this.state
+
       if (deleted) {
         return <Redirect to={
           {
@@ -86,32 +88,30 @@ class Place extends Component {
       }
 
       return (
-        <Paper style={style} >
-          { place && (
-            <ListItem button key={place._id} disableRipple variant="outlined">
-              <ListItemAvatar>
-                {placeTypes.map((placeType) => {
-                  if (placeType.placeType === place.type) {
-                    return <Fragment>
-                      <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} style={{ height: '37px' }} /></h4>
-                    </Fragment>
-                  }
-                })}
-              </ListItemAvatar>
-              <ListItemText primary={place.name} secondary={place.type}/>
+        <Paper style={style}>
+          <ListItem button key={place._id} disableRipple variant="outlined">
+            <ListItemAvatar>
+              {placeTypes.map((placeType) => {
+                if (placeType.placeType === place.type) {
+                  return <Fragment key={placeType.id}>
+                    <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} style={{ height: '37px' }} /></h4>
+                  </Fragment>
+                }
+              })}
+            </ListItemAvatar>
+            <ListItemText primary={place.name} secondary={place.type}/>
 
-              <Link to={`/places/${place._id}`} href={`/places/${place._id}`}>
-                <Tooltip title="More">
-                  <IconButton disableRipple>
-                    <KeyboardArrowRightIcon fontSize="medium" />
-                  </IconButton>
-                </Tooltip>
-              </Link>
-              <ListItemSecondaryAction>
-                <EditPlaceMenu user={this.props.user} deletePlace={this.handleDelete} title="more" {...place} place={place} type={place.type} id={place._id} name={place.name} />
-              </ListItemSecondaryAction>
-            </ListItem>
-          )}
+            <Link to={`/places/${place._id}`} href={`/places/${place._id}`}>
+              <Tooltip title="More">
+                <IconButton disableRipple>
+                  <KeyboardArrowRightIcon fontSize="medium" />
+                </IconButton>
+              </Tooltip>
+            </Link>
+            <ListItemSecondaryAction>
+              <EditPlaceMenu user={this.props.user} deletePlace={this.handleDelete} title="more" {...place} place={place} type={place.type} id={place._id} name={place.name} />
+            </ListItemSecondaryAction>
+          </ListItem>
         </Paper>
       )
     }
@@ -119,3 +119,30 @@ class Place extends Component {
 
 export default withRouter(Place)
 // <img src={placeType.img} style={{ transform: 'scale(0.8)' }} />
+/* <Paper style={style}>
+    { place && (
+      <ListItem button key={place._id} disableRipple variant="outlined">
+        <ListItemAvatar>
+          {placeTypes.map((placeType) => {
+            if (placeType.placeType === place.type) {
+              return <Fragment>
+                <h4 key={placeType.id} style={{ marginRight: '12px', marginBottom: '0' }}><img src={placeType.img} style={{ height: '37px' }} /></h4>
+              </Fragment>
+            }
+          })}
+        </ListItemAvatar>
+        <ListItemText primary={place.name} secondary={place.type}/>
+
+        <Link to={`/places/${place._id}`} href={`/places/${place._id}`}>
+          <Tooltip title="More">
+            <IconButton disableRipple>
+              <KeyboardArrowRightIcon fontSize="medium" />
+            </IconButton>
+          </Tooltip>
+        </Link>
+        <ListItemSecondaryAction>
+          <EditPlaceMenu user={this.props.user} deletePlace={this.handleDelete} title="more" {...place} place={place} type={place.type} id={place._id} name={place.name} />
+        </ListItemSecondaryAction>
+      </ListItem>
+    )}
+  </Paper> */

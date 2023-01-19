@@ -63,7 +63,7 @@ class App extends Component {
     console.log(LatLng)
     const coordSet = { lat: LatLng.latitude, lng: LatLng.longitude }
     const coordArr = [ Number(LatLng.latitude), Number(LatLng.longitude) ]
-    console.log(coordArr)
+    // console.log(coordArr)
     // this.setState({ mapCenter: LatLng })
     this.setState({ mapCenter: coordSet, mapCenterArr: coordArr })
     this.setState({ mapSettings: LatLng })
@@ -110,9 +110,9 @@ class App extends Component {
 
   render () {
     const { alerts, user } = this.state
-    console.log('app state', this.state)
-    console.log('app curr Map state', this.state.currMap)
-    console.log(this.apiKey)
+    // console.log('app state', this.state)
+    // console.log('app curr Map state', this.state.currMap)
+    // console.log(this.apiKey)
     // console.log(location)
     // console.log(this.state.user)
     // console.log(this.state)
@@ -136,7 +136,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/places/'
             render={() => (<Places user={user}/>)}
           />
-          <AuthenticatedRoute user={user} exact path='/centerPlaces/'
+          <AuthenticatedRoute user={user} exact path='/saved/'
             render={() => (<CenterPlaces setMapCenter={this.setMapCenter} user={user} mapCenter={this.state.mapCenter} currMap={this.state.currMap} mapSettings={this.state.mapSettings}/>)}
           />
 

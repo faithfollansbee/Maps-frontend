@@ -1,4 +1,5 @@
-import * as React from 'react'
+// import * as React from 'react'
+import React, { Fragment } from 'react'
 import Box from '@material-ui/core/Box'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -16,21 +17,21 @@ export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, typ
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
-    console.log('EditCenterPlaceMenu clicked')
-    console.log(centerPlace)
+    // console.log('EditCenterPlaceMenu clicked')
+    // console.log(centerPlace)
   }
 
   const handleClose = () => {
     setAnchorEl(null)
-    console.log('EditCenterPlaceMenu closed')
+    // console.log('EditCenterPlaceMenu closed')
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="options">
           <IconButton disableRipple onClick={handleClick}>
-            <MoreVertIcon onClick={handleClick} fontSize="medium" />
+            <MoreVertIcon fontSize="medium" />
           </IconButton>
         </Tooltip>
       </Box>
@@ -76,7 +77,9 @@ export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, typ
         // <EditGenreDialog id={genre._id} genre={genre} user={user} />
         // id={this.state.genre._id} genre={this.state.genre} user={this.props.user}
       >
-        <EditCenterPlaceDialog onMenuClose={handleClose} type={type} id={id} centerPlace={centerPlace} user={user} />
+        <span>
+          <EditCenterPlaceDialog onMenuClose={handleClose} type={type} id={id} centerPlace={centerPlace} user={user} />
+        </span>
         <MenuItem onClick={deleteCenterPlace} user={user} id={id} component="a">
           <ListItemIcon>
             <DeleteIcon />
@@ -90,6 +93,6 @@ export default function EditCenterPlaceMenu ({ props, centerPlace, id, user, typ
           Select
         </MenuItem>
       </Menu>
-    </React.Fragment>
+    </Fragment>
   )
 }

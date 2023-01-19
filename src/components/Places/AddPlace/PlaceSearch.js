@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import GooglePlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete'
 import 'react-google-places-autocomplete/dist/assets/index.css'
 import AddPlace from './AddPlace'
@@ -21,7 +21,7 @@ const style2 = {
 const inputStyle = {
   width: '50%'
 }
-class PlaceSearch extends React.Component {
+class PlaceSearch extends Component {
   state = {
     name: '',
     type: '',
@@ -122,7 +122,9 @@ class PlaceSearch extends React.Component {
             </div>
           )}
         />
-        <AddPlace handleSubmitClose={handleSubmitClose} style={style2} user={this.state.user} name={this.state.name} longName={this.state.longName} latitude={this.state.latitude} longitude={this.state.longitude} />
+        <span>
+          <AddPlace handleSubmitClose={handleSubmitClose} style={style2} user={this.state.user} name={this.state.name} longName={this.state.longName} latitude={this.state.latitude} longitude={this.state.longitude} />
+        </span>
       </div>
     )
   }

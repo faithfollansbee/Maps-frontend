@@ -28,7 +28,7 @@ class Place extends Component {
         }
       })
       this.setState({ place: response.data.place, loading: false })
-      console.log(this.state.place.name)
+      // console.log(this.state.place.name)
     } catch (error) {
     }
   }
@@ -52,8 +52,8 @@ class Place extends Component {
     }
 
     render () {
-      console.log('this.state', this.state)
-      console.log(this.props)
+      // console.log('this.state', this.state)
+      // console.log(this.props)
       const { place, deleted, loading } = this.state
       if (deleted) {
         return <Redirect to={

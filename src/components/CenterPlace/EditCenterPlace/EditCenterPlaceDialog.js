@@ -13,13 +13,13 @@ export default function EditCenterPlaceDialog (props) {
 
   const handleClickOpen = () => {
     setOpen(true)
-    console.log('EditCenterPlaceDialog opened')
+    // console.log('EditCenterPlaceDialog opened')
   }
 
   const handleClose = () => {
     setOpen(false)
     props.onMenuClose()
-    console.log('EditCenterPlaceDialog called menuClose, closed')
+    // console.log('EditCenterPlaceDialog called menuClose, closed')
   }
   return (
     <MenuItem onClick={handleClickOpen}>
@@ -27,7 +27,7 @@ export default function EditCenterPlaceDialog (props) {
         <EditIcon />
         <Dialog
           user={props.user}
-          centerPlace={props.centerPlace.name}
+          // centerPlace={props.centerPlace.name}
           id={props.id}
           fullWidth={true}
           maxWidth="sm"

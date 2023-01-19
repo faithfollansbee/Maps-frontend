@@ -25,13 +25,15 @@ import Skeleton from '@material-ui/lab/Skeleton'
 
 const style = {
   marginTop: '1px',
+  marginBottom: '1px',
   opacity: '.9'
 }
 class UserMap extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      centerPlace: props.centerPlace,
+      // centerPlace: props.centerPlace,
+      centerPlace: this.props.centerPlace,
       deleted: false,
       filtered: false,
       latitude: [],
@@ -91,44 +93,8 @@ class UserMap extends Component {
   //   this.setState({ userMovies: searchResults, queryLength: queryLength })
   // }
 
-  // handleSubmit = event => {
-  //   event.preventDefault()
-  //   axios({
-  //     method: 'POST',
-  //     url: `${apiUrl}/movies`,
-  //     headers: {
-  //       'Authorization': `Token token=${this.props.user.token}`
-  //     },
-  //     data: {
-  //       movie: {
-  //         // name: this.state.movie.name,
-  //         title: this.state.movie.name,
-  //         description: this.state.movie.description,
-  //         released: this.state.movie.released,
-  //         image: this.state.movie.image,
-  //         genre: this.props.match.params.id,
-  //         owner: this.props.user._id
-  //       }
-  //     }
-  //   })
-  //     .then(response => {
-  //       this.props.history.push(`/genres/${this.props.match.params.id}/`)
-  //       this.props.alert({
-  //         heading: 'Success',
-  //         message: 'You created a movie'
-  //       })
-  //     })
-  //     .catch(() => {
-  //       this.props.alert({
-  //         heading: 'Failed',
-  //         message: 'Did not create'
-  //       })
-  //     })
-  //     .catch(err => this.setState({ error: err.message }))
-  // }
-
   handleDelete = () => {
-    console.log(this.props)
+    // console.log(this.props)
     event.preventDefault()
     axios.delete(`${apiUrl}/centerPlaces/${this.props.id}`,
       {
@@ -140,10 +106,10 @@ class UserMap extends Component {
         }
       })
       .then(() => this.setState({ deleted: true }))
-      .then(() => this.props.history.push('/centerPlaces'))
+      // .then(() => this.props.history.push('/saved'))
   }
   editGenre = () => {
-    console.log('edit eventually')
+    console.log('edit from CenterPlace')
   }
   // if this centerPlace matches the map id, apply style to differentiate
   // className={ classNames(classes.lightClass, {
@@ -167,10 +133,11 @@ class UserMap extends Component {
       <Paper style={style}>
         {loading ? (
           <Skeleton width="100%" style={{ height: '30px' }}>
-            <ListItem>Henlo </ListItem>
+            <ListItem> </ListItem>
           </Skeleton>
         ) : (
           <ListItem button key={centerPlace._id} disableRipple variant="outlined">
+
             <Tooltip title="use this map">
               <ListItemAvatar className={ classNames(classes.lightClass, {
                 [classes.darkClass]: mapSettings._id === centerPlace._id
@@ -181,10 +148,11 @@ class UserMap extends Component {
             <ListItemText primary={centerPlace.name}/>
 
             <Tooltip title="use this map">
-              <IconButton disableRipple className={ classNames(classes.lightClass, {
-                [classes.darkClass]: mapSettings._id === centerPlace._id
-              })}>
-                <GradeIcon fontSize="medium" onClick={(e) => this.props.handleClick(centerPlace)}/>
+              <IconButton disableRipple onClick={(e) => this.props.handleClick(centerPlace)}
+                className={ classNames(classes.lightClass, {
+                  [classes.darkClass]: mapSettings._id === centerPlace._id
+                })}>
+                <GradeIcon fontSize="medium" />
               </IconButton>
             </Tooltip>
 
