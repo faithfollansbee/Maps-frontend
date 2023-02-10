@@ -57,6 +57,7 @@ const placeTypes = [
     placeType: 'university',
     id: 'university',
     // emoji: '🎓',
+    // img: '🍕'
     img: require('../Icons/graduation.png')
   },
   {

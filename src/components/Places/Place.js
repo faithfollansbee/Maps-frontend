@@ -30,7 +30,10 @@ class Place extends Component {
       filtered: false
     }
   }
-
+  // shouldComponentUpdate = (nextProps) => this.props.place.type !== nextProps.place.type
+  // shouldComponentUpdate = (nextProps) => {
+  //   this.props.id !== nextProps.id
+  // }
   // async componentDidMount (props) {
   //   try {
   //     const response = await axios({

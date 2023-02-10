@@ -48,13 +48,14 @@ class EditPlace extends Component {
         }
       }
     })
-      .then(response => {
-        this.props.history.push(`/places${this.props.place._id}`)
-      })
-      .then(() => this.setState({ submitted: true }))
+      // .then(response => {
+      //   this.props.history.push(`/places${this.props.place._id}`)
+      // })
+      // .then(() => this.setState({ submitted: true }))
       .then(response => {
         this.props.history.goBack()
       })
+      // .then(() => this.props.history.push('/places'))
     this.props.handleSubmitClose()
   }
 
@@ -62,6 +63,7 @@ class EditPlace extends Component {
     // console.log(this.props)
     // console.log(this.state)
     const { place, id, type, name, handleSubmitClose } = this.props
+
     return (
       <div>
         <EditPlaceForm

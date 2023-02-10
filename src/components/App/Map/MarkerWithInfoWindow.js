@@ -4,7 +4,7 @@ import CloseIcon from '@material-ui/icons/Close'
 // import IconButton from '@material-ui/core/IconButton'
 import './MarkerStyle.css'
 // import restaurant from '../Icons/restaurant.png'
-// import Pizza from '../Images/pizza-slice-solid.svg'
+// import restaurant from '../../Images/pizza-slice-solid.svg'
 // <img src={Pizza} alt="Pizza" />
 // <img src={restaurant} alt="pizza" />
 // <img src={'restaurant'} alt="pizza" />
@@ -113,6 +113,7 @@ const InfoWindow = (props) => {
   //   fontWeight: '300',
   //   fontSize: '13px'
   // }
+  console.log(place)
   return (
     <div className="InfoWindow" >
       <CloseIcon className="xButton"/>

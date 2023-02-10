@@ -181,7 +181,7 @@ class Map extends React.Component {
                 bootstrapURLKeys={{
                   key: `${process.env.REACT_APP_API_KEY}`,
                   // key: this.props.apiKey,
-                  // key: 'AIzaSyBOXkzxWxurGgpeo_KsLSs4LczoSS0InN8',
+                  // key: `${process.env.REACT_APP_API_KEY}`,
                   language: 'en',
                   libraries: 'places'
                 }}

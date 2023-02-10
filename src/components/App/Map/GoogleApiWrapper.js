@@ -10,7 +10,7 @@ export default GoogleApiWrapper({
 })(Container)
 
 // export default GoogleApiWrapper({
-//   apiKey: 'AIzaSyBOXkzxWxurGgpeo_KsLSs4LczoSS0InN8'
+//   apiKey: `${process.env.REACT_APP_API_KEY}`
 // })(Container)
 
-// apiKey='AIzaSyBOXkzxWxurGgpeo_KsLSs4LczoSS0InN8'
+// apiKey=`${process.env.REACT_APP_API_KEY}`
