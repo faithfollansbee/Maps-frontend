@@ -25,7 +25,6 @@ const imgStyle = {
   position: 'fixed'
   // opacity: '0.9'
 }
-
 class Landing extends Component {
   render () {
     return (

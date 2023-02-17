@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
-// import axios from 'axios'
-// import apiUrl from '../../apiConfig'
-import 'typeface-roboto'
+// import 'typeface-roboto'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
 import Header from '../Header/Header'
@@ -60,10 +58,8 @@ class App extends Component {
     this.setState({ alerts: [...this.state.alerts, { heading, message, variant }] })
   }
   setMapCenter = (LatLng) => {
-    console.log(LatLng)
     const coordSet = { lat: LatLng.latitude, lng: LatLng.longitude }
     const coordArr = [ Number(LatLng.latitude), Number(LatLng.longitude) ]
-    // console.log(coordArr)
     // this.setState({ mapCenter: LatLng })
     this.setState({ mapCenter: coordSet, mapCenterArr: coordArr })
     this.setState({ mapSettings: LatLng })

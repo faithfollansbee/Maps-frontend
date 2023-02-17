@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import apiUrl from '../../apiConfig'
 import Button from 'react-bootstrap/Button'
-
 const style = {
   position: 'relative',
   marginTop: '10px'

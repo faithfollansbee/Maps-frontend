@@ -5,7 +5,6 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import EditIcon from '@material-ui/icons/Edit'
 import MenuItem from '@material-ui/core/MenuItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-// import EditPlaceForm from './EditPlaceForm'
 import EditCenterPlace from './EditCenterPlace'
 
 export default function EditCenterPlaceDialog (props) {

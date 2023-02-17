@@ -4,7 +4,6 @@ import Navbar from 'react-bootstrap/Navbar'
 import AccountMenu from './AccountMenu'
 import { withRouter, NavLink } from 'react-router-dom'
 import '../../index.scss'
-// import PlaceBookLogo from './PlaceBookLogo.png'
 import { signIn } from '../../api/auth'
 
 const logoStyle = {
@@ -49,7 +48,6 @@ const alwaysOptions = (
 class Header extends Component {
   render () {
     const { alert, user, history, setUser } = this.props
-    console.log('History', history)
 
     const guestSignIn = (user, setUser) => {
       event.preventDefault()

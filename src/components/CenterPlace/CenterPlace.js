@@ -32,7 +32,6 @@ class UserMap extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      // centerPlace: props.centerPlace,
       centerPlace: this.props.centerPlace,
       deleted: false,
       filtered: false,

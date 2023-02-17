@@ -17,6 +17,7 @@ const style2 = {
   margin: 15,
   padding: 15
 }
+
 class BestSearch extends React.Component {
   state = {
     name: '',
@@ -35,7 +36,6 @@ class BestSearch extends React.Component {
     this.setState({ location })
     this.setState({ name: location.structured_formatting.main_text })
     this.setState({ type: location.types[0] })
-    // this.setState({ })
     // console.log(typeof location)
     // console.log('location:', location)
     // console.log(typeof location.description)

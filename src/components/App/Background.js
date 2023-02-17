@@ -3,7 +3,6 @@ import Landing from './Landing'
 
 class Background extends Component {
   super (props) {
-
   }
 
   render () {

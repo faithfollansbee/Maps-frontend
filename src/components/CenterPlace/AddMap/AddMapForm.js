@@ -9,7 +9,6 @@ const AddMapForm = ({ centerPlace, handleChange, handleSubmit, handleSubmitClose
         type="text"
         placeholder="Name"
         value={name}
-        // value={genre.name}
         onChange={handleChange}
         name="name"
         required

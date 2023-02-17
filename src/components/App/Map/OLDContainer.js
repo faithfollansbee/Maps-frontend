@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react'
-
 import axios from 'axios'
-import apiUrl from '../../apiConfig'
+import apiUrl from '../../../apiConfig'
 
 const style = {
   position: 'relative',
@@ -20,16 +19,28 @@ const containerStyle = {
   height: '100%'
 }
 
-class MapContainer extends Component {
+// const tooltipStyle = {
+//   backgroundColor: '#f5f5f9',
+//   color: 'rgba(0, 0, 0, 0.87)',
+//   maxWidth: '220',
+//   fontSize: '24px',
+//   border: '1px solid #dadde9'
+// }
+
+class MapContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       places: [],
       centerPlaces: [],
       user: this.props.user,
-      coords: this.props.mapCenter
+      coords: this.props.mapCenter,
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {}
     }
   }
+
   async componentDidMount () {
     try {
       const response = await axios({
@@ -43,124 +54,131 @@ class MapContainer extends Component {
     } catch (error) {
     }
   }
+
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
-      activeMarker: marker
+      activeMarker: marker,
+      showingInfoWindow: true
     })
+  }
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
   }
 
   setMapCenter = (e) => {
     this.setState({
       mapCenter: ''
     })
-    console.log('called setMapCenter from Container')
   }
-  onMouseoverMarker = (props, marker, e) => {
-    console.log('marker.name', marker.name)
-    console.log('props:', props)
-    return (
-      <InfoWindow visible={true} open={open} marker={marker}>{marker.name}</InfoWindow>
-    )
+  windowOpened = () => {
+    // console.log('window opened')
+  }
+  windowClosed = () => {
+    // console.log('window closed')
   }
 
   displayMarkers = () => {
-    console.log(this.state.places)
     return this.state.places.map((place, index) => {
       if (place.type === 'restaurant') {
-        return <Marker key={index} id={index} name={place.name} place={place} position={{
-          lat: place.latitude,
-          lng: place.longitude
-        }} icon={{ url: 'https://img.icons8.com/color/48/000000/pizza.png' }}
-        onClick={() => console.log(place.name)}
-        onMouseover={this.onMouseoverMarker}
-        >
-          <InfoWindow visible={true} open={open} marker={place}>{place.name}</InfoWindow>
-        </Marker>
+        return <Marker key={index} id={index}
+          title={place.name}
+          name={place.name}
+          markerImage={place.emoji}
+          position={{
+            lat: place.latitude,
+            lng: place.longitude
+          }} icon={{ url: 'https://img.icons8.com/color/48/000000/pizza.png' }}
+          onClick={this.onMarkerClick}
+        />
       } else if (place.type === 'entertainment') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/ferris-wheel.png' }}
-        onClick={() => console.log(place.name)} />
-      } else if (place.type === 'historical landmark') {
-        return <Marker key={index} id={index} position={{
+        onClick={this.onMarkerClick} />
+      } else if (place.type === 'landmark') {
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/offices/30/000000/monument.png' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'outdoors') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/ios-filled/25/000000/deciduous-tree.png' }}
-        onClick={() => console.log(place.name)} />
+        onClick={this.onMarkerClick}/>
       } else if (place.type === 'bar') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
-        }} icon={{ url: 'https://img.icons8.com/plasticine/50/000000/wine-glass.png' }}
+        }} icon={{ url: '/bar.ico' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'museum') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/material-sharp/24/000000/museum.png' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'home') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/home.png' }}
         onClick={() => console.log(place.name)} />
       } else if (place.type === 'university') {
-        return <Marker key={index} id={index} position={{
+        return <Marker key={index} id={index} name={place.name} position={{
           lat: place.latitude,
           lng: place.longitude
         }} icon={{ url: 'https://img.icons8.com/color/48/000000/student-center.png' }}
         onClick={() => console.log(place.name)} />
       } else {
-        return <Marker key={index} id={index} position={{
-          lat: place.latitude,
-          lng: place.longitude
-        }}
-        onClick={() => console.log('You clicked me!')} />
+        return <Marker
+          onClick={() => console.log('You clicked me!')} />
       }
     })
   }
 
-  render () {
+  render (props) {
     if (!this.props.loaded) {
       return <div>Loading...</div>
     }
-    console.log('container state', this.state)
-    console.log('container props', this.props)
     return (
       <div className="Search2-layout">
-        { this.props.mapCenter && (
-          <div style={divstyle}>
-            <Map
-              style={style}
-              containerStyle={containerStyle}
-              google={window.google}
-              zoom={13}
-              apiKey={this.props.apiKey}
-              initialCenter={this.props.currMap.currCoords}
-              center={this.props.mapCenter}
+        <div style={divstyle}>
+          <Map
+            onClick={this.onMapClicked}
+            style={style}
+            google={window.google}
+            zoom={13}
+            containerStyle={containerStyle}
+            apiKey={this.props.apiKey}
+            initialCenter={this.props.currMap.currCoords}
+            center={this.props.mapCenter}
+          >
+            {this.displayMarkers()}
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onOpen={this.windowOpened}
+              onClose={this.windowClosed}
             >
-              {this.displayMarkers()}
-              <Marker
-                name={'Current location'} />
-            </Map>
-
-          </div>
-
-        )}
+              <div>
+                {this.state.selectedPlace.name}
+              </div>
+            </InfoWindow>
+          </Map>
+        </div>
       </div>
     )
   }
 }
-
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY
 })(MapContainer)

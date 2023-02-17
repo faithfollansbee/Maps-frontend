@@ -8,7 +8,6 @@ import Tooltip from '@material-ui/core/Tooltip'
 import DeleteIcon from '@material-ui/icons/Delete'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import EditPlaceDialog from './EditPlaceDialog'
-// import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 export default function EditPlaceMenu ({ place, id, user, type, deletePlace }) {
   const [anchorEl, setAnchorEl] = React.useState(null)

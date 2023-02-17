@@ -1,9 +1,7 @@
 import React from 'react'
 import AddPlace from './AddPlace'
-
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 const style = {
   zIndex: 2,

@@ -114,7 +114,6 @@ class Map extends React.Component {
   //     }
   //   })
   // }
-
   // {this.state.places.map((place) => (
   //   <MarkerWithInfoWindow
   //     key={place.id}
@@ -127,8 +126,6 @@ class Map extends React.Component {
   // ))}
 
   render (props) {
-    // console.log(this.props)
-    // console.log(this.state.places)
     const { isLoading } = this.state
 
     // if (this.state.isLoading) {
@@ -175,8 +172,6 @@ class Map extends React.Component {
               <Skeleton variant="rect" style={{ height: '80vh', width: '100%', position: 'relative' }}/>
             ) : (
               <GoogleMapReact
-                // apiKey={this.props.apiKey}
-                // bootstrapURLKeys={{ key: this.props.apiKey }}
                 // bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
                 bootstrapURLKeys={{
                   key: `${process.env.REACT_APP_API_KEY}`,

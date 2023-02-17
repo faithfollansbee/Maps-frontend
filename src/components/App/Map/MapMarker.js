@@ -2,7 +2,6 @@
 import React from 'react'
 import { Marker, InfoWindow } from 'google-maps-react'
 import useToggle from './useToggleState'
-
 const MapMarker = ({ place, index, key, name, id, position, icon }) => {
   const [showWindow, toggleShowWindow] = useToggle(false)
 

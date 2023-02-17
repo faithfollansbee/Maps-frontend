@@ -3,11 +3,7 @@ import placeTypes from '../PlaceTypes'
 import CloseIcon from '@material-ui/icons/Close'
 // import IconButton from '@material-ui/core/IconButton'
 import './MarkerStyle.css'
-// import restaurant from '../Icons/restaurant.png'
-// import restaurant from '../../Images/pizza-slice-solid.svg'
-// <img src={Pizza} alt="Pizza" />
-// <img src={restaurant} alt="pizza" />
-// <img src={'restaurant'} alt="pizza" />
+
 const markerStyle = {
   fontFamily: 'sans-serif'
   // color: 'red',

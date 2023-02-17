@@ -4,7 +4,6 @@ import apiUrl from '../../apiConfig'
 import AddMapDialog from './AddMap/AddMapDialog'
 import CenterPlace from './CenterPlace'
 import List from '@material-ui/core/List'
-// import ListItem from '@material-ui/core/ListItem'
 import Skeleton from '@material-ui/lab/Skeleton'
 
 const titleStyle = {

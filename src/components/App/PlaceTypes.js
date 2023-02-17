@@ -1,5 +1,3 @@
-// import restaurant from '../Icons/restaurant.png'
-
 const placeTypes = [
   {
     placeType: 'cafe',
